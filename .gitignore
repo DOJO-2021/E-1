@@ -1,4 +1,3 @@
 /.metadata/
 build
-/StudyQ.trace.db
-/StudyQ.mv.db
+/database
