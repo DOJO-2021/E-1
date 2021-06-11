@@ -5,14 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 //インポートして連結
 
 public class  Common {
-	 public void  select(List<Object> deta){
-
-	 }
 //	 研修生、講師用ログインメソッド
 	public boolean isLoginOK(int jadge,String id, String pw) {
 		Connection conn = null;
@@ -70,7 +66,7 @@ public class  Common {
 		return loginResult;
 	}
 //	 研修生登録メソッド
-	public void isStudentRegistOK() {
+	public void isStudentRegistOK(String l_name,String f_name) {
 		Connection conn = null;
 	 	boolean registResult;
 		try {
@@ -80,15 +76,42 @@ public class  Common {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// Insert文を準備する
-			String dammy =  "insert into study_id values(null,teraco,123456)";
-			PreparedStatement pStmtIns = conn.prepareStatement(dammy);
-			if (pStmtIns.executeUpdate() == 1) {
-				registResult = true;
+//			String insertStudentIdSql = "insert into student_id values(null,?,?)";
+//			String insertStudentSql = "insert into student values(null,?,?,?)";
+//			PreparedStatement pStmtInsId = conn.prepareStatement(insertStudentIdSql);
+//			PreparedStatement pStmtIns = conn.prepareStatement(insertStudentSql);
+
+//			if() {}else {}
+//			if() {}else {}
+//
+//			if() {}else {}
+//			if() {}else {}
+//			if() {}else {}
+
+
+
+//
+//			pStmtInsId.setString(1, insertStudentSql);
+//			if (pStmtIns.executeUpdate() == 1) {
+//				registResult = true;
+//			}
+			System.out.println("研修生の登録が完了しました！");
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
-
-		} catch (Exception e) {
-			// TODO: handle exception
-
 		}
 
 	}
@@ -103,10 +126,24 @@ public class  Common {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// SELECT文を準備する
 
+			System.out.println("セッション登録が完了しました！");
 
-
-		} catch (Exception e) {
-			// TODO: handle exception
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
 	}
@@ -122,10 +159,24 @@ public class  Common {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// SELECT文を準備する
 
+			System.out.println("セッションリストが全て表示されています！");
 
-
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
 	}
@@ -141,10 +192,24 @@ public class  Common {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// SELECT文を準備する
 
+			System.out.println("FAQのリストがすべて表示されています！");
 
-
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
 	}
@@ -160,11 +225,26 @@ public class  Common {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// SELECT文を準備する
 
+			System.out.println("FAQ登録が完了しました！");
 
-
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 
 	}
 //	FAQ更新
@@ -178,11 +258,26 @@ public class  Common {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// SELECT文を準備する
 
+			System.out.println("FAQを更新しました！");
 
-
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 
 	}
 //	FAQ削除
@@ -195,12 +290,25 @@ public class  Common {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// SELECT文を準備する
-
-
-
-		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("FAQを削除しました！");
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 
 	}
 
@@ -215,11 +323,26 @@ public class  Common {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// SELECT文を準備する
 
+			System.out.println("これはFAQの検索結果です！");
 
-
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 
 	}
 
@@ -234,11 +357,26 @@ public class  Common {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// SELECT文を準備する
 
+			System.out.println("何件ヒットしました！");
 
-
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 
 	}
 
@@ -253,11 +391,26 @@ public class  Common {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
 			// SELECT文を準備する
 
+			System.out.println("只今の待ち人数は○○人です！");
 
-
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 
 	}
 }
