@@ -11,25 +11,23 @@
 	<main>
 		<h2>ログイン</h2>
 
-		<form method="POST" action="">
+		<form method="POST" action="/StudyQ/TeacherLogin">
 
 		<!-- 入力フォーム -->
-		<input type="text" name="ID" placeholder="user ID"><br>
-		<input type="password" name="PW" placeholder="password"><br>
+		<input type="text" name="t_id" placeholder="user ID"><br>
+		<input type="password" name="t_pw" placeholder="password"><br>
 
 		<!-- ログイン・リセットボタン -->
 		<div>
-			<input type="submit" name="login" value="ログイン">
-			<input type="reset" id="reset" name="reset" value="リセット"><br>
+			<input type="submit" name="login" value="ログイン" class="login_btn">
+			<input type="reset" name="reset" value="リセット" class="reset_btn"><br>
 		</div>
 
-		<!-- 新規登録はこちら -->
-		<a href="/StudyQ/StudentRegist.java">新規登録はこちら</a>
-
-		<!-- 講師の方はこちら -->
-		<a href="/StudyQ/TeacherLogin.java">講師の方はこちら</a>
+		<!-- 研修生の方はこちら -->
+		<a href="/StudyQ/StudentLogin" class="s_login_link">研修生の方はこちら</a>
 
 		</form>
+		<jsp:include page="footer.jsp"/>
 	</main>
 </body>
 </html>

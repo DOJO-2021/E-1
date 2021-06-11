@@ -7,10 +7,11 @@
 <title>講師｜TOP</title>
 </head>
 <body>
+	<jsp:include page="teacher_header.jsp"/>
 	<!-- ここからメイン -->
 	<main>
 		<!-- ログアウトボタン -->
-		<input type="submit" class="t_top_logout">ログアウト<br>
+		<input type="submit" class="t_top_logout" value="ログアウト"><br>
 
 		<!-- セッション待ち全体人数表示 -->
 		<div class="session_view">
@@ -19,11 +20,12 @@
 
 		<ul>
 			<!-- FAQページ遷移 -->
-			<li><a href="/StudyQ/StudentFaqSearch.java" class="t_faq_menu"><img src="image/" alt="FAQ" ></a></li>
+			<li><a href="/StudyQ/StudentFaqSearch" class="t_faq_menu"><img src="image/" alt="FAQ" ></a></li>
 			<!-- セッション予約リストページ遷移 -->
-			<li><a href="/StudyQ/StudentReserve.java" class="t_top_menu"><img src="image/"  alt="セッション予約リスト"></a></li>
+			<li><a href="/StudyQ/StudentReserve" class="t_top_menu"><img src="image/"  alt="セッション予約リスト"></a></li>
 		</ul>
 
 	</main>
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>

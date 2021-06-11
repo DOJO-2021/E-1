@@ -7,6 +7,7 @@
 	<title>研修生｜TOP</title>
 </head>
 <body>
+	<jsp:include page="student_header.jsp"/>
 	<!-- ここからメイン -->
 	<main>
 		<!-- 検索バー -->
@@ -19,12 +20,14 @@
 		<!-- セッション待ち人数表示 -->
 		<h3>ただいまの待ち人数</h3>
 
-
-		<!-- FAQページ遷移 -->
-		<a href="/StudyQ/StudentFaqSearch.java"><img src="image/" alt="FAQ" ></a>
-		<!-- セッション予約ページ遷移 -->
-		<a href="/StudyQ/StudentReserve.java"><img src="image/"  alt="セッション予約"></a>
+		<ul class="s_top_menu">
+			<!-- FAQページ遷移 -->
+			<li><a href="/StudyQ/StudentFaqSearch" class=""><img src="image/" alt="FAQ" ></a></li>
+			<!-- セッション予約ページ遷移 -->
+			<li><a href="/StudyQ/StudentReserve"><img src="image/"  alt="セッション予約"></a></li>
+		</ul>
 
 	</main>
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>
