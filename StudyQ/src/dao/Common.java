@@ -6,11 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import enums.UserType;
+
 //インポートして連結
 
 public class  Common {
+	private final String jdbcPass =  "jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ";
 //	 研修生、講師用ログインメソッド
-	public boolean isLoginOK(int jadge,String id, String pw) {
+	public boolean isLoginOK(UserType user,String id, String pw) {
 		Connection conn = null;
 		boolean loginResult = false;
 		String studentTable = "select count(*) from student_id where s_id = ? and s_pw = ?";
@@ -21,10 +24,10 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 
 			// SELECT文を準備する
-			if(jadge == 1) {
+			if(user == UserType.Student) {
 				sql = studentTable;
 			}else {
 				sql = teacherTable;
@@ -74,7 +77,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// Insert文を準備する
 //			String insertStudentIdSql = "insert into student_id values(null,?,?)";
 //			String insertStudentSql = "insert into student values(null,?,?,?)";
@@ -123,7 +126,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
 			System.out.println("セッション登録が完了しました！");
@@ -156,7 +159,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
 			System.out.println("セッションリストが全て表示されています！");
@@ -189,7 +192,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
 			System.out.println("FAQのリストがすべて表示されています！");
@@ -222,7 +225,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
 			System.out.println("FAQ登録が完了しました！");
@@ -255,7 +258,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
 			System.out.println("FAQを更新しました！");
@@ -288,7 +291,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 			System.out.println("FAQを削除しました！");
 		}catch (SQLException e) {
@@ -320,7 +323,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
 			System.out.println("これはFAQの検索結果です！");
@@ -354,7 +357,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
 			System.out.println("何件ヒットしました！");
@@ -388,7 +391,7 @@ public class  Common {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ", "sa", "");
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
 			System.out.println("只今の待ち人数は○○人です！");
