@@ -13,34 +13,28 @@
 <jsp:include page="student_header.jsp"/>
 
 <!-- メイン -->
-<jsp:include page="menu.jsp"/>
-<h2>セッション予約が完了しました</h2>
+<jsp:include page="student_menu.jsp"/>
+<h2><c:out value="${result.title}" /></h2>
 <p><c:out value="${}"/>さん</p>
 <table>
 <tr>
 	<th>件名</th>
-	<td></td>
+	<td><c:out value="${subject}"/></td>
 </tr>
 <tr>
 	<th>カテゴリ</th>
-	<td>
-
-		学習内容
-		トラブル
-		その他
-
-	</td>
+	<td><c:out value="${session_m_category}"/></td>
 </tr>
 <tr>
 	<th>質問内容</th>
-	<td></td>
+	<td><c:out value="${question}"/></td>
 </tr>
 <tr>
 	<th>添付ファイル</th>
-	<td></td>
+	<td><c:out value="${file}"/></td>
 </tr>
 </table>
-<a href="StudyQ/StudentTop">TOPへ戻る</a>
+<a href="${result.backTo}">TOPへ戻る</a>
 <!-- フッター -->
 <jsp:include page="footer.jsp"/>
 </body>

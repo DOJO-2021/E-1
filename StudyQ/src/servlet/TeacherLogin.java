@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.Common;
+import enums.UserType;
 import model.LoginUser;
 
 /**
@@ -47,9 +48,9 @@ public class TeacherLogin extends HttpServlet {
 
 
 
-		// ログイン処理を行う // 1=研修生、2=講師
+		// ログイン処理を行う
 		Common Dao = new Common();
-		if (Dao.isLoginOK(2,id, pw)) {	// ログイン成功
+		if (Dao.isLoginOK(UserType.Teacher,id, pw)) {	// ログイン成功
 
 			// セッションスコープにIDを格納する
 			HttpSession session = request.getSession();

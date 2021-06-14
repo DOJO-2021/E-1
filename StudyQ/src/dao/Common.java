@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import enums.UserType;
+import model.Faq;
+import model.StuIdpw;
 
 //インポートして連結
 
@@ -69,9 +71,9 @@ public class  Common {
 		return loginResult;
 	}
 //	 研修生登録メソッド
-	public void isStudentRegistOK(String l_name,String f_name) {
+	public boolean isStudentRegistOK(StuIdpw student) {
 		Connection conn = null;
-	 	boolean registResult;
+	 	boolean registResult = false;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -79,25 +81,34 @@ public class  Common {
 			// データベースに接続する
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// Insert文を準備する
-//			String insertStudentIdSql = "insert into student_id values(null,?,?)";
-//			String insertStudentSql = "insert into student values(null,?,?,?)";
-//			PreparedStatement pStmtInsId = conn.prepareStatement(insertStudentIdSql);
-//			PreparedStatement pStmtIns = conn.prepareStatement(insertStudentSql);
+			String insertStudentSql = "insert into student_id values(null,?,?,?,?)";
+			PreparedStatement pStmtIns = conn.prepareStatement(insertStudentSql);
 
-//			if() {}else {}
-//			if() {}else {}
-//
-//			if() {}else {}
-//			if() {}else {}
-//			if() {}else {}
+			if(student.getS_id()!= null&& !student.getS_id().equals("")) {
+				pStmtIns.setString(1, student.getS_id());
+			}else {
+				pStmtIns.setString(1, null);
+			}
+			if(student.getS_pw()!= null&& !student.getS_pw().equals("")) {
+				pStmtIns.setString(2, student.getS_pw());
+			}else {
+				pStmtIns.setString(1, null);
+			}
 
+			if(student.getS_l_name()!=null&&!student.getS_l_name().equals("")) {
+				pStmtIns.setString(3, student.getS_l_name());
+			}else {
+				pStmtIns.setString(3, student.getS_l_name());
+			}
+			if(student.getS_f_name()!=null&&!student.getS_f_name().equals("")) {
+				pStmtIns.setString(4, student.getS_f_name());
+			}else {
+				pStmtIns.setString(4, student.getS_f_name());
+			}
 
-
-//
-//			pStmtInsId.setString(1, insertStudentSql);
-//			if (pStmtIns.executeUpdate() == 1) {
-//				registResult = true;
-//			}
+			if (pStmtIns.executeUpdate() == 1) {
+				registResult = true;
+			}
 			System.out.println("研修生の登録が完了しました！");
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -116,7 +127,7 @@ public class  Common {
 				}
 			}
 		}
-
+		return registResult;
 	}
 //	研修生セッション登録用メソッド
 	public void SessionRegist() {
@@ -128,6 +139,7 @@ public class  Common {
 			// データベースに接続する
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
+
 
 			System.out.println("セッション登録が完了しました！");
 
@@ -161,6 +173,7 @@ public class  Common {
 			// データベースに接続する
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
+
 
 			System.out.println("セッションリストが全て表示されています！");
 
@@ -350,8 +363,9 @@ public class  Common {
 	}
 
 //	FAQヒットカウント
-	public void FaqCount() {
+	public int FaqCount(Faq faqCount) {
 		Connection conn = null;
+		int count=0;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -360,7 +374,16 @@ public class  Common {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
-			System.out.println("何件ヒットしました！");
+			String countSql = "SELECT COUNT(*) FROM FAQ WHERE CONCAT";
+			PreparedStatement pStmtCount = conn.prepareStatement(countSql);
+
+			//SQL分を完成させる
+			if(faqCount.getFaq_m_category() <= 9) {}else {}
+
+			ResultSet rs = pStmtCount.executeQuery();
+
+			count = rs.getInt("count(faq_id)");
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -376,10 +399,13 @@ public class  Common {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
+					count = 0;
 				}
 			}
 		}
 
+		//結果を返す
+		return count;
 
 	}
 
@@ -414,6 +440,40 @@ public class  Common {
 			}
 		}
 
+	}
 
+
+// 対応状態変更
+	public void Reschange() {
+		Connection conn = null;
+	try {
+		// JDBCドライバを読み込む
+		Class.forName("org.h2.Driver");
+
+		// データベースに接続する
+		conn = DriverManager.getConnection(jdbcPass, "sa", "");
+		// SELECT文を準備する
+
+		System.out.println("これはFAQの検索結果です！");
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	finally {
+		// データベースを切断
+		if (conn != null) {
+			try {
+				conn.close();
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
+	}
+
+

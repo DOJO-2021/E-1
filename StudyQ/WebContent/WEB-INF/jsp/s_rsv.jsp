@@ -12,35 +12,35 @@
 <jsp:include page="student_header.jsp"/>
 
 <!-- メイン -->
-<jsp:include page="menu.jsp"/>
+<jsp:include page="student_menu.jsp"/>
 <h2>セッション予約</h2>
-<p>○○さん</p>
-<form method="POST" action="/studyQ/StudentReserveResult">
+<p><c:out value="${s_l_name}"/>さん</p> <!-- 保留 -->
+<form method="POST" action="/studyQ/StudentReserveResult" enctype="multipart/form-data">
 	<table>
 	<tr>
 		<th>件名</th>
-		<td><input type="text" name="subject" class="" placeholder="件名を入力してください"></td>
+		<td><input type="text" name="subject"  class="" placeholder="件名を入力してください"></td>
 	</tr>
 	<tr>
 		<th>カテゴリ</th>
 		<td>
-		<select name="">
+		<select name="session_m_category">
 			<option value ="">質問するカテゴリを選択</option>
 			<optgroup label="学習内容">
-		    	<option value ="">プログラミング言語</option>
-		    	<option value ="">段位認定</option>
-		    	<option value ="">ドリル</option>
-		    	<option value ="">コードエラー</option>
-		    	<option value ="">その他</option>
+		    	<option value ="0">プログラミング言語</option>
+		    	<option value ="1">段位認定</option>
+		    	<option value ="2">ドリル</option>
+		    	<option value ="3">コードエラー</option>
+		    	<option value ="4">その他</option>
 		    </optgroup>
 			<optgroup label="トラブル">
-		    	<option value ="">エディター</option>
-		    	<option value ="">PC</option>
-		    	<option value ="">Github</option>
-		    	<option value ="">その他</option>
+		    	<option value ="5">エディター</option>
+		    	<option value ="6">PC</option>
+		    	<option value ="7">Github</option>
+		    	<option value ="8">その他</option>
 		    </optgroup>
 		    <optgroup label="その他">
-		    	<option value ="">相談</option>
+		    	<option value ="9">相談</option>
 		    </optgroup>
 
 		</select>
