@@ -1,6 +1,6 @@
 package test;
 
-import dao.Common;
+import dao.CommonDao;
 import enums.UserType;
 
 public class CommonLoginTest {
@@ -12,7 +12,7 @@ public class CommonLoginTest {
 	}
 	// ユーザーが見つかる場合のテスト
 	public static void testIsLoginOK1() {
-		Common commonLog = new Common();
+		CommonDao commonLog = new CommonDao();
 		if (commonLog.isLoginOK(UserType.Student,"dojo", "password")) {
 			System.out.println("testIsLoginOK1：テストが成功しました");
 		}
@@ -23,7 +23,7 @@ public class CommonLoginTest {
 
 	// ユーザーが見つからない場合のテスト
 	public static void testIsLoginOK2() {
-		Common dao = new Common();
+		CommonDao dao = new CommonDao();
 		if (!dao.isLoginOK(UserType.Teacher,"DOJO", "pass")) {
 			System.out.println("testIsLoginOK2：テストが成功しました");
 		}

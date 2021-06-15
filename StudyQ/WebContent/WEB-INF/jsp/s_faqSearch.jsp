@@ -13,11 +13,11 @@
 <!-- ここからヘッダー -->
 <jsp:include page="student_header.jsp"/>
 <!-- ここからメイン -->
-<jsp:include page="menu.jsp"/>
+<jsp:include page="student_menu.jsp"/>
 <h2 class="header_title">FAQ検索</h2>
 <form method="POST" action="/StudyQ/StudentFaqSearch.java">
-<input type="text" id="text1" maxlength="5" placeholder="キーワードを入力">
-<input type="button" value="検索" onclick="clickBtn1()" />
+<input name="search_word" type="text" id="text1" maxlength="5" placeholder="キーワードを入力">
+<input type="button" value="検索" >
 
 
   <br><br>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,18 +20,18 @@
 	<table>
 		<tr>
 			<th> FAQタイトル </th>
-			<td><c:out value="${faq_title}"/> </td>
+			<td><c:out value="${obj1}"/> </td>
 		</tr>
 		<tr>
 			<th> FAQカテゴリ </th>
 			<td>
 			<!-- ここにselect結果の値を表示させたい -->
-				<c:out value="${faq_category}"  />
+				<c:out value="${obj2}"  />
 			</td>
 		</tr>
 		<tr>
 			<th> FAQ詳細 </th>
-			<td><c:out value="${faq_ans}"/> </td>
+			<td><c:out value="${obj3}"/> </td>
 		</tr>
 	</table>
 </div>

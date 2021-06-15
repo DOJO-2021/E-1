@@ -8,8 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.Common;
 import model.StuIdpw;
 
 /**
@@ -37,10 +37,15 @@ public class StudentRegist extends HttpServlet {
 		String s_id = request.getParameter("s_id");
 		String s_pw = request.getParameter("s_pw");
 
+		StuIdpw student = new StuIdpw(0, s_l_name, s_f_name, s_id, s_pw);
+		HttpSession session = request.getSession();
+		session.setAttribute("Student", student);
+
 	//登録処理
-		Common cDao = new Common();
-		if(cDao.isStudentRegistOK(new StuIdpw(0, s_l_name, s_f_name, s_id, s_pw))) {
-			response.sendRedirect("/StudyQ/s_registResult.jsp");
+		CommonDao cDao = new CommonDao();
+		if(cDao.isStudentRegistOK(student)) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_registResult.jsp");
+			dispatcher.forward(request, response);
 		}else {
 			System.out.println("登録失敗！");
 		}

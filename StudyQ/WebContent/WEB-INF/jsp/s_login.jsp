@@ -24,12 +24,14 @@
 		</div>
 
 		<!-- 新規登録はこちら -->
-		<a href="/StudyQ/StudentRegist.java" class="s_regist_link">新規登録はこちら</a>
+		<a href="/StudyQ/StudentRegist" class="s_regist_link">新規登録はこちら</a>
 
 		<!-- 講師の方はこちら -->
-		<a href="/StudyQ/TeacherLogin.java" class="t_login_link">講師の方はこちら</a>
+		<a href="/StudyQ/TeacherLogin" class="t_login_link">講師の方はこちら</a>
 
 		</form>
 	</main>
+<!-- フッター -->
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

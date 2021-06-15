@@ -5,14 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import enums.UserType;
-import model.Faq;
 import model.StuIdpw;
 
 //インポートして連結
 
-public class  Common {
+public class  CommonDao {
 	private final String jdbcPass =  "jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ";
 //	 研修生、講師用ログインメソッド
 	public boolean isLoginOK(UserType user,String id, String pw) {
@@ -363,9 +364,11 @@ public class  Common {
 	}
 
 //	FAQヒットカウント
-	public int FaqCount(Faq faqCount) {
+	public int FaqCount(String searchWord) {
 		Connection conn = null;
 		int count=0;
+		List<String> column = new ArrayList<>();
+		List<Integer> countlist = new ArrayList<>();
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -374,15 +377,30 @@ public class  Common {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
-			String countSql = "SELECT COUNT(*) FROM FAQ WHERE CONCAT";
-			PreparedStatement pStmtCount = conn.prepareStatement(countSql);
+			column.add(" FAQ_TITLE ");
+			column.add(" FAQ_ANS ");
 
-			//SQL分を完成させる
-			if(faqCount.getFaq_m_category() <= 9) {}else {}
+			String countSql01 = "SELECT COUNT(*) AS cnt FROM FAQ WHERE";
+			String countSql02= "LIKE ? OR";
+			String countSql03 = "LIKE ?";
 
-			ResultSet rs = pStmtCount.executeQuery();
+				String countSql = countSql01 + column.get(0) + countSql02 + column.get(1) +  countSql03;
+				PreparedStatement pStmtCount = conn.prepareStatement(countSql);
 
-			count = rs.getInt("count(faq_id)");
+					//SQL分を完成させる
+				if(searchWord != null&&!searchWord.equals("")) {
+					pStmtCount.setString(1,"%" + searchWord + "%");
+					pStmtCount.setString(2,"%" + searchWord + "%");
+				}else {
+					pStmtCount.setString(1,"%");
+					pStmtCount.setString(2,"%");
+				}
+
+
+				ResultSet rs = pStmtCount.executeQuery();
+				while(rs.next()) {
+					count = rs.getInt("cnt");
+				}
 
 
 		} catch (SQLException e) {
@@ -399,7 +417,6 @@ public class  Common {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					count = 0;
 				}
 			}
 		}

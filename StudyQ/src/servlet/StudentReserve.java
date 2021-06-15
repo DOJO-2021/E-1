@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.Common;
-import model.Result;
+import dao.CommonDao;
+
+
 /**
  * Servlet implementation class StudentReserve
  */
@@ -32,7 +33,7 @@ public class StudentReserve extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("s_id") == null) {
 			response.sendRedirect("/StudyQ/StudentLogin");
 			return;
 		}
@@ -48,37 +49,31 @@ public class StudentReserve extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/simpleBC/LoginServlet");
+		if (session.getAttribute("s_id") == null) {
+			response.sendRedirect("/StudyQ/StudentLogin");
 			return;
 		}
 
 		// リクエストパラメータを取得する（beansが完成したら）
 		request.setCharacterEncoding("UTF-8");
-
-		String s_name = request.getParameter("s_name");
-		String subject = request.getParameter("subject");
-		String question = request.getParameter("question");
-		String file = request.getParameter("file");
-		int state = Integer.parseInt(request.getParameter("state"));
-		int session_m_category = request.getParameter("session_m_category");
+//
+//		String s_name = request.getParameter("s_name");
+//		String subject = request.getParameter("subject");
+//		String question = request.getParameter("question");
+//		String file = request.getParameter("file");
+//		int state = Integer.parseInt(request.getParameter("state"));
+//		int session_m_category = Integer.parseInt(request.getParameter("session_m_category"));
 
 
 		// セッション予約処理を行う(simpleBCからコード引っ張ってきたので完成してません)
-		Common bDao = new Common();
-		if (bDao.SessionRegist()) {	// 予約成功
-			request.setAttribute("result",
-			new Result("セッション予約が完了しました。", "", "/StudyQ/StudentTop")); //どこにとびたいかは自分で決める
-		}
-		else {									// 予約失敗
-			System.out.println("予約失敗！");
-		}
+		CommonDao bDao = new CommonDao();
+		bDao.SessionRegist();	// 予約成功
 
-		// 研修生　セッション予約完了(servlet)にフォワードする
+
+
+		// 研修生　セッション予約完了(jsp)にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_rsvResult.jsp");
 		dispatcher.forward(request, response);
-		response.sendRedirect("/StudyQ/StudentReservrResult");
-		return;
 
 	}
 }

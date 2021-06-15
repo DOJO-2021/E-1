@@ -7,22 +7,22 @@
 		<title>研修生|新規登録</title>
 	</head>
 	<body>
-		<jsp:include page="header.jsp"/>
+		<jsp:include page="student_header.jsp"/>
 		<h2 class="header_title">新規登録</h2>
 		<p class="s_sub_title">以下の項目にご記入の上、「登録」ボタンを押してください。</p>
 		<form action="/StudyQ/StudentRegist" method ="POST">
 		<table>
 			<tr>
-				<th>姓</th><td><input type="text" class="s_registlist_item"></td>
+				<th>姓</th><td><input name="s_l_name" type="text" class="s_registlist_item"></td>
 			</tr>
 			<tr>
-				<th>名</th><td><input type="text" class="s_registlist_item"></td>
+				<th>名</th><td><input name="s_f_name" type="text" class="s_registlist_item"></td>
 			</tr>
 			<tr>
-				<th>ID</th><td><input type="text" class="s_registlist_item"></td>
+				<th>ID</th><td><input name="s_id" type="text" class="s_registlist_item"></td>
 			</tr>
 			<tr>
-				<th>パスワード</th><td><input type="text" class="s_registlist_item"></td>
+				<th>パスワード</th><td><input name="s_pw" type="text" class="s_registlist_item"></td>
 			</tr>
 			<tr>
 				<th>確認用</th><td><input type="text" class="s_registlist_item"></td>

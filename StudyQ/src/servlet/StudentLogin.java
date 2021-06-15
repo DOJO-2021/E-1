@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.Common;
+import dao.CommonDao;
 import enums.UserType;
 import model.LoginUser;
 
@@ -49,7 +49,7 @@ public class StudentLogin extends HttpServlet {
 
 
 		// ログイン処理を行う
-		Common Dao = new Common();
+		CommonDao Dao = new CommonDao();
 		if (Dao.isLoginOK(UserType.Student, id, pw)) {	// ログイン成功
 
 			// セッションスコープにIDを格納する
