@@ -30,7 +30,7 @@
 		</table>
 		<input type="submit" value="登録"><br>
 		</form>
-		<a href="/StudyQ/StudentLogin.java" class="s_transition_btn">既にアカウントをお持ちの方はこちら</a>
+		<a href="/StudyQ/StudentLogin" class="s_transition_btn">既にアカウントをお持ちの方はこちら</a>
 		<jsp:include page="footer.jsp"/>
 	</body>
 </html>

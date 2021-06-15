@@ -33,7 +33,7 @@
 
 
 <!-- Java Script -->
-<script src="/StudyQ/jquery/jquery-3.6.0.min.js"></script>
+<script src="/StudyQ/js/jquery/jquery-3.6.0.min.js"></script>
 <script>
 'use strict';
 

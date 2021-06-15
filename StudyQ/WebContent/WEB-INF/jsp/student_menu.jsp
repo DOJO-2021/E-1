@@ -24,7 +24,7 @@
 		<ul class="menu">
 			<li id="menu_logo">&nbsp; &nbsp;MENU</li>
 			<li><a href="/StudyQ/StudentTop">TOP </a></li>
-			<li><a href="/StudyQ/StudentFaqEdit">FAQ </a></li>
+			<li><a href="/StudyQ/StudentFaqSearch">FAQ </a></li>
 			<li><a href="/StudyQ/StudentReserve">セッション予約</a></li>
 			<li><a href="/StudyQ/Logout">ログアウト</a></li>
 			<li id="menu_space">&nbsp; </li>
@@ -33,7 +33,7 @@
 
 
 <!-- Java Script -->
-<script src="/StudyQ/jquery/jquery-3.6.0.min.js"></script>
+<script src="/StudyQ/js/jquery/jquery-3.6.0.min.js"></script>
 <script>
 'use strict';
 

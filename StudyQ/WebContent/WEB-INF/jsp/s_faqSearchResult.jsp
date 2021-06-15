@@ -13,7 +13,7 @@
 <!-- ここからヘッダー -->
 <jsp:include page="student_header.jsp"/>
 <!-- ここからメイン -->
-<jsp:include page="menu.jsp"/>
+<jsp:include page="student_menu.jsp"/>
 <h2 class="header_title">FAQ検索結果</h2>
 
 

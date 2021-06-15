@@ -15,7 +15,7 @@
 <!-- メイン -->
 <jsp:include page="student_menu.jsp"/>
 <h2>セッションの予約が完了しました</h2>
-<p><c:out value="${}"/>さん</p>
+<p><c:out value=""/>さん</p>
 <table>
 <tr>
 	<th>件名</th>
@@ -34,7 +34,7 @@
 	<td><c:out value="${file}"/></td>
 </tr>
 </table>
-<a href="StudyQ/StudentRegist">TOPへ戻る</a>
+<a href="/StudyQ/StudentTop">TOPへ戻る</a>
 <!-- フッター -->
 <jsp:include page="footer.jsp"/>
 </body>

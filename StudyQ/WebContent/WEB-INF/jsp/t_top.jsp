@@ -20,9 +20,9 @@
 
 		<ul>
 			<!-- FAQページ遷移 -->
-			<li><a href="/StudyQ/StudentFaqSearch" class="t_faq_menu"><img src="image/" alt="FAQ" ></a></li>
+			<li><a href="/StudyQ/TeacherFaqEdit" class="t_faq_menu"><img src="image/" alt="FAQ" ></a></li>
 			<!-- セッション予約リストページ遷移 -->
-			<li><a href="/StudyQ/StudentReserve" class="t_top_menu"><img src="image/"  alt="セッション予約リスト"></a></li>
+			<li><a href="/StudyQ/TeacherReserveList" class="t_top_menu"><img src="image/"  alt="セッション予約リスト"></a></li>
 		</ul>
 
 	</main>

@@ -11,7 +11,7 @@
 <jsp:include page="teacher_header.jsp"/>
 
 <!-- メイン -->
-<jsp:include page="menu.jsp"/>
+<jsp:include page="teacher_menu.jsp"/>
 <h2>○○さんの予約詳細</h2>
 <table>
 <tr>

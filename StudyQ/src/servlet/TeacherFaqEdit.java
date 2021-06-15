@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.Common;
+import dao.CommonDao;
 import model.Faq;
 
 /**
@@ -32,8 +32,8 @@ public class TeacherFaqEdit extends HttpServlet {
 		// TODO Auto-generated method stub
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/studyQ/LoginServlet");
+		if (session.getAttribute("t_id") == null) {
+			response.sendRedirect("/studyQ/TeacherLogin");
 			return;
 		}
 		//登録ページにフォワードする
@@ -49,7 +49,7 @@ public class TeacherFaqEdit extends HttpServlet {
 
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("t_id") == null) {
 			response.sendRedirect("/stugyQ/LoginServlet");
 			return;
 		}
@@ -58,7 +58,7 @@ public class TeacherFaqEdit extends HttpServlet {
 		String search_word = request.getParameter("search_word");
 
 		// 検索処理
-		Common cmn = new Common();
+		CommonDao cmn = new CommonDao();
 		List<Faq> faqList = cmn.FaqSearch();
 
 		//ヒット件数を取得

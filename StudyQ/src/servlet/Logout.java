@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 			session.invalidate();
 
 			// ログインページにリダイレクトする
-			response.sendRedirect("/StudyQ/StudentLogin.java");
+			response.sendRedirect("/StudyQ/StudentLogin");
 		}
 	}
 
