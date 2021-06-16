@@ -2,34 +2,31 @@ package model;
 
 import java.io.Serializable;
 
-public class Session implements Serializable {
+public class SessionBeans implements Serializable {
 	private int session_id;
 	private String s_name;
 	private String subject;
 	private String question;
 	private String file;
-	private int state;
 	private int session_m_category;
 
-	public Session(int session_id, String s_name, String subject, String question, String file, int state, int session_m_category) {
+	public SessionBeans(int session_id, String s_name, String subject, String question, String file, int state, int session_m_category) {
 		super();
 		this.session_id = session_id;
 		this.s_name = s_name;
 		this.subject = subject;
 		this.question = question;
 		this.file = file;
-		this.state = state;
 		this.session_m_category = session_m_category;
 	}
 
-	public Session() {
+	public SessionBeans() {
 		super();
 		this.session_id = 0;
 		this.s_name = "";
 		this.subject = "";
 		this.question = "";
 		this.file = "";
-		this.state = 0;
 		this.session_m_category = 0;
 	}
 
@@ -71,14 +68,6 @@ public class Session implements Serializable {
 
 	public void setFile(String file) {
 		this.file = file;
-	}
-
-	public int getState() {
-		return state;
-	}
-
-	public void setState(int state) {
-		this.state = state;
 	}
 
 	public int getSession_m_category() {

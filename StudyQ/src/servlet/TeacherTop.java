@@ -24,7 +24,7 @@ public class TeacherTop extends HttpServlet {
 		// ログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("t_id") == null) {
-			response.sendRedirect("/StudyQ/TeacherLogin");
+			response.sendRedirect("/StudyQ/StudentLogin");
 			return;
 		}
 

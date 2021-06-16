@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CommonDao;
-import model.Faq;
 
 /**
  * Servlet implementation class TeacherFaqEdit
@@ -33,7 +31,7 @@ public class TeacherFaqEdit extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("t_id") == null) {
-			response.sendRedirect("/studyQ/TeacherLogin");
+			response.sendRedirect("/StudyQ/StudentLogin");
 			return;
 		}
 		//登録ページにフォワードする
@@ -50,8 +48,8 @@ public class TeacherFaqEdit extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("t_id") == null) {
-			response.sendRedirect("/stugyQ/LoginServlet");
-			return;
+		response.sendRedirect("/StugyQ/StudentLogin");
+		return;
 		}
 		// リクエストパラメータを取得
 		request.setCharacterEncoding("UTF-8");
@@ -59,13 +57,13 @@ public class TeacherFaqEdit extends HttpServlet {
 
 		// 検索処理
 		CommonDao cmn = new CommonDao();
-		List<Faq> faqList = cmn.FaqSearch();
+	//	List<Faq> faqList = cmn.FaqSearch();
 
 		//ヒット件数を取得
-		int hitCount = cmn.FaqCount();
+		int hitCount = cmn.FaqCount(search_word);
 
 		//検索結果をリクエストスコープに格納
-		request.setAttribute("faqList", faqList);
+		//request.setAttribute("faqList", faqList);
 		request.setAttribute("hitCount", hitCount);
 
 		//結果ページにフォワードする

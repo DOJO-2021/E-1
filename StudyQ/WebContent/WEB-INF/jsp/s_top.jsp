@@ -15,7 +15,9 @@
 		<!-- 検索ボタン -->
 		<button type="button">検索</button>
 		<!-- ログアウトボタン -->
-		<button type="button">ログアウト</button><br>
+		<form method="POST" action="/StudyQ/StudentLogin">
+		<input type="submit"  value="ログアウト"><br>
+		</form>
 
 		<!-- セッション待ち人数表示 -->
 		<h3>ただいまの待ち人数</h3>

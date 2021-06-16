@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CommonDao;
-import model.Session;
+import model.SessionBeans;
 
 /**
  * Servlet implementation class TeacherReserveList
@@ -44,7 +44,7 @@ public class TeacherReserveList extends HttpServlet {
 
 		//一覧を表示処理
 		CommonDao cDao = new CommonDao();
-		List<Session> sessionList = cDao.SessionListFindAll();
+		List<SessionBeans> sessionList = cDao.SessionListFindAll();
 
 		// リクエストスコープに格納する
 		request.setAttribute("sessionList", sessionList);
@@ -53,12 +53,6 @@ public class TeacherReserveList extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/t_rsvList.jsp");
 		dispatcher.forward(request, response);
 
-//
-//		// 講師 セッション予約リスト(servlet)に"10分ごとに"リダイレクトする
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_rsvResult.jsp");
-		//dispatcher.forward(request, response);
-//		response.sendRedirect("/StudyQ/TeacherReserveList");
-//		return;
 
 	}
 }

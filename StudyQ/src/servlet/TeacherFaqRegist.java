@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CommonDao;
+import model.Faq;
 
 
 
@@ -38,7 +39,7 @@ public class TeacherFaqRegist extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("t_id") == null) {
-			response.sendRedirect("/studyQ/LoginServlet");
+			response.sendRedirect("/studyQ/StudentLogin");
 			return;
 		}
 		//登録ページにフォワードする
@@ -55,23 +56,24 @@ public class TeacherFaqRegist extends HttpServlet {
 	// もしもログインしていなかったらログインサーブレットにリダイレクトする
 			HttpSession session = request.getSession();
 			if (session.getAttribute("t_id") == null) {
-				response.sendRedirect("/stugyQ/LoginServlet");
+				response.sendRedirect("/stugyQ/StudentLogin");
 				return;
 			}
 
 			//リクエストパラメータを取得する
 			request.setCharacterEncoding("UTF-8");
-			String faq_title = request.getParameter("FAQ_TITLE");
-			String faq_b_category = request.getParameter("FAQ_TITLE");
-			String faq_ans = request.getParameter("FAQ_ANS");
+			String faq_title = request.getParameter("faq_title");
+			String faq_ans = request.getParameter("faq_ans");
+			int faq_m_category = Integer.parseInt(request.getParameter("faq_m_category"));
+
 
 			//登録処理
 			CommonDao cmn = new CommonDao();
-			cmn.FaqRegist();
+			cmn.FaqRegist(new Faq(0, faq_title, faq_ans, faq_m_category));
 
 			//リクエストスコープに値をセット
 			request.setAttribute("obj1", faq_title);
-			request.setAttribute("obj2", faq_b_category);
+			request.setAttribute("obj2", faq_m_category);
 			request.setAttribute("obj3", faq_ans);
 
 			// 「講師|FAQ登録結果画面」にフォワードする

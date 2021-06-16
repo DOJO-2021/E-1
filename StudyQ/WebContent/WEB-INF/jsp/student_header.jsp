@@ -2,4 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!-- 研修生用ヘッダーロゴ -->
-<a href="/StudyQ/StudentTop.java"><img src="image/" alt="ロゴ" ></a>
+<header>
+	<a href="/StudyQ/StudentTop"><img src="image/" alt="ロゴ" ></a>
+	<hr>
+</header>

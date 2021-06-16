@@ -11,7 +11,7 @@
 	<main>
 		<h2>ログイン</h2>
 
-		<form method="POST" action="/StudyQ/StudentLogin">
+		<form method="POST" action="/StudyQ/StudentLogin" id="form">
 
 		<!-- 入力フォーム -->
 		<input type="text" name="s_id" placeholder="user ID" class="login_id"><br>
@@ -20,7 +20,7 @@
 		<!-- ログイン・リセットボタン -->
 		<div>
 			<input type="submit" name="login" value="ログイン" class="login_btn">
-			<input type="reset" id="reset" name="reset" value="リセット" class="reset_btn"><br>
+			<input type="reset" id="reset" name="reset" value="リセット" class="reset_btn"><p id="output"></p><br>
 		</div>
 
 		<!-- 新規登録はこちら -->
@@ -33,5 +33,6 @@
 	</main>
 <!-- フッター -->
 <jsp:include page="footer.jsp"/>
+<script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>

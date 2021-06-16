@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,10 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.CommonDao;
-import model.Faq;
 
 /**
  * Servlet implementation class StudentFaqSearch
@@ -25,11 +22,11 @@ public class StudentFaqSearch extends HttpServlet {
      */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		HttpSession session = request.getSession();
-		if (session.getAttribute("s_id") == null) {
-			response.sendRedirect("/StudyQ/StudentLogin");
-			return;
-		}
+//		HttpSession session = request.getSession();
+//		if (session.getAttribute("s_id") == null) {
+//			response.sendRedirect("/StudyQ/StudentLogin");
+//			return;
+//		}
 
 		// 検索ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_faqSearch.jsp");
@@ -37,11 +34,11 @@ public class StudentFaqSearch extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		HttpSession session = request.getSession();
-		if (session.getAttribute("s_id") == null) {
-			response.sendRedirect("/StudyQ/StudentLogin");
-			return;
-		}
+//		HttpSession session = request.getSession();
+//		if (session.getAttribute("s_id") == null) {
+//			response.sendRedirect("/StudyQ/StudentLogin");
+//			return;
+//		}
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
@@ -51,12 +48,12 @@ public class StudentFaqSearch extends HttpServlet {
 
 		// 検索処理を行う
 				CommonDao cDao = new CommonDao();
-				List<Faq> faqList = cDao.FaqSearch();
+		//		List<Faq> faqList = cDao.FaqSearch();
 		//ヒット件数を取得する
-				int hitcount = cDao.FaqCount();
+				int hitcount = cDao.FaqCount(search_word);
 
 				// 検索結果をリクエストスコープに格納する
-				request.setAttribute("faqList", faqList);
+		//		request.setAttribute("faqList", faqList);
 				request.setAttribute("hitcount", hitcount);
 
 				// 結果ページにフォワードする

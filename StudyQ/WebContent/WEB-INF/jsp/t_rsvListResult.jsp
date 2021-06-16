@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,39 +9,38 @@
 <title>講師|セッション予約リスト詳細</title>
 </head>
 <body>
-<!-- ヘッダー -->
-<jsp:include page="teacher_header.jsp"/>
-
-<!-- メイン -->
-<jsp:include page="teacher_menu.jsp"/>
-<h2>○○さんの予約詳細</h2>
+<h2><c:out value="${s_name}"/>さんの予約詳細</h2>
 <table>
 <tr>
 	<th>件名</th>
-	<td></td>
+	<td><c:out value="${subject}"/></td>
 </tr>
 <tr>
 	<th>カテゴリ</th>
 	<td>
-
-		学習内容
-		トラブル
-		その他
-
+		<c:choose>
+				<c:when test="${e.m_faq_category == 0}"> プログラミング言語 </c:when>
+				<c:when test="${e.m_faq_category == 1}"> 段位認定 </c:when>
+				<c:when test="${e.m_faq_category == 2}"> ドリル </c:when>
+				<c:when test="${e.m_faq_category == 3}"> コードエラー </c:when>
+				<c:when test="${e.m_faq_category == 4}"> その他 </c:when>
+				<c:when test="${e.m_faq_category == 5}"> エディタ </c:when>
+				<c:when test="${e.m_faq_category == 6}"> PC </c:when>
+				<c:when test="${e.m_faq_category == 7}"> GitHub </c:when>
+				<c:when test="${e.m_faq_category == 8}"> その他 </c:when>
+				<c:when test="${e.m_faq_category == 9}"> 相談等 </c:when>
+		</c:choose>
 	</td>
 </tr>
 <tr>
 	<th>質問内容</th>
-	<td></td>
+	<td><c:out value="${question}"/></td>
 </tr>
 <tr>
 	<th>添付ファイル</th>
-	<td></td>
+	<td><c:out value="${file}"/></td>
 </tr>
 </table>
-<a href="StudyQ/TeacherReserveList">セッション予約リストへ戻る</a>
 
-<!-- フッター -->
-<jsp:include page="footer.jsp"/>
 </body>
 </html>

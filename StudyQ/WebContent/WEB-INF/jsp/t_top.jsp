@@ -11,8 +11,9 @@
 	<!-- ここからメイン -->
 	<main>
 		<!-- ログアウトボタン -->
-		<input type="submit" class="t_top_logout" value="ログアウト"><br>
-
+		<form method="POST" action="/StudyQ/TeacherLogin">
+		<input type="submit" value="ログアウト"><br>
+		</form>
 		<!-- セッション待ち全体人数表示 -->
 		<div class="session_view">
 			<h3>ただいまの待ち人数</h3>

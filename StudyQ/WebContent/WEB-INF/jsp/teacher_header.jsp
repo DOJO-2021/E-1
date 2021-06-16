@@ -2,4 +2,7 @@
     pageEncoding="UTF-8"%>
 
  <!-- 講師用ヘッダーロゴ -->
-<a href="/StudyQ/TeacherTop.java"><img src="image/" alt="ロゴ" ></a>
+ <header>
+	<a href="/StudyQ/TeacherTop"><img src="image/" alt="ロゴ" ></a>
+	<hr>
+</header>

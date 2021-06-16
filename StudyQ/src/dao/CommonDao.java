@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import enums.UserType;
+import model.Faq;
+import model.SessionBeans;
 import model.StuIdpw;
 
 //インポートして連結
 
 public class  CommonDao {
 	private final String jdbcPass =  "jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ";
-//	 研修生、講師用ログインメソッド
+//	 研修生、講師用ログインメソッド（完）
 	public boolean isLoginOK(UserType user,String id, String pw) {
 		Connection conn = null;
 		boolean loginResult = false;
@@ -71,7 +73,7 @@ public class  CommonDao {
 		// 結果を返す
 		return loginResult;
 	}
-//	 研修生登録メソッド
+//	 研修生登録メソッド(完)
 	public boolean isStudentRegistOK(StuIdpw student) {
 		Connection conn = null;
 	 	boolean registResult = false;
@@ -130,9 +132,81 @@ public class  CommonDao {
 		}
 		return registResult;
 	}
-//	研修生セッション登録用メソッド
-	public void SessionRegist() {
+//	研修生セッション登録用メソッド(未確認)
+	public boolean SessionRegist(SessionBeans session) {
 		Connection conn = null;
+		boolean result = false;
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
+
+			String sql = "INSERT INTO Faq VALUES(null,?,?,?,?,?)";
+			PreparedStatement pStmtIns = conn.prepareStatement(sql);
+
+			if (session.getS_name() != null&&!session.getS_name().equals("")) {
+				pStmtIns.setString(1, session.getS_name());
+			}else {pStmtIns.setString(1, null);}
+			if (session.getSubject() != null &&!session.getSubject().equals("")) {
+				pStmtIns.setString(2,session.getSubject());
+			}else {
+				pStmtIns.setString(2, null);
+			}
+			if (session.getQuestion() != null &&!session.getQuestion().equals("")) {
+				pStmtIns.setString(3, session.getQuestion());
+			}else {
+				pStmtIns.setString(3, null);
+			}
+
+			if (session.getFile() != null && !session.getFile().equals("")) {
+				pStmtIns.setString(4, session.getFile());
+			}else {
+				pStmtIns.setString(4, null);
+			}
+
+			try {
+			if (session.getSession_m_category()<=9) {
+				pStmtIns.setInt(5, session.getSession_m_category());
+			}else{
+				System.out.println("想定外の値が入力されました！");
+			}
+			}catch(Exception e){
+				System.out.println("カテゴリーの値が正常に取得できていません！");
+				e.getStackTrace();
+			}
+
+
+
+			// SQL文を実行する
+			if (pStmtIns.executeUpdate() == 1) {
+				result = true;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+
+//	セッションリスト全表示（完）
+	public List<SessionBeans> SessionListFindAll() {
+		Connection conn = null;
+		List<SessionBeans> sessionList = new ArrayList<SessionBeans>();
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -141,8 +215,217 @@ public class  CommonDao {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
+			String selectAllSql = "SELECT * FROM SESSION";
+			PreparedStatement pStmtSelect = conn.prepareStatement(selectAllSql);
 
-			System.out.println("セッション登録が完了しました！");
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmtSelect.executeQuery();
+			while(rs.next()) {
+			SessionBeans sessionAll = new SessionBeans(						rs.getInt("session_id"),
+					rs.getString("s_name"),
+					rs.getString("subject"),
+					rs.getString("question"),
+					rs.getString("file"),
+					rs.getInt("state"),
+					rs.getInt("session_m_category"));
+			sessionList.add(sessionAll);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			sessionList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			sessionList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					sessionList = null;
+				}
+			}
+		}
+		return sessionList;
+
+	}
+
+//	FAQリスト全表示 （未確認）
+	public List<Faq> FaqListFindAll() {
+		Connection conn = null;
+		List<Faq> faqList = new ArrayList<Faq>();
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
+			// SELECT文を準備する
+
+			String selectAllSql = "SELECT * FROM FAQ";
+			PreparedStatement pStmtSelect = conn.prepareStatement(selectAllSql);
+			ResultSet rs = pStmtSelect.executeQuery();
+
+			while(rs.next()) {
+				Faq faq = new Faq(
+						rs.getInt("faq_id"),
+						rs.getString("faq_title"),
+						rs.getString("faq_ans"),
+						rs.getInt("faq_m_category")
+						);
+				faqList.add(faq);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return faqList;
+	}
+
+//	FAQ登録(完)
+	public boolean FaqRegist(Faq faq) {
+		Connection conn = null;
+		boolean result = false;
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
+			// INSERT文を準備する
+
+			String sql = "INSERT INTO Faq VALUES(null,?,?,?)";
+			PreparedStatement pStmtIns = conn.prepareStatement(sql);
+
+			if (faq.getFaq_title() != null&&!faq.getFaq_title().equals("")) {
+				pStmtIns.setString(1, faq.getFaq_title());
+			}else {pStmtIns.setString(1, null);}
+			if (faq.getFaq_ans() != null &&!faq.getFaq_ans().equals("")) {
+				pStmtIns.setString(2,faq.getFaq_ans());
+			}else {
+				pStmtIns.setString(2, null);
+			}
+			if (faq.getFaq_m_category()<=9) {
+				pStmtIns.setInt(3, faq.getFaq_m_category());
+			}else {
+				System.out.println("この数字は登録されていません");
+			}
+
+			// SQL文を実行する
+			if (pStmtIns.executeUpdate() == 1) {
+				result = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+
+	}
+//	FAQ更新(未確認)
+	public boolean FaqUpdate(Faq faq) {
+		Connection conn = null;
+		boolean result = false;
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
+			// UPDATE文を準備する
+
+			// SQL文を準備する
+			String sql = "UPDATE FAQ SET FAQ_TITLE = ?,FAQ_ANS=? where id = ?";
+			PreparedStatement pStmtUp = conn.prepareStatement(sql);
+
+			if(faq.getFaq_title() != null) {
+				pStmtUp.setString(1, faq.getFaq_title());
+			}else {
+				pStmtUp.setString(1, null);
+			}
+			if(faq.getFaq_ans() != null) {
+				pStmtUp.setString(2, faq.getFaq_ans());
+			}else {
+				pStmtUp.setString(2, null);
+			}
+
+			pStmtUp.setInt(3, faq.getFaq_id());
+
+			if(pStmtUp.executeUpdate() == 1) {
+				result = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		// 結果を返す
+		return result;
+
+	}
+//	FAQ削除（未確認）
+	public boolean FaqDelete(int id) {
+		Connection conn = null;
+		boolean result =false;
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
+			// SELECT文を準備する
+
+			String sql = "DELETE FROM FAQ WHERE ID=?";
+			PreparedStatement pStmtDelete = conn.prepareStatement(sql);
+			pStmtDelete.setInt(1, id);
+
+			if (pStmtDelete.executeUpdate() == 1) {
+				result = true;
+			}
 
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -161,172 +444,7 @@ public class  CommonDao {
 				}
 			}
 		}
-
-	}
-
-//	セッションリスト全表示
-	public void SessionListFindAll() {
-		Connection conn = null;
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection(jdbcPass, "sa", "");
-			// SELECT文を準備する
-
-
-
-			System.out.println("セッションリストが全て表示されています！");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-	}
-
-//	FAQリスト全表示
-	public void FaqListFindAll() {
-		Connection conn = null;
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection(jdbcPass, "sa", "");
-			// SELECT文を準備する
-
-			System.out.println("FAQのリストがすべて表示されています！");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-	}
-
-//	FAQ登録
-	public void FaqRegist() {
-		Connection conn = null;
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection(jdbcPass, "sa", "");
-			// SELECT文を準備する
-
-			System.out.println("FAQ登録が完了しました！");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-
-	}
-//	FAQ更新
-	public void FaqUpdate() {
-		Connection conn = null;
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection(jdbcPass, "sa", "");
-			// SELECT文を準備する
-
-			System.out.println("FAQを更新しました！");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-
-	}
-//	FAQ削除
-	public void FaqDelete() {
-		Connection conn = null;
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection(jdbcPass, "sa", "");
-			// SELECT文を準備する
-			System.out.println("FAQを削除しました！");
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
+		return result;
 
 	}
 
@@ -364,7 +482,7 @@ public class  CommonDao {
 
 	}
 
-//	FAQヒットカウント
+//	FAQヒットカウント（完）
 	public int FaqCount(String searchWord) {
 		Connection conn = null;
 		int count=0;
@@ -426,72 +544,8 @@ public class  CommonDao {
 		return count;
 
 	}
-
-//	待ち人数
-	public void SessionCount() {
-		Connection conn = null;
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection(jdbcPass, "sa", "");
-			// SELECT文を準備する
-
-			System.out.println("只今の待ち人数は○○人です！");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-	}
-
-
-// 対応状態変更
-	public void Reschange() {
-		Connection conn = null;
-	try {
-		// JDBCドライバを読み込む
-		Class.forName("org.h2.Driver");
-
-		// データベースに接続する
-		conn = DriverManager.getConnection(jdbcPass, "sa", "");
-		// SELECT文を準備する
-
-		System.out.println("これはFAQの検索結果です！");
-
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-	catch (ClassNotFoundException e) {
-		e.printStackTrace();
-	}
-	finally {
-		// データベースを切断
-		if (conn != null) {
-			try {
-				conn.close();
-			}
-			catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 }
-	}
+
+
 
 

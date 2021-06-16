@@ -12,10 +12,10 @@
 <jsp:include page="teacher_header.jsp" />
 <jsp:include page="teacher_menu.jsp" />
 <!-- サブタイトル -->
-<h3> 以下の内容で登録しました。 </h3>
+<h3>以下の内容で登録しました。</h3>
 
 <!-- FAQ登録結果テーブル -->
-<!-- <form method="get" action="/StudyQ/TeacherFaqRegistResult.java"> -->
+<!-- <form method="GET" action="/StudyQ/TeacherFaqRegistResult"> -->
 <div class="faqlist_registresult_body">
 	<table>
 		<tr>
@@ -35,10 +35,10 @@
 		</tr>
 	</table>
 </div>
-<!--</form>  -->
+<!--</form> -->
 
 <!-- FAQ検索ページへ戻る -->
-<a href="/StudyQ/TeacherTop.java"> FAQ検索ページへ戻る </a>
+<a href="/StudyQ/TeacherTop"> FAQ検索ページへ戻る </a>
 <jsp:include page="footer.jsp" />
 </body>
 </html>
