@@ -38,10 +38,10 @@ public class TeacherFaqRegist extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("t_id") == null) {
-			response.sendRedirect("/studyQ/StudentLogin");
-			return;
-		}
+//		if (session.getAttribute("t_id") == null) {
+//			response.sendRedirect("/studyQ/StudentLogin");
+//			return;
+//		}
 		//登録ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/t_faqRegist.jsp");
 		dispatcher.forward(request, response);
@@ -55,10 +55,10 @@ public class TeacherFaqRegist extends HttpServlet {
 
 	// もしもログインしていなかったらログインサーブレットにリダイレクトする
 			HttpSession session = request.getSession();
-			if (session.getAttribute("t_id") == null) {
-				response.sendRedirect("/stugyQ/StudentLogin");
-				return;
-			}
+//			if (session.getAttribute("t_id") == null) {
+//				response.sendRedirect("/stugyQ/StudentLogin");
+//				return;
+//			}
 
 			//リクエストパラメータを取得する
 			request.setCharacterEncoding("UTF-8");
@@ -69,12 +69,11 @@ public class TeacherFaqRegist extends HttpServlet {
 
 			//登録処理
 			CommonDao cmn = new CommonDao();
-			cmn.FaqRegist(new Faq(0, faq_title, faq_ans, faq_m_category));
+			Faq faqRegist = new Faq(0, faq_title, faq_ans, faq_m_category);
+			cmn.FaqRegist(faqRegist);
 
 			//リクエストスコープに値をセット
-			request.setAttribute("obj1", faq_title);
-			request.setAttribute("obj2", faq_m_category);
-			request.setAttribute("obj3", faq_ans);
+			request.setAttribute("faqRegist", faqRegist);
 
 			// 「講師|FAQ登録結果画面」にフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/t_faqRegistResult.jsp");

@@ -10,7 +10,7 @@ public class SessionBeans implements Serializable {
 	private String file;
 	private int session_m_category;
 
-	public SessionBeans(int session_id, String s_name, String subject, String question, String file, int state, int session_m_category) {
+	public SessionBeans(int session_id, String s_name, String subject, String question, String file, int session_m_category) {
 		super();
 		this.session_id = session_id;
 		this.s_name = s_name;

@@ -5,11 +5,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>講師｜ログイン</title>
+	<link rel="stylesheet"  href="/StudyQ/css/login.css">
 </head>
 <body>
+	<jsp:include page="teacher_header.jsp"/>
 	<!-- ここからメイン -->
 	<main>
-		<h2>ログイン</h2>
+		<h1>ログイン</h1>
 
 		<form method="POST" action="/StudyQ/TeacherLogin">
 
@@ -27,7 +29,8 @@
 		<a href="/StudyQ/StudentLogin" class="s_login_link">研修生の方はこちら</a>
 
 		</form>
-		<jsp:include page="footer.jsp"/>
 	</main>
+	<jsp:include page="footer.jsp"/>
+
 </body>
 </html>

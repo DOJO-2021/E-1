@@ -20,18 +20,18 @@
 	<table>
 		<tr>
 			<th> FAQタイトル </th>
-			<td><c:out value="${obj1}"/> </td>
+			<td><c:out value="${faqRegist.faq_title}"/> </td>
 		</tr>
 		<tr>
 			<th> FAQカテゴリ </th>
 			<td>
 			<!-- ここにselect結果の値を表示させたい -->
-				<c:out value="${obj2}"  />
+				<c:out value="${faqRegist.faq_ans}"  />
 			</td>
 		</tr>
 		<tr>
 			<th> FAQ詳細 </th>
-			<td><c:out value="${obj3}"/> </td>
+			<td><c:out value="${faqRegist.faq_m_category}"/> </td>
 		</tr>
 	</table>
 </div>

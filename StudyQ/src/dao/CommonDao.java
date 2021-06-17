@@ -1,5 +1,8 @@
 package dao;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +19,7 @@ import model.StuIdpw;
 //インポートして連結
 
 public class  CommonDao {
-	private final String jdbcPass =  "jdbc:h2:file:C:/pleiades/workspace/E-1/database/StudyQ";
+	private final String jdbcPass =  "jdbc:h2:file:C:/pleiades/workspace/database/StudyQ";
 //	 研修生、講師用ログインメソッド（完）
 	public boolean isLoginOK(UserType user,String id, String pw) {
 		Connection conn = null;
@@ -143,7 +146,7 @@ public class  CommonDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 
-			String sql = "INSERT INTO Faq VALUES(null,?,?,?,?,?)";
+			String sql = "INSERT INTO Session VALUES(null,?,?,?,?,?)";
 			PreparedStatement pStmtIns = conn.prepareStatement(sql);
 
 			if (session.getS_name() != null&&!session.getS_name().equals("")) {
@@ -166,16 +169,12 @@ public class  CommonDao {
 				pStmtIns.setString(4, null);
 			}
 
-			try {
 			if (session.getSession_m_category()<=9) {
 				pStmtIns.setInt(5, session.getSession_m_category());
 			}else{
 				System.out.println("想定外の値が入力されました！");
 			}
-			}catch(Exception e){
-				System.out.println("カテゴリーの値が正常に取得できていません！");
-				e.getStackTrace();
-			}
+
 
 
 
@@ -221,12 +220,12 @@ public class  CommonDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmtSelect.executeQuery();
 			while(rs.next()) {
-			SessionBeans sessionAll = new SessionBeans(						rs.getInt("session_id"),
+			SessionBeans sessionAll = new SessionBeans(
+					rs.getInt("session_id"),
 					rs.getString("s_name"),
 					rs.getString("subject"),
 					rs.getString("question"),
 					rs.getString("file"),
-					rs.getInt("state"),
 					rs.getInt("session_m_category"));
 			sessionList.add(sessionAll);
 			}
@@ -449,8 +448,9 @@ public class  CommonDao {
 	}
 
 //	FAQカテゴリ検索
-	public void FaqSearch() {
+	public List<Faq> FaqSearch(String searchWord) {
 		Connection conn = null;
+		List<Faq> faqList = new ArrayList<>();
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -459,7 +459,28 @@ public class  CommonDao {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
-			System.out.println("これはFAQの検索結果です！");
+			String[] words = searchWord.split("\s+");
+			String wordsResult = String.join(",",words);
+			String countSql01 = "SELECT *  FROM FAQ WHERE";
+
+			String sql = countSql01 + "( FAQ_TITLE, FAQ_ANS) IN (?)";
+			PreparedStatement pStmtCount = conn.prepareStatement(sql);
+
+			if(wordsResult != null&&!wordsResult.equals("")) {
+				pStmtCount.setString(1,"%" + wordsResult + "%");
+			}else {
+				pStmtCount.setString(1,"%");
+			}
+			ResultSet rs = pStmtCount.executeQuery();
+			while(rs.next()) {
+				Faq faq = new Faq(
+						rs.getInt("faq_id"),
+						rs.getString("faq_title"),
+						rs.getString("faq_ans"),
+						rs.getInt("faq_m_category")
+						);
+				faqList.add(faq);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -479,15 +500,16 @@ public class  CommonDao {
 			}
 		}
 
-
+		return faqList;
 	}
 
 //	FAQヒットカウント（完）
 	public int FaqCount(String searchWord) {
 		Connection conn = null;
 		int count=0;
-		List<String> column = new ArrayList<>();
-		List<Integer> countlist = new ArrayList<>();
+//		List<String> column = new ArrayList<>();
+
+//		List<Integer> countlist = new ArrayList<>();
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -496,30 +518,47 @@ public class  CommonDao {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
-			column.add(" FAQ_TITLE ");
-			column.add(" FAQ_ANS ");
+//			column.add(" FAQ_TITLE ");
+//			column.add(" FAQ_ANS ");
+//
+//			String countSql01 = "SELECT COUNT(*) AS cnt FROM FAQ WHERE";
+//			String countSql02= "LIKE ? OR";
+//			String countSql03 = "LIKE ?";
+//
+//				String countSql = countSql01 + column.get(0) + countSql02 + column.get(1) +  countSql03;
+//				PreparedStatement pStmtCount = conn.prepareStatement(countSql);
+//
+//					//SQL分を完成させる
+//				if(searchWord != null&&!searchWord.equals("")) {
+//					pStmtCount.setString(1,"%" + searchWord + "%");
+//					pStmtCount.setString(2,"%" + searchWord + "%");
+//				}else {
+//					pStmtCount.setString(1,"%");
+//					pStmtCount.setString(2,"%");
+//				}
+//
+//
+//				ResultSet rs = pStmtCount.executeQuery();
+//				while(rs.next()) {
+//					count = rs.getInt("cnt");
+//				}
 
+			String[] words = searchWord.split("\s+");
+			String wordsResult = String.join(",",words);
 			String countSql01 = "SELECT COUNT(*) AS cnt FROM FAQ WHERE";
-			String countSql02= "LIKE ? OR";
-			String countSql03 = "LIKE ?";
 
-				String countSql = countSql01 + column.get(0) + countSql02 + column.get(1) +  countSql03;
-				PreparedStatement pStmtCount = conn.prepareStatement(countSql);
+			String sql = countSql01 + "( FAQ_TITLE, FAQ_ANS) IN" + "( ?"+ ")";
+			PreparedStatement pStmtCount = conn.prepareStatement(sql);
 
-					//SQL分を完成させる
-				if(searchWord != null&&!searchWord.equals("")) {
-					pStmtCount.setString(1,"%" + searchWord + "%");
-					pStmtCount.setString(2,"%" + searchWord + "%");
-				}else {
-					pStmtCount.setString(1,"%");
-					pStmtCount.setString(2,"%");
-				}
-
-
-				ResultSet rs = pStmtCount.executeQuery();
-				while(rs.next()) {
-					count = rs.getInt("cnt");
-				}
+			if(wordsResult != null&&!wordsResult.equals("")) {
+				pStmtCount.setString(1,"%" + wordsResult + "%");
+			}else {
+				pStmtCount.setString(1,"%");
+			}
+			ResultSet rs = pStmtCount.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt("cnt");
+			}
 
 
 		} catch (SQLException e) {
@@ -544,8 +583,65 @@ public class  CommonDao {
 		return count;
 
 	}
+
+
+//	SessionをJSONに挿入
+	public void InsertJson() {
+		Connection conn = null;
+		List<Faq> faqList = new ArrayList<Faq>();
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
+			// SELECT文を準備する
+
+			String selectAllSql = "SELECT * FROM FAQ";
+			PreparedStatement pStmtSelect = conn.prepareStatement(selectAllSql);
+			ResultSet rs = pStmtSelect.executeQuery();
+
+
+			while(rs.next()) {
+				Faq faq = new Faq(
+						rs.getInt("faq_id"),
+						rs.getString("faq_title"),
+						rs.getString("faq_ans"),
+						rs.getInt("faq_m_category")
+						);
+				 try {
+				      File file = new File("C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\json");
+
+				      FileWriter filewriter = new FileWriter(file);
+
+				      filewriter.write("こんにちは¥r¥n");
+				      filewriter.write("お元気ですか¥r¥n");
+
+				      filewriter.close();
+				    } catch(IOException e) {
+				      System.out.println(e);
+				    }
+				faqList.add(faq);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
+
 }
-
-
-
 

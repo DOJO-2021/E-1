@@ -13,13 +13,13 @@
 	<form method="GET" action="/StudyQ/StudentRegist">
 		<table>
 			<tr>
-				<th>姓</th><td><c:out value="${Student.s_l_name}"></c:out></td>
+				<th>姓</th><td><c:out value="${Student.s_l_name}"/></td>
 			</tr>
 			<tr>
-				<th>名</th><td><c:out value="${Student.s_f_name}"></c:out></td>
+				<th>名</th><td><c:out value="${Student.s_f_name}"/></td>
 			</tr>
 			<tr>
-				<th>ID</th><td><c:out value="${Student.s_id}"></c:out></td>
+				<th>ID</th><td><c:out value="${Student.s_id}"/></td>
 			</tr>
 		</table>
 		<a href="/StudyQ/StudentLogin" class="s_transition_btn">ログインはこちら</a>

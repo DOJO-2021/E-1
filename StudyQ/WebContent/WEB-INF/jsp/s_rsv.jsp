@@ -15,7 +15,7 @@
 <jsp:include page="student_menu.jsp"/>
 <h2>セッション予約</h2>
 <!-- <p><c:out value="${s_l_name}"/>さん</p> 保留 -->
-<form method="POST" action="/StudyQ/StudentReserve" enctype="multipart/form-data">
+<form method="POST" action="/StudyQ/StudentReserve">
 	<table>
 	<tr>
 		<th>件名</th>
@@ -32,6 +32,7 @@
 		    	<option value ="2">ドリル</option>
 		    	<option value ="3">コードエラー</option>
 		    	<option value ="4">その他</option>
+
 		    </optgroup>
 			<optgroup label="トラブル">
 		    	<option value ="5">エディター</option>
@@ -40,7 +41,7 @@
 		    	<option value ="8">その他</option>
 		    </optgroup>
 		    <optgroup label="その他">
-		    	<option value ="9">相談</option>
+		    	<option value ="9">相談等</option>
 		    </optgroup>
 
 		</select>
@@ -52,10 +53,10 @@
 	</tr>
 	<tr>
 		<th>添付ファイル</th>
-		<td><input type="text" class="" placeholder="件名を入力してください"><button type="button">参照</button></td>
+		<td><input type="text" name="file" class="" placeholder="件名を入力してください"><input type="file"></td>
 	</tr>
 	</table>
-	<input type="submit" name="REGIST" value="登録">
+	<input type="submit" name="" value="登録">
 </form>
 
 <!-- フッター -->

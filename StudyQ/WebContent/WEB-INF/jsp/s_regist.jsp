@@ -5,33 +5,23 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>研修生|新規登録</title>
+		<link rel="stylesheet"  href="/StudyQ/css/login.css">
 	</head>
 	<body>
 		<jsp:include page="student_header.jsp"/>
-		<h2 class="header_title">新規登録</h2>
-		<p class="s_sub_title">以下の項目にご記入の上、「登録」ボタンを押してください。</p>
-		<form action="/StudyQ/StudentRegist" method ="POST" onsubmit="return check()" name="new_regist">
-		<table>
-			<tr>
-				<th>姓</th><td><input name="s_l_name" type="text" class="s_registlist_item">（必須）</td>
-			</tr>
-			<tr>
-				<th>名</th><td><input name="s_f_name" type="text" class="s_registlist_item">（必須）</td>
-			</tr>
-			<tr>
-				<th>ID</th><td><input name="s_id" type="text" class="s_registlist_item">（必須）</td>
-			</tr>
-			<tr>
-				<th>パスワード</th><td><input name="s_pw" type="text" class="s_registlist_item">（必須）</td>
-			</tr>
-			<tr>
-				<th>確認用</th><td><input type="text" class="s_registlist_item">（必須）</td>
-			</tr>
-		</table>
+		<main>
+		<form action="/StudyQ/StudentRegist" method ="POST" onsubmit="return check()" name="new_resist" id="resist_form">
+        <h1 class="header_title">新規登録</h1>
+		<input name="s_l_name" type="text" class="s_registlist_item" placeholder="姓">
+		<input name="s_f_name" type="text" class="s_registlist_item" placeholder="名">
+	 	<input name="s_id" type="text" class="s_registlist_item" placeholder="ID">
+		<input name="s_pw" type="text" class="s_registlist_item" placeholder="パスワード">
+		<input type="text" name="s_pwc" class="s_registlist_item" placeholder="確認用"><br>
 		<input type="submit" value="登録"><p id="output"></p><br><p id="regex"></p>
 		</form>
 		<a href="/StudyQ/StudentLogin" class="s_transition_btn">既にアカウントをお持ちの方はこちら</a>
-		<jsp:include page="footer.jsp"/>
+		</main>
+		<footer><jsp:include page="footer.jsp"/></footer>
 		<script type="text/javascript" src="js/s_regist.js"></script>
 	</body>
 </html>
