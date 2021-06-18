@@ -1,8 +1,5 @@
 package dao;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -135,7 +132,7 @@ public class  CommonDao {
 		}
 		return registResult;
 	}
-//	研修生セッション登録用メソッド(未確認)
+//	研修生セッション登録用メソッド(完)
 	public boolean SessionRegist(SessionBeans session) {
 		Connection conn = null;
 		boolean result = false;
@@ -230,6 +227,7 @@ public class  CommonDao {
 			sessionList.add(sessionAll);
 			}
 
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			sessionList = null;
@@ -254,7 +252,7 @@ public class  CommonDao {
 
 	}
 
-//	FAQリスト全表示 （未確認）
+//	FAQリスト全表示 （完）
 	public List<Faq> FaqListFindAll() {
 		Connection conn = null;
 		List<Faq> faqList = new ArrayList<Faq>();
@@ -459,14 +457,32 @@ public class  CommonDao {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
+
 			String[] words = searchWord.split("\s+");
-			String wordsResult = String.join(",",words);
+//			もし、複数の検索ワードが含まれていた場合
+			if(words.length>1) {
+				List<String> qWen = new ArrayList<String>();
+				final String q = "?";
+
+//				検索ワードの数分？をリストに追加
+			for(int i = 0;i < words.length;i++) {
+				qWen.add(q);
+			}
+//			リストに格納された？をカンマで区切り、一つの文字列にする。
+			String wordsResult = String.join(",",qWen);
 			String countSql01 = "SELECT *  FROM FAQ WHERE";
 
-			String sql = countSql01 + "( FAQ_TITLE, FAQ_ANS) IN (?)";
-			PreparedStatement pStmtCount = conn.prepareStatement(sql);
 
-			if(wordsResult != null&&!wordsResult.equals("")) {
+			String sql = countSql01 + "( FAQ_TITLE, FAQ_ANS) IN (" + wordsResult +")";
+			PreparedStatement pStmtCount = conn.prepareStatement(sql);
+//			SQL文を完成させる
+
+			if(searchWord != null&&!searchWord.equals("")) {
+				int c = 1;
+				for(String word:words) {
+					pStmtCount.setString(c, word);
+					c++;
+				}
 				pStmtCount.setString(1,"%" + wordsResult + "%");
 			}else {
 				pStmtCount.setString(1,"%");
@@ -480,6 +496,41 @@ public class  CommonDao {
 						rs.getInt("faq_m_category")
 						);
 				faqList.add(faq);
+			}
+//			検索ワードが一つの場合
+			}else {
+				List<String> column = new ArrayList<>();
+
+				column.add(" FAQ_TITLE ");
+				column.add(" FAQ_ANS ");
+
+				String countSql01 = "SELECT * FROM FAQ WHERE";
+				String countSql02= "LIKE ? OR";
+				String countSql03 = "LIKE ?";
+
+					String countSql = countSql01 + column.get(0) + countSql02 + column.get(1) +  countSql03;
+					PreparedStatement pStmtCount = conn.prepareStatement(countSql);
+
+						//SQL分を完成させる
+					if(searchWord != null&&!searchWord.equals("")) {
+						pStmtCount.setString(1,"%" + searchWord + "%");
+						pStmtCount.setString(2,"%" + searchWord + "%");
+					}else {
+						pStmtCount.setString(1,"%");
+						pStmtCount.setString(2,"%");
+					}
+
+
+					ResultSet rs = pStmtCount.executeQuery();
+					while(rs.next()) {
+						Faq faq = new Faq(
+								rs.getInt("faq_id"),
+								rs.getString("faq_title"),
+								rs.getString("faq_ans"),
+								rs.getInt("faq_m_category")
+								);
+						faqList.add(faq);
+					}
 			}
 
 		} catch (SQLException e) {
@@ -584,59 +635,6 @@ public class  CommonDao {
 
 	}
 
-
-//	SessionをJSONに挿入
-	public void InsertJson() {
-		Connection conn = null;
-		List<Faq> faqList = new ArrayList<Faq>();
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection(jdbcPass, "sa", "");
-			// SELECT文を準備する
-
-			String selectAllSql = "SELECT * FROM FAQ";
-			PreparedStatement pStmtSelect = conn.prepareStatement(selectAllSql);
-			ResultSet rs = pStmtSelect.executeQuery();
-
-
-			while(rs.next()) {
-				 try {
-				      File file = new File("C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\json");
-
-				      FileWriter filewriter = new FileWriter(file);
-
-				      filewriter.write(rs.getInt("faq_id")+"\\r\\n");
-				      filewriter.write(rs.getString("faq_title")+"\\r\\n");
-				      filewriter.write(rs.getString("faq_ans")+"\\r\\n");
-				      filewriter.write(rs.getInt("faq_m_category")+"\\r\\n");
-
-				      filewriter.close();
-				    } catch(IOException e) {
-				      System.out.println(e);
-				    }
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-	}
-
 }
+
 

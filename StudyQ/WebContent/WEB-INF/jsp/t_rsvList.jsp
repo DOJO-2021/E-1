@@ -69,6 +69,7 @@
 	td.column6 {
 		width: auto;
 	}
+
 </style>
 
 <title>講師|セッション予約リスト</title>
@@ -126,21 +127,21 @@
 						</td>
 						<td class="column3">
 						<c:choose>
-							<c:when test="${session_m_category == 0}"> プログラミング言語 </c:when>
-							<c:when test="${session_m_category == 1}"> 段位認定 </c:when>
-							<c:when test="${session_m_category == 2}"> ドリル </c:when>
-							<c:when test="${session_m_category == 3}"> コードエラー </c:when>
-							<c:when test="${session_m_category == 4}"> その他 </c:when>
-							<c:when test="${session_m_category == 5}"> エディタ </c:when>
-							<c:when test="${session_m_category == 6}"> PC </c:when>
-							<c:when test="${session_m_category == 7}"> GitHub </c:when>
-							<c:when test="${session_m_category == 8}"> その他 </c:when>
-							<c:when test="${session_m_category == 9}"> 相談等 </c:when>
+							<c:when test="${e.session_m_category == 0}"> プログラミング言語 </c:when>
+							<c:when test="${e.session_m_category == 1}"> 段位認定 </c:when>
+							<c:when test="${e.session_m_category == 2}"> ドリル </c:when>
+							<c:when test="${e.session_m_category == 3}"> コードエラー </c:when>
+							<c:when test="${e.session_m_category == 4}"> その他 </c:when>
+							<c:when test="${e.session_m_category == 5}"> エディタ </c:when>
+							<c:when test="${e.session_m_category == 6}"> PC </c:when>
+							<c:when test="${e.session_m_category == 7}"> GitHub </c:when>
+							<c:when test="${e.session_m_category == 8}"> その他 </c:when>
+							<c:when test="${e.session_m_category == 9}"> 相談等 </c:when>
 						</c:choose>
 						</td>
 						<td class="column4"> <c:out value="${e.subject}"/> </td>
 						<td class="column5"> <c:out value="${e.s_name}"/> </td>
-						<td class="column6"> <input type="submit" value="詳細"> </td>
+						<td class="column6"> <button type="submit" name="session_id"  value="${e.session_id}">詳細</button> </td>
 					</tr>
 				</table>
 			</form>
@@ -159,9 +160,9 @@
 								<td class="column1"> <input type="checkbox" name="" value="">  </td> <!-- 保留 -->
 								<td class="column2">
 									<c:choose>
-									 	<c:when test="${e.state == 0}"> 未対応 </c:when>
-									 	<c:when test="${e.state == 1}"> 対応中 </c:when>
-									 	<c:when test="${e.state == 2}"> 対応完了 </c:when>
+									 	<c:when test=""> 未対応 </c:when>
+									 	<c:when test=""> 対応中 </c:when>
+									 	<c:when test=""> 対応完了 </c:when>
 									</c:choose>
 								</td>
 								<td class="column3">
@@ -180,7 +181,8 @@
 								</td>
 								<td class="column4"> <c:out value="${e.subject}"/> </td>
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
-								<td class="column6"> <input type="submit" value="詳細"> </td>
+								<td class="column6"> <button type="submit" name="session_id"  value="${e.session_id}">詳細</button></td>
+
 							</tr>
 
 						</table>
@@ -222,7 +224,7 @@
 								</td>
 								<td class="column4"> <c:out value="${e.subject}"/> </td>
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
-								<td class="column6"> <input type="submit" value="詳細"> </td>
+								<td class="column6"><button type="submit" name="session_id"  value="${e.session_id}">詳細</button></td>
 							</tr>
 						</table>
 					</form>
@@ -263,7 +265,7 @@
 								</td>
 								<td class="column4"> <c:out value="${e.subject}"/> </td>
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
-								<td class="column6"> <input type="submit" value="詳細"> </td>
+								<td class="column6"> <button type="submit" name="session_id"  value="${e.session_id}">詳細</button></td>
 							</tr>
 						</table>
 					</form>

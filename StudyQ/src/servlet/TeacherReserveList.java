@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.CommonDao;
 import model.SessionBeans;
@@ -26,11 +25,11 @@ public class TeacherReserveList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//もしもログインしていなかったらログインサーブレットにリダイレクトする
-		HttpSession session = request.getSession();
-		if (session.getAttribute("t_id") == null) {
-			response.sendRedirect("/StudyQ/StudentLogin");
-			return;
-		}
+//		HttpSession session = request.getSession();
+//		if (session.getAttribute("t_id") == null) {
+//			response.sendRedirect("/StudyQ/StudentLogin");
+//			return;
+//		}
 
 		// リクエストパラメータを取得する（beansが完成したら）
 //		request.setCharacterEncoding("UTF-8");

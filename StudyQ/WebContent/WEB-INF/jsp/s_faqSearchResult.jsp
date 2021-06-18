@@ -6,25 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>研修生｜FAQ検索結果</title>
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
 <!-- ここからヘッダー -->
 <jsp:include page="student_header.jsp"/>
 <!-- ここからメイン -->
 <jsp:include page="student_menu.jsp"/>
+
+<!-- ヒット数 -->
+<div class="s_searchresult">
+	<p> ヒット数 : <c:out value="${hitcount} "/>　件 </p>
+</div>
+
+<!-- 検索ワード表示 -->
+    <p>検索ワード：<c:out value="${search_word} "/></p>
+
+<!-- FAQ検索機能 -->
 <h2 class="header_title">FAQ検索結果</h2>
+<c:forEach var="e" items="${faqList}" >
+<table>
+  <tr>
+    <td>質問<c:out value="${e.faq_title}"/></td><br>
+    <td>回答<c:out value="${e.faq_ans}"/> </td>
+  </tr>
+</table>
+</c:forEach>
 
 
-
-  <input type="text" value="red" id="text1" maxlength="5" />
-<input type="button" value="ボタン" onclick="clickBtn1()" />
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
-
+<!-- 最上部に戻る -->
 <div id="page_top"><a href="#"></a></div>
 
 <!-- ここからフッター -->

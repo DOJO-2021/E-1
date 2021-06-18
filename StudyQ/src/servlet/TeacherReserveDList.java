@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CommonDao;
+import model.SessionBeans;
 /**
  * Servlet implementation class TeacherReserveDList
  */
@@ -31,21 +35,23 @@ public class TeacherReserveDList extends HttpServlet {
 
 		//リクエストパラメータを取得する（beansが完成したら）
 		request.setCharacterEncoding("UTF-8");
-		String session_id = request.getParameter("session_id");
-		String s_name = request.getParameter("s_name");
-		String subject = request.getParameter("subject");
-		String question = request.getParameter("question");
-		String file = request.getParameter("file");
-		String session_m_category = request.getParameter("session_m_category");
+		int session_id = Integer.parseInt(request.getParameter("session_id"))-1;
+//		//String s_name = request.getParameter("s_name");
+//		String subject = request.getParameter("subject");
+//		String question = request.getParameter("question");
+//		String file = "005";
+////		String file = request.getParameter("file");
+////		String session_m_category = request.getParameter("session_m_category");
+//		int session_m_category = 4;
 
+		CommonDao cDao = new CommonDao();
+		List<SessionBeans> sn = new ArrayList<>();
+		sn = cDao.SessionListFindAll();
+		SessionBeans ssnD = sn.get(session_id);
 
 		//リクエストスコープに値をセット
-		request.setAttribute("session_id", session_id);
-		request.setAttribute("s_name", s_name);
-		request.setAttribute("subject", subject);
-		request.setAttribute("question", question);
-		request.setAttribute("file", file);
-		request.setAttribute("session_m_category", session_m_category);
+		request.setAttribute("ssnD", ssnD);
+
 
 
 		//セッション予約詳細リストページにフォワードする
