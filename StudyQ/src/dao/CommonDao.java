@@ -603,25 +603,20 @@ public class  CommonDao {
 
 
 			while(rs.next()) {
-				Faq faq = new Faq(
-						rs.getInt("faq_id"),
-						rs.getString("faq_title"),
-						rs.getString("faq_ans"),
-						rs.getInt("faq_m_category")
-						);
 				 try {
 				      File file = new File("C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\json");
 
 				      FileWriter filewriter = new FileWriter(file);
 
-				      filewriter.write("こんにちは¥r¥n");
-				      filewriter.write("お元気ですか¥r¥n");
+				      filewriter.write(rs.getInt("faq_id")+"\\r\\n");
+				      filewriter.write(rs.getString("faq_title")+"\\r\\n");
+				      filewriter.write(rs.getString("faq_ans")+"\\r\\n");
+				      filewriter.write(rs.getInt("faq_m_category")+"\\r\\n");
 
 				      filewriter.close();
 				    } catch(IOException e) {
 				      System.out.println(e);
 				    }
-				faqList.add(faq);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

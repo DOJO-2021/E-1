@@ -119,23 +119,23 @@
 						<td class="column1"> <input type="checkbox" name="" value="">  </td> <!-- 保留 -->
 						<td class="column2">
 						 <c:choose>
-						 	<c:when test="${e.state == 0}"> 未対応 </c:when>
-						 	<c:when test="${e.state == 1}"> 対応中 </c:when>
-						 	<c:when test="${e.state == 2}"> 対応完了 </c:when>
+						 	<c:when test="${state == 0}"> 未対応 </c:when>
+						 	<c:when test="${state == 1}"> 対応中 </c:when>
+						 	<c:when test="${state == 2}"> 対応完了 </c:when>
 						 </c:choose>
 						</td>
 						<td class="column3">
 						<c:choose>
-							<c:when test="${e.session_m_category == 0}"> プログラミング言語 </c:when>
-							<c:when test="${e.session_m_category == 1}"> 段位認定 </c:when>
-							<c:when test="${e.session_m_category == 2}"> ドリル </c:when>
-							<c:when test="${e.session_m_category == 3}"> コードエラー </c:when>
-							<c:when test="${e.session_m_category == 4}"> その他 </c:when>
-							<c:when test="${e.session_m_category == 5}"> エディタ </c:when>
-							<c:when test="${e.session_m_category == 6}"> PC </c:when>
-							<c:when test="${e.session_m_category == 7}"> GitHub </c:when>
-							<c:when test="${e.session_m_category == 8}"> その他 </c:when>
-							<c:when test="${e.session_m_category == 9}"> 相談等 </c:when>
+							<c:when test="${session_m_category == 0}"> プログラミング言語 </c:when>
+							<c:when test="${session_m_category == 1}"> 段位認定 </c:when>
+							<c:when test="${session_m_category == 2}"> ドリル </c:when>
+							<c:when test="${session_m_category == 3}"> コードエラー </c:when>
+							<c:when test="${session_m_category == 4}"> その他 </c:when>
+							<c:when test="${session_m_category == 5}"> エディタ </c:when>
+							<c:when test="${session_m_category == 6}"> PC </c:when>
+							<c:when test="${session_m_category == 7}"> GitHub </c:when>
+							<c:when test="${session_m_category == 8}"> その他 </c:when>
+							<c:when test="${session_m_category == 9}"> 相談等 </c:when>
 						</c:choose>
 						</td>
 						<td class="column4"> <c:out value="${e.subject}"/> </td>
