@@ -17,10 +17,11 @@ import javax.servlet.http.HttpSession;
 public class StudentTop extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// ログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("s_id") == null) {
@@ -33,5 +34,3 @@ public class StudentTop extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 }
-
-

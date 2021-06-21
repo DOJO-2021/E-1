@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import dao.CommonDao;
 import enums.UserType;
 import model.LoginUser;
+import util.Hash;
 
 /**
  * Servlet implementation class StudentLogin
@@ -40,24 +41,26 @@ public class StudentLogin extends HttpServlet {
 		String pw = request.getParameter("s_pw");
 
 		//IDとPWのハッシュ化
-//		Hash idHash = new Hash();
-//		Hash pwHash = new Hash();
-//
-//		String hashId = idHash.getHash(id);
-//		String hashPw = pwHash.getHash(pw);
-//
+		Hash idHash = new Hash();
+		Hash pwHash = new Hash();
+
+		String hashId = idHash.getHash(id);
+		String hashPw = pwHash.getHash(pw);
+
 
 
 		// ログイン処理を行う
 		CommonDao Dao = new CommonDao();
-		if (Dao.isLoginOK(UserType.Student, id, pw)) {	// ログイン成功
+		if (Dao.isLoginOK(UserType.Student, hashId, hashPw)) {	// ログイン成功
 
 			// セッションスコープにIDを格納する
 			HttpSession session = request.getSession();
-			session.setAttribute("s_id", new LoginUser(id));
+			session.setAttribute("s_id", new LoginUser(hashId));
 
 			// 研修生用のTOPページサーブレットにリダイレクト
 			response.sendRedirect("/StudyQ/StudentTop");
+		}else {
+			System.out.println("失敗！");
 		}
 		/*
 		else {									// ログイン失敗

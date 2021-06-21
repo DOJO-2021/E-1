@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* --------------------TOP画面-------------------- */
+.student_top {
+	height: auto;
+	/*background-image:url(../images/hukidasi.png);*/
+	background-repeat: no-repeat; /*背景を繰り返さない*/
+	background-position : right;
+}
+
+/* TOPボタン */
+
+.s_top_menu li{
+	display: inline-block;; /*横並び*/
+	text-decoration: none;
+	padding: 20px 50px;
+}
+
+.btn-border {
+  display: inline-block;
+  width: 400px;
+  text-align: center;
+  border: 3px solid #9ec34b;
+  font-size: 23px;
+  color: #9ec34b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 5px;
+  border-radius: 4px;
+  transition: .4s;
+}
+
+.tt1 {
+	padding: 0 0 13px 0;
+}
+
+.tt2 {
+	padding: 0 0 20px 0;
+	font-size: 13px;
+	letter-spacing:0.1em;
+	color: #000000;
+}
+
+.btn-border:hover {
+  background-color: #009900;
+  border-color: #009900;
+  color: #FFF;
+}
+
+.tt2:hover {
+  background-color: #009900;
+  border-color: #009900;
+  color: #FFF;
+}
+.container img {
+	padding: 10px 50px;
+}
+
+/*.icon {
+	border-radius: 30%;
+	width: 100px;
+	height: 100px;
+	background-color: #ffffff;
+}*/
