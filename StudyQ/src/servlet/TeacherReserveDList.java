@@ -45,11 +45,16 @@ public class TeacherReserveDList extends HttpServlet {
 //		int session_m_category = 4;
 
 		CommonDao cDao = new CommonDao();
+//		SessionBeans型のリストsnを生成
 		List<SessionBeans> sn = new ArrayList<>();
+//		リストsnにDaoのSessionListFindAllメソッドをつかって予約リストをすべて取得する
 		sn = cDao.SessionListFindAll();
+//		ArrayListのメソッドgetを使用し、
+//		SessionBeans型のssnDにt_rsvListから取得したsession_idと同じ行にあるレコードを取得する。
+
 		SessionBeans ssnD = sn.get(session_id);
 
-		//リクエストスコープに値をセット
+// 	    リクエストスコープに値をセット
 		request.setAttribute("ssnD", ssnD);
 
 
