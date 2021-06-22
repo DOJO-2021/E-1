@@ -113,8 +113,6 @@
 		<!-- 開くタブ -->
 		<div class="content show">
 		<c:forEach var="e" items="${sessionList}">
-
-			<form method="GET" action="/StudyQ/TeacherReserveDList">
 				<table>
 					<tr>
 						<td class="column1"> <input type="checkbox" name="" value="">  </td> <!-- 保留 -->
@@ -141,10 +139,10 @@
 						</td>
 						<td class="column4"> <c:out value="${e.subject}"/> </td>
 						<td class="column5"> <c:out value="${e.s_name}"/> </td>
-						<td class="column6"> <button type="submit" name="session_id"  value="${e.session_id}">詳細</button> </td>
+						<td class="column6"> <a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a>
+											 </td>
 					</tr>
 				</table>
-			</form>
 
 		</c:forEach>
 		</div>
@@ -154,7 +152,6 @@
 			<c:forEach var="e" items="${sessionList}">
 				<c:if test="${e.session_m_category >= 0 && e.session_m_category <= 4}">
 
-					<form method="GET" action="/StudyQ/TeacherReserveDList">
 						<table>
 							<tr>
 								<td class="column1"> <input type="checkbox" name="" value="">  </td> <!-- 保留 -->
@@ -181,12 +178,12 @@
 								</td>
 								<td class="column4"> <c:out value="${e.subject}"/> </td>
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
-								<td class="column6"> <button type="submit" name="session_id"  value="${e.session_id}">詳細</button></td>
+								<td class="column6"><a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a>
+											 </td>
 
 							</tr>
 
 						</table>
-					</form>
 
 				</c:if>
 			</c:forEach>
@@ -197,7 +194,6 @@
 			<c:forEach var="e" items="${sessionList}">
 				<c:if test="${e.session_m_category >= 5 && e.session_m_category <= 8}">
 
-					<form method="GET" action="/StudyQ/TeacherReserveDList">
 						<table>
 							<tr>
 								<td class="column1"> <input type="checkbox" name="" value="">  </td> <!-- 保留 -->
@@ -224,10 +220,10 @@
 								</td>
 								<td class="column4"> <c:out value="${e.subject}"/> </td>
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
-								<td class="column6"><button type="submit" name="session_id"  value="${e.session_id}">詳細</button></td>
+								<td class="column6"><a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a>
+											 </td>
 							</tr>
 						</table>
-					</form>
 
 				</c:if>
 			</c:forEach>
@@ -238,7 +234,6 @@
 			<c:forEach var="e" items="${sessionList}">
 				<c:if test="${e.session_m_category == 9}">
 
-					<form method="GET" action="/StudyQ/TeacherReserveDList">
 						<table>
 							<tr>
 								<td class="column1"> <input type="checkbox" name="" value="">  </td> <!-- 保留 -->
@@ -265,10 +260,10 @@
 								</td>
 								<td class="column4"> <c:out value="${e.subject}"/> </td>
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
-								<td class="column6"> <button type="submit" name="session_id"  value="${e.session_id}">詳細</button></td>
+								<td class="column6"> <a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a>
+											 </td>
 							</tr>
 						</table>
-					</form>
 
 				</c:if>
 			</c:forEach>
@@ -295,5 +290,8 @@
 	  })
 	})
 </script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.css' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.js'></script>
 </body>
 </html>

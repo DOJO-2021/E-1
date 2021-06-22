@@ -436,7 +436,34 @@ public class CommonDao {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
-			if (searchWord != "") {
+			if (searchWord.matches("\s+")||searchWord==null) {
+				try {
+					// JDBCドライバを読み込む
+					Class.forName("org.h2.Driver");
+
+					// データベースに接続する
+					conn = DriverManager.getConnection(jdbcPass, "sa", "");
+					// SELECT文を準備する
+
+					String selectAllSql = "SELECT * FROM FAQ";
+					PreparedStatement pStmtSelect = conn.prepareStatement(selectAllSql);
+					ResultSet rs = pStmtSelect.executeQuery();
+
+					while (rs.next()) {
+						Faq faq = new Faq(
+								rs.getInt("faq_id"),
+								rs.getString("faq_title"),
+								rs.getString("faq_ans"),
+								rs.getInt("faq_m_category"));
+						faqList.add(faq);
+					}
+					return faqList;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}else {
 				String[] words = searchWord.split("\s+");
 
 				List<String> column = new ArrayList<>();
@@ -460,13 +487,27 @@ public class CommonDao {
 				//						pStmtCount.setString(2,"%");
 				//					}
 
-				String select = "SELCT * FROM FAQ WHERE";
+				String select = "SELECT * FROM FAQ WHERE";
 				String like = column.get(0) + "Like ? or " + column.get(1) + " Like ? ";
 
 				for (int i = 0; i < words.length; i++) {
 					select += like;
+					if(i!=words.length-1) {
+						select += " or ";
+					}
 				}
 				PreparedStatement pStmt = conn.prepareStatement(select);
+
+					int i = 1;
+					int temp = 0;
+
+					for(i=1;i<=words.length;i++) {
+						pStmt.setString(i+temp,"%" + words[i-1] + "%");
+						pStmt.setString(i+1+temp,"%" + words[i-1] + "%");
+						temp+=2;
+					}
+
+
 
 				ResultSet rs = pStmt.executeQuery();
 				while (rs.next()) {
@@ -477,13 +518,6 @@ public class CommonDao {
 							rs.getInt("faq_m_category"));
 					faqList.add(faq);
 
-				}
-			} else {
-				try {
-					conn.close();
-					FaqListFindAll();
-				} catch (SQLException e) {
-					e.printStackTrace();
 				}
 
 			}
