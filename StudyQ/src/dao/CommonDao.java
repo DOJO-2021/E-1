@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -240,6 +241,51 @@ public class CommonDao {
 
 	}
 
+	//	ファイル名取得用メソッド（研修生セッション）
+
+	public String GetFileName() {
+		Connection conn = null;
+		int fileNo= 0;
+		String fileName = "";
+		DecimalFormat df = new DecimalFormat("0,000");
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
+			// SELECT文を準備する
+
+			String selectAllSql = "SELECT COUNT(*) AS CNT FROM SESSION";
+			PreparedStatement pStmtSelect = conn.prepareStatement(selectAllSql);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmtSelect.executeQuery();
+			while (rs.next()) {
+
+					fileNo = rs.getInt("CNT")+1;
+			}
+
+			fileName = df.format(fileNo);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return fileName;
+
+	}
+
 	//	FAQリスト全表示 （完）
 	public List<Faq> FaqListFindAll() {
 		Connection conn = null;
@@ -424,7 +470,7 @@ public class CommonDao {
 
 	}
 
-	//	FAQカテゴリ検索
+	//	FAQカテゴリ検索（完）
 	public List<Faq> FaqSearch(String searchWord) {
 		Connection conn = null;
 		List<Faq> faqList = new ArrayList<>();
@@ -462,49 +508,45 @@ public class CommonDao {
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
-				}
+				}finally {
+					// データベースを切断
+					if (conn != null) {
+						try {
+							conn.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+					}
 			}else {
-				String[] words = searchWord.split("\s+");
+				String searchreplace = searchWord.replaceAll("　", " ");
+				String[] words = searchreplace.split("\\s+");
 
 				List<String> column = new ArrayList<>();
 
 				column.add(" FAQ_TITLE ");
 				column.add(" FAQ_ANS ");
 
-				//				String countSql01 = "SELECT * FROM FAQ WHERE";
-				//				String countSql02= "LIKE ? OR";
-				//				String countSql03 = "LIKE ?";
-				//
-				//					String countSql = countSql01 + column.get(0) + countSql02 + column.get(1) +  countSql03;
-				//					PreparedStatement pStmtCount = conn.prepareStatement(countSql);
-				//
-				//						//SQL分を完成させる
-				//					if(searchWord != null&&!searchWord.equals("")) {
-				//						pStmtCount.setString(1,"%" + searchWord + "%");
-				//						pStmtCount.setString(2,"%" + searchWord + "%");
-				//					}else {
-				//						pStmtCount.setString(1,"%");
-				//						pStmtCount.setString(2,"%");
-				//					}
-
 				String select = "SELECT * FROM FAQ WHERE";
-				String like = column.get(0) + "Like ? or " + column.get(1) + " Like ? ";
+				String like = column.get(0) + "LIKE ? OR " + column.get(1) + " LIKE ? ";
 
 				for (int i = 0; i < words.length; i++) {
 					select += like;
 					if(i!=words.length-1) {
-						select += " or ";
+						select += " AND ";
 					}
 				}
+				System.out.println(select);
 				PreparedStatement pStmt = conn.prepareStatement(select);
 
 					int i = 1;
 					int temp = 0;
 
 					for(i=1;i<=words.length;i++) {
-						pStmt.setString(i+temp,"%" + words[i-1] + "%");
-						pStmt.setString(i+1+temp,"%" + words[i-1] + "%");
-						temp+=2;
+						int j = i +temp;
+						pStmt.setString(j,"%" + words[i-1] + "%");
+						pStmt.setString(j+1,"%" + words[i-1] + "%");
+						temp++;
 					}
 
 
@@ -542,11 +584,9 @@ public class CommonDao {
 
 	//	FAQヒットカウント（完）
 	public int FaqCount(String searchWord) {
-		Connection conn = null;
-		int count = 0;
-		//		List<String> column = new ArrayList<>();
 
-		//		List<Integer> countlist = new ArrayList<>();
+		Connection conn = null;
+		int count=0;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -555,46 +595,75 @@ public class CommonDao {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
-			//			column.add(" FAQ_TITLE ");
-			//			column.add(" FAQ_ANS ");
-			//
-			//			String countSql01 = "SELECT COUNT(*) AS cnt FROM FAQ WHERE";
-			//			String countSql02= "LIKE ? OR";
-			//			String countSql03 = "LIKE ?";
-			//
-			//				String countSql = countSql01 + column.get(0) + countSql02 + column.get(1) +  countSql03;
-			//				PreparedStatement pStmtCount = conn.prepareStatement(countSql);
-			//
-			//					//SQL分を完成させる
-			//				if(searchWord != null&&!searchWord.equals("")) {
-			//					pStmtCount.setString(1,"%" + searchWord + "%");
-			//					pStmtCount.setString(2,"%" + searchWord + "%");
-			//				}else {
-			//					pStmtCount.setString(1,"%");
-			//					pStmtCount.setString(2,"%");
-			//				}
-			//
-			//
-			//				ResultSet rs = pStmtCount.executeQuery();
-			//				while(rs.next()) {
-			//					count = rs.getInt("cnt");
-			//				}
+			if (searchWord.matches("\s+")||searchWord==null) {
+				try {
+					// JDBCドライバを読み込む
+					Class.forName("org.h2.Driver");
 
-			String[] words = searchWord.split("\s+");
-			String wordsResult = String.join(",", words);
-			String countSql01 = "SELECT COUNT(*) AS cnt FROM FAQ WHERE";
+					// データベースに接続する
+					conn = DriverManager.getConnection(jdbcPass, "sa", "");
+					// SELECT文を準備する
 
-			String sql = countSql01 + "( FAQ_TITLE, FAQ_ANS) IN" + "( ?" + ")";
-			PreparedStatement pStmtCount = conn.prepareStatement(sql);
+					String selectAllSql = "SELECT (*) AS CNT FROM FAQ";
+					PreparedStatement pStmtSelect = conn.prepareStatement(selectAllSql);
+					ResultSet rs = pStmtSelect.executeQuery();
 
-			if (wordsResult != null && !wordsResult.equals("")) {
-				pStmtCount.setString(1, "%" + wordsResult + "%");
-			} else {
-				pStmtCount.setString(1, "%");
-			}
-			ResultSet rs = pStmtCount.executeQuery();
-			while (rs.next()) {
-				count = rs.getInt("cnt");
+					while (rs.next()) {
+							count =	rs.getInt("CNT");
+					}
+					return count;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}finally {
+					// データベースを切断
+					if (conn != null) {
+						try {
+							conn.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+					}
+			}else {
+				String searchreplace = searchWord.replaceAll("　", " ");
+				String[] words = searchreplace.split("\\s+");
+
+				List<String> column = new ArrayList<>();
+
+				column.add(" FAQ_TITLE ");
+				column.add(" FAQ_ANS ");
+
+				String select = "SELECT COUNT(*) AS CNT FROM FAQ WHERE";
+				String like = column.get(0) + "LIKE ? OR " + column.get(1) + " LIKE ? ";
+
+				for (int i = 0; i < words.length; i++) {
+					select += like;
+					if(i!=words.length-1) {
+						select += " AND ";
+					}
+				}
+				System.out.println(select);
+				PreparedStatement pStmt = conn.prepareStatement(select);
+
+					int i = 1;
+					int temp = 0;
+
+					for(i=1;i<=words.length;i++) {
+						int j = i +temp;
+						pStmt.setString(j,"%" + words[i-1] + "%");
+						pStmt.setString(j+1,"%" + words[i-1] + "%");
+						temp++;
+					}
+
+
+
+				ResultSet rs = pStmt.executeQuery();
+				while (rs.next()) {
+					count = rs.getInt("CNT");
+				}
+
 			}
 
 		} catch (SQLException e) {
@@ -612,9 +681,7 @@ public class CommonDao {
 			}
 		}
 
-		//結果を返す
 		return count;
-
 	}
 
 	//  FAQページ単位リスト取得

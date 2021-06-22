@@ -11,39 +11,6 @@
 </head>
 <body>
 	<jsp:include page="teacher_header.jsp"/>
-	<!-- ヘッダー -->
-		<section class="head">
-			<!-- ロゴ -->
-			<div class="logo">
-				<img src="image/logo.jpg" width=300px height=auto>
-			</div>
-			<!-- ログアウトボタン --><!-- ドロワーメニュー -->
-			<a href="/StudyQ/TeacherLogin" class="btn btn--orange btn--radius">ログアウト</a>
-			<!-- ログアウトボタン -->
-		<!-- <form method="POST" action="/StudyQ/TeacherLogin">
-		<input type="submit" value="ログアウト"><br>
-		</form> -->
-			<div class="page_name">
-				<font><img src="image/people_icon.png" width=25px height=auto>講師用ページ</font>
-			</div>
-				<!-- ナビゲーションバー -->
-			<nav class="gnavi">
-				<div class="gnavi_inner">
-					<ul>
-						<li><a href="#"><span>TOP</span></a></li>
-						<li><a href="#"><span>FAQ</span></a>
-							<ul class="two_dropdown">
-								<li><a href="#"><span>内容１</span></a></li>
-								<li><a href="#"><span>内容２</span></a></li>
-							</ul>
-						</li>
-						<li><a href="#"><span>セッション予約</span></a></li>
-						<li><a href="#"><span>講師の紹介</span></a></li>
-						<li><a href="#"><span>お問い合わせ</span></a></li>
-					</ul>
-				</div>
-			</nav>
-		</section>
 
 	<!-- ここからメイン -->
     <section class="main1">

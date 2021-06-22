@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/* テーブルのCSS */
+table {
+   border: 5px  solid;  /* 太さ3pxで緑色の実線 */
+   border-color: #76B900;
+}
+
+th,td {
+   border: 1px solid;  /* 太さ1pxで緑色の実線 */
+   border-color: #000000;
+}
+.faqlist_regist_body{
+  text-align: center;
+}
+.faq_regist_table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.faq_m_category{
+	margin-right: 280px;
+}

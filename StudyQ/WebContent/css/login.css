@@ -3,16 +3,21 @@
 * {
   font-family: 'Maven Pro', sans-serif;
   box-sizing: border-box;
+  background: 	#FFFFF0
 }
 
-main {
-  height: 100%;
-  width: 100%;
+main .login_main{
+  height: 800px;
   margin: 0;
   padding: 0;
-  background-color: #009900;
   text-align: center;
   font-family: 'Segoe UI';
+  box-shadow: 0 6px 17px 0 rgb(0 0 0 / 10%);
+  width: 500px;
+}
+
+div #login_table {
+	text-align: center;
 }
 
 form {
@@ -21,10 +26,13 @@ form {
 
 }
 
+
+
+
+
 input {
-  width: 50%;
+  width: 370px;
   background: transparent;
-  border-bottom: solid 1px #4447ce;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -49,22 +57,25 @@ input[type="password"] {
 
 input::placeholder {
   font-size: large;
-  color: white;
+  opacity: 0.75;
+  color: gray;
 }
 
 input:focus {
   background: #76b900;
+  opacity: 0.8;
   transform: scale3d(1.06,1.06,1.06);
 }
 
 input[type="submit"] {
-  background: rgba(255, 115, 0, 0.945);
-  width: 100px;
-  height: 39px;
-  line-height   : 0.2em;
-  margin-top: 1rem;
-  font-size: 1rem;
-  border        : 2px solid rgba(255, 115, 0, 0.945);
+  background: #2aa80c;
+  width: 370px;
+  height: 60px;
+  border-radius: 5px;
+  margin-top: 3rem;
+  font-size: 16px;
+  font-weight: bold;
+  border        : 2px solid #2aa80c;
   padding: 1em 0;
   color: #ffffff;
   transition: all 0.6s;
@@ -73,35 +84,15 @@ input[type="submit"] {
 input[type="submit"]:hover {
   cursor:pointer;
   background: #ffffff;
-  color: red;
+  border-radius: 10px;
+  color: #009900;
   box-shadow    : none;
 }
 
-input[type="reset"] {
-  background: rgba(255, 115, 0, 0.945);
-  width: 100px;
-  height: 39px;
-  line-height   : 0.2em;
-  margin-top: 1rem;
-  font-size: 1rem;
-  border        : 2px solid rgba(255, 115, 0, 0.945);
-  padding: 1em 0;
-  color: #ffffff;
-  transition: all 0.6s;
-  box-shadow    : 6px 6px 3px #666666;
-  margin-left: 5px;
-}
-input[type="reset"]:hover {
-  cursor:pointer;
-  background: #ffffff;
-  color: red;
-  box-shadow    : none;
-}
 
 h1 {
-  color: rgba(255, 115, 0, 0.945);
-  border-bottom: solid 1px #7035c4;
-  width: 50%;
+  color: #009900;
+  width: 370px;
   margin-left: 25%;
   margin-bottom: 1em;
 }

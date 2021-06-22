@@ -8,7 +8,6 @@
 	<link rel="stylesheet"  href="/StudyQ/css/login.css">
 </head>
 <body>
-	<jsp:include page="teacher_header.jsp"/>
 	<!-- ここからメイン -->
 	<main>
 		<h1>ログイン</h1>

@@ -5,31 +5,55 @@
 <head>
 	<meta charset="UTF-8">
 	<title>研修生｜TOP</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/Top.css">
+	<!-- 検索バーで必要 -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="student_header.jsp"/>
-	<!-- ここからメイン -->
-	<main>
-		<!-- 検索バー -->
-		<input type="text" name="search_word">
-		<!-- 検索ボタン -->
-		<button type="button">検索</button>
-		<!-- ログアウトボタン -->
-		<form method="POST" action="/StudyQ/StudentLogin">
-		<input type="submit"  value="ログアウト"><br>
-		</form>
 
-		<!-- セッション待ち人数表示 -->
-		<h3>ただいまの待ち人数</h3>
+		<!-- メイン -->
+		<section class="main1">
+			<!-- 検索バー -->
+			<form method="get" action="" class="search_container" style="margin: 0 0 0 auto;">
+				<input type="text" size="25" name="search_word" placeholder="　調べたいことをキーワード検索">
+				<input type="submit" value="&#xf002">
+			</form>
+			<h3>スタディQAっしょんでできること</h3>
 
-		<ul class="s_top_menu">
-			<!-- FAQページ遷移 -->
-			<li><a href="/StudyQ/StudentFaqSearch" class=""><img src="image/" alt="FAQ" ></a></li>
-			<!-- セッション予約ページ遷移 -->
-			<li><a href="/StudyQ/StudentReserve"><img src="image/"  alt="セッション予約"></a></li>
-		</ul>
 
-	</main>
+			<div class="student_top">
+				<ul class="s_top_menu">
+					<!-- FAQページ遷移 -->
+					<li>
+						<div class="container">
+							<a href="/StudyQ/StudentFaqSearch" class="btn-border">
+								<div><img src="image/icon2.png" width=100px height=auto alt="FAQ" ></div>
+								<div class="tt1">-- FAQ --</div>
+								<div class="tt2">研修生が講師によく聞く質問</div>
+							</a>
+						</div>
+					</li>
+					<!-- セッション予約ページ遷移 -->
+					<li>
+						<div class="container">
+							<a href="/StudyQ/StudentReserve" class="btn-border">
+								<div><img src="image/icon1.png" width=100px height=auto alt="セッション予約"></div>
+								<div class="tt1">-- セッション予約 --<br></div>
+								<div class="tt2">講師へ直接質問</div>
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="main2">
+			<h3>ただいまセッションの待ち人数</h3>
+			<p>5人</p>
+		</section>
 	<jsp:include page="footer.jsp"/>
 </body>
 </html>

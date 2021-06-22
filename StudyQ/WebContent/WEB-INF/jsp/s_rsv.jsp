@@ -15,7 +15,7 @@
 <jsp:include page="student_menu.jsp"/>
 <h2>セッション予約</h2>
 <!-- <p><c:out value="${s_l_name}"/>さん</p> 保留 -->
-<form method="POST" action="/StudyQ/StudentReserve">
+<form method="POST" action="/StudyQ/StudentReserve" enctype="multipart/form-data">
 	<table>
 	<tr>
 		<th>件名</th>
@@ -53,7 +53,7 @@
 	</tr>
 	<tr>
 		<th>添付ファイル</th>
-		<td><input type="text" name="file" class="" placeholder="件名を入力してください"><input type="file"></td>
+		<td><input type="file"></td>
 	</tr>
 	</table>
 	<input type="submit" name="" value="登録">
