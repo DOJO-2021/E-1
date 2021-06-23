@@ -10,7 +10,8 @@
 <body>
 	<!-- ここからメイン -->
 	<main>
-		<h1>ログイン</h1>
+	<div class="login_main">
+		<h1>StudyQAっしょん</h1>
 
 		<form method="POST" action="/StudyQ/TeacherLogin">
 
@@ -21,15 +22,14 @@
 		<!-- ログイン・リセットボタン -->
 		<div>
 			<input type="submit" name="login" value="ログイン" class="login_btn">
-			<input type="reset" name="reset" value="リセット" class="reset_btn"><br>
 		</div>
 
 		<!-- 研修生の方はこちら -->
 		<a href="/StudyQ/StudentLogin" class="s_login_link">研修生の方はこちら</a>
 
 		</form>
+	</div>
 	</main>
-	<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

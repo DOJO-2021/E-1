@@ -72,6 +72,58 @@ public class CommonDao {
 		return loginResult;
 	}
 
+	//	ログイン時名前を取得するメソッド
+	public String isLoginGetName( String id, String pw) {
+		Connection conn = null;
+		String l_name = null;
+		String f_name = null;
+		String s_name = null;
+		String studentTable = "select * from student_id where s_id = ? and s_pw = ?";
+
+		String sql;
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection(jdbcPass, "sa", "");
+
+			// SELECT文を準備する
+
+				sql = studentTable;
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, id);
+			pStmt.setString(2, pw);
+
+			// SELECT文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
+			rs.next();
+			while (rs.next()) {
+				l_name = rs.getString("L_NAME");
+			 	f_name = rs.getString("F_NAME");
+			}
+			s_name = l_name + f_name;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		// 結果を返す
+		return s_name;
+	}
+
 	//	 研修生登録メソッド(完)
 	public boolean isStudentRegistOK(StuIdpw student) {
 		Connection conn = null;

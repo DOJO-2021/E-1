@@ -70,11 +70,11 @@ public class StudentReserve extends HttpServlet {
 		HashMap<String,String> map = new HashMap<String,String>();
 
 		String uploadFileName = "";
+		String sendFileName ="";
 
-		String uploadFolder = this.getServletContext().getRealPath("\\WebContent\\WEB-INF\\appfile");
+		String uploadFolder = this.getServletContext().getRealPath("/WebContent/WEB-INF/appfile/");
 		// リクエストパラメータを取得する
 
-		Part imgPart = null;
 		CommonDao sDao = new CommonDao();
 
 		for(Part part:parts){ //partsから１つずつ取り出す
@@ -95,8 +95,9 @@ public class StudentReserve extends HttpServlet {
 				//アップロードされたファイルの処理
 				uploadFileName = sDao.GetFileName();
 				String sourceFileName = this.getFileName(part);
+				sendFileName =sourceFileName;
 				String extName = sourceFileName.split(".")[1];
-				uploadFileName += "." + extName;
+				uploadFileName =uploadFileName + "." + extName;
 				//.のあとを取得
 
 				//実際には、ファイル名を商品IDなどに置き換えることになる（同一ファイル名対策）
@@ -110,7 +111,7 @@ public class StudentReserve extends HttpServlet {
 		String s_name = "1";
 		String subject = map.get("subject");
 		String question = map.get("question");
-		String file = sDao.GetFileName();
+		String file = sendFileName;
 		int session_m_category = Integer.parseInt(request.getParameter("session_m_category"));
 
 		SessionBeans s_rsv=new SessionBeans(0, s_name, subject, question,file , session_m_category);

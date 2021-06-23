@@ -10,28 +10,28 @@
 <body>
 	<header></header>
 	<!-- ここからメイン -->
-	<main class="login_main">
-		<div id="login_table">
+	<main>
+		<div class="login_main">
 			<h1>StudyQAっしょん</h1>
 
 			<form method="POST" action="/StudyQ/StudentLogin" id="form">
 
-			<!-- 入力フォーム -->
-			<input type="text" name="s_id" placeholder="user ID" class="login_id"><br>
-			<input type="password" name="s_pw" placeholder="password" class="login_pw"><br>
+				<!-- 入力フォーム -->
+				<input type="text" name="s_id" placeholder="user ID" class="login_id"><br>
+				<input type="password" name="s_pw" placeholder="password" class="login_pw"><br>
 
-			<!-- ログイン・リセットボタン -->
-			<div>
-				<input type="submit" name="login" value="ログイン" class="login_btn">
-			</div>
-
-			<!-- 新規登録はこちら -->
-			<a href="/StudyQ/StudentRegist" class="s_regist_link">新規登録はこちら</a>
-
-			<!-- 講師の方はこちら -->
-			<a href="/StudyQ/TeacherLogin" class="t_login_link">講師の方はこちら</a>
+				<!-- ログイン・リセットボタン -->
+				<div>
+					<input type="submit" name="login" value="ログイン" class="login_btn">
+				</div>
 			</form>
-		</div><!-- class="login_table" -->
+			<!-- 新規登録はこちら -->
+			<a href="/StudyQ/StudentRegist" class="s_regist_link" >新規登録はこちら</a><br>
+
+			<p><span class="t_login_nav" style="letter-spacing: -0.2em;">——————— 　講 師 の 方 は こ ち ら　 ————————</span></p>
+			<!-- 講師の方はこちら -->
+				<button onclick="location.href='/StudyQ/TeacherLogin'" class="t_login_btn">講師用ログイン</button>
+		</div>
 	</main>
 <!-- フッター -->
 <script type="text/javascript" src="js/login.js"></script>
