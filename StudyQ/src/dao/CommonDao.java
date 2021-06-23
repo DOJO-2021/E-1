@@ -73,11 +73,12 @@ public class CommonDao {
 	}
 
 	//	ログイン時名前を取得するメソッド
-	public String isLoginGetName( String id, String pw) {
+	public String loginGetName( String id, String pw) {
 		Connection conn = null;
 		String l_name = null;
 		String f_name = null;
 		String s_name = null;
+
 		String studentTable = "select * from student_id where s_id = ? and s_pw = ?";
 
 		String sql;
@@ -91,7 +92,6 @@ public class CommonDao {
 			// SELECT文を準備する
 
 				sql = studentTable;
-
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, id);
 			pStmt.setString(2, pw);
@@ -99,13 +99,15 @@ public class CommonDao {
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-			// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
-			rs.next();
+			// 結果表から姓と名を取得する。
 			while (rs.next()) {
-				l_name = rs.getString("L_NAME");
-			 	f_name = rs.getString("F_NAME");
+				l_name = rs.getString("S_L_NAME");
+			 	f_name = rs.getString("S_F_NAME");
+//				姓と名をつなげて一つの変数に格納する
+			 	s_name = l_name + f_name;
 			}
-			s_name = l_name + f_name;
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -118,7 +120,9 @@ public class CommonDao {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
+
 			}
+
 		}
 		// 結果を返す
 		return s_name;

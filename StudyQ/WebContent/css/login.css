@@ -79,8 +79,8 @@ input[type="submit"] {
   border       : 2px solid #2aa80c;
   padding      : 1em 0;
   color        : #ffffff;
-  transition   : all 0.4s;
-  box-shadow   : 6px 6px 3px #666666;
+  transition   : all 0.3s;
+  box-shadow   : 3px 3px 3px #666666;
 }
 input[type="submit"]:hover {
   cursor       :pointer;
@@ -92,7 +92,7 @@ input[type="submit"]:hover {
 
 /* ----------別のページに遷移---------- */
 .t_login_nav {
-	opacity: 0.5;
+	opacity    : 0.5;
 }
 
 .t_login_btn {
@@ -146,4 +146,30 @@ a:hover {
   color          :#0000FF;
   text-decoration:underline;
 }
+
+/* -------　新規登録完了ページ　------- */
+table {
+	text-align: center;
+	margin: 2rem auto 0 auto;
+}
+
+.s_regist_result_btn {
+	width        : 370px;
+	height       : 60px;
+	border-radius: 5px;
+	opacity      : 0.55;
+	background   : #00be00;
+	font-weight  : bold;
+}
+
+.s_regist_result_btn:hover {
+	cursor       : pointer;
+	opacity      : 0.85;
+	transition   : all 0.4s;
+}
+
+
+
+
+
 

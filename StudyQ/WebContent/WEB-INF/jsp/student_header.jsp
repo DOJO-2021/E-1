@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- ヘッダー -->
  <header>
 
@@ -9,10 +9,15 @@
 		<div class="logo">
 			<a href="/StudyQ/StudentTop"><img src="image/logo.jpg" width=300px height=auto></a>
 		</div>
+
 		<!-- ログアウトボタン --><!-- ドロワーメニュー -->
 		<a href="/StudyQ/Logout" class="btn btn--orange btn--radius">ログアウト</a>
 		<div class="page_name">
 			<font><img src="image/people_icon.png" width=25px height=auto>研修生用ページ</font>
+		</div>
+		<!-- 研修生名の表示 -->
+		<div>
+			<p>ようこそ<c:out value="${s_name}"/>さん！</p>
 		</div>
 		<!-- ナビゲーションバー -->
 		<nav class="gnavi">

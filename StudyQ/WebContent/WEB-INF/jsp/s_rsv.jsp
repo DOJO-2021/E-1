@@ -53,10 +53,10 @@
 	</tr>
 	<tr>
 		<th>添付ファイル</th>
-		<td><input type="file"></td>
+		<td><input type="file" name="file" ></td>
 	</tr>
 	</table>
-	<input type="submit" name="" value="登録">
+	<input type="submit" value="登録">
 </form>
 
 <!-- フッター -->
