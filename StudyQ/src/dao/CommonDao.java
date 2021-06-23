@@ -72,7 +72,7 @@ public class CommonDao {
 		return loginResult;
 	}
 
-	//	ログイン時名前を取得するメソッド
+	//	ログイン時名前を取得するメソッド(完)
 	public String loginGetName( String id, String pw) {
 		Connection conn = null;
 		String l_name = null;

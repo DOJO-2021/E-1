@@ -6,7 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.css' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.js'></script>
 <style>
 	.tab_area {
 		display: flex;
@@ -36,11 +40,22 @@
 	.content.show {
 		display: block;
 	}
+
 	table.content_sessionlist {
 		margin-left: 95px;
-
 	}
-
+	table.content_checklist {
+		float: left;
+	}
+	table.content_checklist1 {
+		float: left;
+	}
+	table.content_checklist2 {
+		float: left;
+	}
+	table.content_checklist3 {
+		float: left;
+	}
 	td.column_header1 {
 		width: 93px;
 	}
@@ -103,20 +118,20 @@
 	<!-- テーブル項目 -->
 	<table>
 		<tr>
-			<td class="column_header1"> チェック </td>
+			<td class="column_header1"> 対応状況 </td>
 			<td class="column_header2"> カテゴリ </td>
 			<td class="column_header3"> 件名 </td>
 			<td class="column_header4"> 氏名 </td>
 		</tr>
 	</table>
 
-
+	<%! int count1 = 0; %>
 	<!-- タブの中身 -->
 	<div class="content_body">
 		<!-- 開くタブ -->
 		<div class="content show">
-		<div id="msg">ここに結果</div>
-		<c:forEach var="e" items="${sessionList}">
+		<div id="msg"> <!-- ここにjsonデータ --> </div>
+		<c:forEach var="e" items="${sessionList}" >
 			<form method="GET" action="/StudyQ/TeacherReserveDList">
 				<table class="content_sessionlist">
 					<tr>
@@ -136,26 +151,22 @@
 						</td>
 						<td class="column4"> <c:out value="${e.subject}"/> </td>
 						<td class="column5"> <c:out value="${e.s_name}"/> </td>
-						<td class="column6"> <button type="submit" name="session_id"  value="${e.session_id}">詳細</button> </td>
+						<td class="column6"> <a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a> </td>
 					</tr>
 				</table>
 			</form>
-
+			<% count1 += 1; %>
 		</c:forEach>
 		</div>
 			<!-- 閉じるタブ -->
 			<!-- カテゴリ:学習内容 -->
 			<div class="content">
+			<div id="msg1"> <!-- ここにjsonデータ --> </div>
 			<c:forEach var="e" items="${sessionList}">
 				<c:if test="${e.session_m_category >= 0 && e.session_m_category <= 4}">
-
 					<form method="GET" action="/StudyQ/TeacherReserveDList">
 						<table>
 							<tr>
-								<td class="column1">  </td> <!-- 保留 -->
-								<td class="column2">
-
-								</td>
 								<td class="column3">
 								<c:choose>
 									<c:when test="${e.session_m_category == 0}"> プログラミング言語 </c:when>
@@ -172,29 +183,24 @@
 								</td>
 								<td class="column4"> <c:out value="${e.subject}"/> </td>
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
-								<td class="column6"> <button type="submit" name="session_id"  value="${e.session_id}">詳細</button></td>
+								<td class="column6"> <a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a></td>
 
 							</tr>
-
 						</table>
 					</form>
-
 				</c:if>
 			</c:forEach>
 			</div>
 			<!-- 閉じるタブ -->
 			<!-- カテゴリ:トラブル -->
 			<div class="content">
+			<div id="msg2"> <!-- ここにjsonデータ --> </div>
 			<c:forEach var="e" items="${sessionList}">
 				<c:if test="${e.session_m_category >= 5 && e.session_m_category <= 8}">
 
 					<form method="GET" action="/StudyQ/TeacherReserveDList">
 						<table>
 							<tr>
-								<td class="column1">   </td> <!-- 保留 -->
-								<td class="column2">
-
-								</td>
 								<td class="column3">
 								<c:choose>
 									<c:when test="${e.session_m_category == 0}"> プログラミング言語 </c:when>
@@ -211,7 +217,7 @@
 								</td>
 								<td class="column4"> <c:out value="${e.subject}"/> </td>
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
-								<td class="column6"><button type="submit" name="session_id"  value="${e.session_id}">詳細</button></td>
+								<td class="column6"><a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a></td>
 							</tr>
 						</table>
 					</form>
@@ -222,16 +228,12 @@
 			<!-- 閉じるタブ -->
 			<!-- カテゴリ:その他-->
 			<div class="content">
+			<div id="msg3"> <!-- ここにjsonデータ --> </div>
 			<c:forEach var="e" items="${sessionList}">
 				<c:if test="${e.session_m_category == 9}">
-
 					<form method="GET" action="/StudyQ/TeacherReserveDList">
 						<table>
 							<tr>
-								<td class="column1">  </td> <!-- 保留 -->
-								<td class="column2">
-
-								</td>
 								<td class="column3">
 								<c:choose>
 									<c:when test="${e.session_m_category == 0}"> プログラミング言語 </c:when>
@@ -248,7 +250,7 @@
 								</td>
 								<td class="column4"> <c:out value="${e.subject}"/> </td>
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
-								<td class="column6"> <button type="submit" name="session_id"  value="${e.session_id}">詳細</button></td>
+								<td class="column6"> <a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a></td>
 							</tr>
 						</table>
 					</form>
@@ -259,7 +261,7 @@
 		</div>
 
 	<form>
-		<input type="button" id="working_btn" value="対応中">
+		<input type="button" id="working_btn" value="対応中" onclick="return func1()">
 		<input type="button" id="worked_btn" value="対応完了" onclick="return func1()">
 	</form>
 
@@ -268,6 +270,8 @@
 <jsp:include page="footer.jsp"/>
 
 <script type="text/javascript">
+
+
 //タブ切り替え
 \$(function() {
 	  let tabs = \$(".tab"); // tabのクラスを全て取得し、変数tabsに配列で定義
@@ -278,28 +282,61 @@
 	    \$(".content").removeClass("show").eq(index).addClass("show"); // showクラスを消して、contentクラスのindex番目にshowクラスを追加
 	  })
 	})
-
-//対応完了チェック
-$(function() {
+const n1 = <%=count1 %>;
+console.log(n1);
+//対応状況リスト表示
+$(function(e) {
 			$.ajax({ //1: jsonデータを引っ張ってくる
 				contentType : "Content-Type: application/json; charset=UTF-8",
 				url : "json/session_data.json",
 				type : "GET",
 				datatype : "json",
 				success: function(json){
-					let data = "<table>";
+					let data = "<table class='content_checklist'>";
 					const len = Object.keys(json.ary).length;
 					console.log(len);
+					const n1 = <%=count1 %>;
+					console.log(n1);
+					if (len != n1) {
+						e.exit;
+					}
+					console.dir(json);
+
 					for( let i= 0; i < len; i++){
-					    data += "<tr><td><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
+					    data += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
 					}
 					data += "</table>";
 					document.getElementById("msg").innerHTML = data;
+
+					//タブ2
+					let data1 = "<table class='content_checklist1'>";
+					const len1 = 3
+					for( let i= 0; i < len1; i++){
+					    data1 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + "未対応" + "</td></tr>";
+					}
+					data += "</table>";
+					document.getElementById("msg1").innerHTML = data1;
+					//タブ3
+					let data2 = "<table class='content_checklist2'>";
+					const len2 = 4
+					for( let i= 0; i < len2; i++){
+					    data2 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + "未対応" + "</td></tr>";
+					}
+					data += "</table>";
+					document.getElementById("msg2").innerHTML = data2;
+					//タブ4
+					let data3 = "<table class='content_checklist3'>";
+					const len3 = 3
+					for( let i= 0; i < len3; i++){
+					    data3 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + "未対応" + "</td></tr>";
+					}
+					data += "</table>";
+					document.getElementById("msg3").innerHTML = data3;
 				}
 			});
 });
 
-//2: チェックされた部分の値を"changed"に更新する
+//2-A. func1 : チェックしてボタン押下⇒対応状況が"対応完了"になる
 function func1() {
       const elements = document.getElementsByName("options");
       console.log("--- 選択チェックボックスは以下の通りです ---");
@@ -309,7 +346,7 @@ function func1() {
           console.log(elements[i].value);
 		  document.getElementsByClassName("chn")[i].textContent = "対応完了";
         } else{
-		  document.getElementsByClassName("chn")[i].textContent="未対応";
+
 		}
       }
 	  var chn = document.getElementsByClassName("chn")
@@ -331,15 +368,82 @@ function func1() {
 		},
 		datatype : "json",
 		success:
-			function(json) {
-			let data = "<table>";
-			const len = Object.keys(json.ary).length;
-			console.log(newJson);
-			for( let i= 0; i < len; i++){
-			    data += "<tr><td><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
-			}
-			data += "</table>";
-			document.getElementById("msg").innerHTML = data;
+			function() {
+
+			$.ajax({ //1: jsonデータを引っ張ってくる
+				contentType : "Content-Type: application/json; charset=UTF-8",
+				url : "json/session_data.json",
+				type : "GET",
+				datatype : "json",
+				success: function(json){
+					let data = "<table class='content_checklist'>";
+					const len = Object.keys(json.ary).length;
+					console.log(len);
+
+					if (len > 10) {
+						exit;
+					}
+
+					for( let i= 0; i < len; i++){
+					    data += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
+					}
+					data += "</table>";
+					document.getElementById("msg").innerHTML = data;
+				}
+			});
+		}
+	});
+}
+
+//2-B. func2 : チェックしてボタン押下⇒対応状況が"対応中"になる
+function func2() {
+      const elements = document.getElementsByName("options");
+      console.log("--- 選択チェックボックスは以下の通りです ---");
+
+      for (let i=0; i<elements.length; i++){
+        if (elements[i].checked){
+          console.log(elements[i].value);
+		  document.getElementsByClassName("chn")[i].textContent = "対応中";
+        } else{
+
+		}
+      }
+	  var chn = document.getElementsByClassName("chn")
+	  console.log(chn);
+
+	  var newJson = [];
+      console.log("--- 以下書き換え後リスト ---");
+	  for (let j=0; j<chn.length;j++) {
+		  newJson.push({str:chn[j].innerHTML});
+	  }
+	  console.dir(newJson);
+
+	$.ajax({//更新jsonリスト送信
+		contentType : "Content-Type: application/json; charset=UTF-8",
+		url : "/StudyQ/SessionAjaxServlet",
+		type : "GET",
+		data : {
+			newJson : JSON.stringify(newJson)
+		},
+		datatype : "json",
+		success:
+			function() {
+			$.ajax({ //1: jsonデータを引っ張ってくる
+				contentType : "Content-Type: application/json; charset=UTF-8",
+				url : "json/session_data.json",
+				type : "GET",
+				datatype : "json",
+				success: function(json){
+					let data = "<table class='content_checklist'>";
+					const len = Object.keys(json.ary).length;
+
+					for( let i= 0; i < len; i++){
+					    data += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
+					}
+					data += "</table>";
+					document.getElementById("msg").innerHTML = data;
+				}
+			});
 		}
 	});
 }

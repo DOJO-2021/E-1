@@ -56,7 +56,6 @@ public class StudentLogin extends HttpServlet {
 		if (Dao.isLoginOK(UserType.Student, hashId, hashPw)) {	// ログイン成功
 
 			 sName = Dao.loginGetName(hashId, hashPw);
-			 System.out.println(sName);
 			// セッションスコープにIDを格納する
 			HttpSession session = request.getSession();
 			session.setAttribute("s_id", new LoginUser(hashId));

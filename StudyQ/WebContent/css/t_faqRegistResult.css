@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+/* テーブルのCSS */
+
+.list {
+	border-collapse: collapse;
+	display: block;
+	text-align: center;
+	width: auto;
+	height: auto;
+	padding: 10px 10px 10px 400px;
+	margin-left: auto;
+    margin-right: auto;
+}
+.list th {
+	width:20%;
+	border-bottom: #76B900 4px solid;
+	text-align: center;
+	padding: 10px;
+	ont-weight: normal;
+}
+.list td {
+	width:250%;
+	border-bottom: 1px solid #ccc;
+	text-align: left;
+	padding: 20px;
+	vertical-align: middle;
+}
+
+td{
+	width: 800px;
+}
+.faq_regist_table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*FAQ検索ページに戻る*/
+.teacher_top{
+	text-align: right;
+	margin-right: 400px;
+	margin-top: 50px;
+}
+
+/* h4のcss*/
+h4{
+	text-align: center;
+}

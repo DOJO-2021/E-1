@@ -73,7 +73,7 @@ public class StudentReserve extends HttpServlet {
 
 		String uploadFileName = "";
 
-		String uploadFolder = this.getServletContext().getRealPath("WebContent\\WEB-INF\\appfile");
+		String uploadFolder = "C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\WEB-INF\\appfile\\";
 		// リクエストパラメータを取得する
 
 		CommonDao sDao = new CommonDao();
@@ -100,7 +100,8 @@ public class StudentReserve extends HttpServlet {
 				if (part.getName().equals("file")) {
 					uploadFileName = sDao.GetFileName();
 					String sourceFileName = getFileName(part);
-					String extName = sourceFileName.split(".")[1];
+					System.out.println(sourceFileName);
+					String extName = sourceFileName.split("\\.")[1];
 					uploadFileName =uploadFileName + "." + extName;
 					//.のあとを取得
 
