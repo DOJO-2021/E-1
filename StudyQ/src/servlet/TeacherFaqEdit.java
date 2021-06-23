@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CommonDao;
+import model.Faq;
 
 /**
  * Servlet implementation class TeacherFaqEdit
@@ -34,7 +36,7 @@ public class TeacherFaqEdit extends HttpServlet {
 			response.sendRedirect("/StudyQ/StudentLogin");
 			return;
 		}
-		//登録ページにフォワードする
+		//検索ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/t_faqSearch.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -56,18 +58,18 @@ public class TeacherFaqEdit extends HttpServlet {
 		String search_word = request.getParameter("search_word");
 
 		// 検索処理
-		CommonDao cmn = new CommonDao();
-	//	List<Faq> faqList = cmn.FaqSearch();
+		CommonDao cDao = new CommonDao();
+		List<Faq> faqCategory = cDao.FaqSearch(search_word);
 
 		//ヒット件数を取得
-		int hitCount = cmn.FaqCount(search_word);
+		int hitcount = cDao.FaqCount(search_word);
 
 		//検索結果をリクエストスコープに格納
-		//request.setAttribute("faqList", faqList);
-		request.setAttribute("hitCount", hitCount);
-
+		request.setAttribute("faqCategory", faqCategory);
+		request.setAttribute("hitcount", hitcount);
+		request.setAttribute("search_word", search_word);
 		//結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/t_faqSearchResult.jsp");
 		dispatcher.forward(request, response);
 	}
 }

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -34,8 +35,9 @@ public class StudentFaqSearch extends HttpServlet {
 		//FAQリストを表示
 		CommonDao cDao = new CommonDao();
 		List<Faq> faqList = cDao.FaqListFindAll();
+		List<ArrayList<Faq>> pager = cDao.FaqTabChange();
 		request.setAttribute("faqList", faqList);
-
+		request.setAttribute("pager", pager);
 
 		// 検索ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_faqSearch.jsp");
@@ -64,11 +66,13 @@ public class StudentFaqSearch extends HttpServlet {
         //FAQリストを表示
 				List<Faq> faqList = cDao.FaqListFindAll();
 
+
 		// 検索結果とヒット件数をリクエストスコープに格納する
 		        request.setAttribute("faqCategory", faqCategory);
 		        request.setAttribute("hitcount", hitcount);
 		        request.setAttribute("faqList", faqList);
 		        request.setAttribute("search_word", search_word);
+
 		// 結果ページにフォワードする
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_faqSearchResult.jsp");
 				dispatcher.forward(request, response);

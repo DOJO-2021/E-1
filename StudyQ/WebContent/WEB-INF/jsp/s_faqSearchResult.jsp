@@ -24,10 +24,10 @@
 
 <!-- FAQ検索機能 -->
 <h2 class="header_title">FAQ検索結果</h2>
-<c:forEach var="e" items="${faqList}" >
+<c:forEach var="e" items="${faqCategory}" >
 <table>
   <tr>
-    <td>質問<c:out value="${e.faq_title}"/></td><br>
+    <td>質問<c:out value="${e.faq_title}"/></td>
     <td>回答<c:out value="${e.faq_ans}"/> </td>
   </tr>
 </table>

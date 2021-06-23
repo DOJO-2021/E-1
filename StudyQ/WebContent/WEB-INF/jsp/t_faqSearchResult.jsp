@@ -14,25 +14,25 @@
 
 <!-- ヒット数 -->
 <div class="s_searchresult">
-	<p> ヒット数 : <c:out value="${resultCount} "/>　件 </p>
+	<p> ヒット数 : <c:out value="${hitcount} "/>　件 </p>
 </div>
+
+<!-- 検索ワード表示 -->
+<p>検索ワード：<c:out value="${search_word} "/></p>
 
 <!-- 変数 e, 引数 cardList を仮の値として設定する -->
 <!-- FAQリスト -->
-<c:forEach var="e" items="${cardList} "/>
-	<div class="t_faqlist_body">
-		<!-- のちにFAQのQ-Aをドロワー対応させるよう構成を変更する -->
-		<dl class="t_faqlist_item">
-			<dt>
-					<span> Q </span> <c:out value="${e.faq_title}"/>
-			</dt>
-			<dd>
-					<span> A </span><c:out value="${e.faq_ans}"/>  <br>
-			</dd>
-		</dl>
-		<input type="submit" name="SUBMIT" value="更新" class="faq_edit_btn">
-		<input type="submit" name="SUBMIT" value="削除" class="faq_delete_btn">
-	</div>
+<c:forEach var="e" items="${faqCategory}">
+<div class="t_faqlist_body>
+	<!-- のちにFAQのQ-Aをドロワー対応させるよう構成を変更する -->
+	<dl class="t_faqlist_item">
+		<dt><span>Q</span><c:out value="${e.faq_title}"/></dt>
+		<dd><span>A</span><dd><c:out value="${e.faq_ans}"/></dd>
+	</dl>
+	<input type="submit" name="SUBMIT" value="更新" class="faq_edit_btn">
+	<input type="submit" name="SUBMIT" value="削除" class="faq_delete_btn">
+</div>
+</c:forEach>
 
 <!-- 最上部に戻る -->
 <!-- 保留 : "上に戻る"テキストはのちにimageに差し替える -->

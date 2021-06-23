@@ -17,54 +17,97 @@
 	<jsp:include page="teacher_menu.jsp" />
 
 	<!-- 検索バー -->
-	<form  method="POST" action="/StudyQ/TeacherFaqEdit">
+	<form method="POST" action="/StudyQ/TeacherFaqEdit" class="search_container">
+		<input type="text" size="25" id="text" name="search_word" placeholder="　調べたいことをキーワード検索">
+		<input type="submit" value="検索">
+	</form>
 
-			<input type="search" placeholder="キーワードを入力">
-			<input type="submit" value="検索">
+	<br>
 
+		<!-- ボタンを押すと検索バーに値を設定 -->
+		<!-- HTMLボタン -->
+		<input type="button" value="HTML" onclick="clickBtn1()" />
+		<script>
+		  function clickBtn1() {
+		    document.getElementById("text").value = "HTML";
+		  }
+		</script>
 
-	<!-- FAQカテゴリ検索ボタン -->
-	<div class="category_search">
-			<section>
-				<div name="category_bar1">
-					<h3 class="title">学習内容</h3>
-					<ul class="hidden">
-						<div class="box">
-							<li><a href="">プログラミング言語</a></li>
-							<li><a href="">段位認定</a></li>
-							<li><a href="">ドリル</a></li>
-							<li><a href="">コードエラー</a></li>
-							<li><a href="">その他</a></li>
-						</div>
-					</ul>
-				</div>
-			</section>
-			<section>
-				<div name="category_bar2">
-					<h3>トラブル</h3>
-					<ul class="hidden">
-						<div class="box">
-							<li><a href="">エディター</a></li>
-							<li><a href="">PC</a></li>
-							<li><a href="">Github</a></li>
-							<li><a href="">その他</a></li>
-						</div>
-					</ul>
-				</div>
-			</section>
-			<section>
-				<div name="category_bar3">
-					<h3>その他・相談</h3>
-					<ul class="hidden">
-						<div class="box">
-							<li><a href="">相談等</a></li>
-						</div>
-					</ul>
-				</div>
-			</section>
-	</div><!-- category_search -->
+		<!-- CSSボタン -->
+		<input type="button" value="CSS" onclick="clickBtn2()" />
+		<script>
+		  function clickBtn2() {
+		    document.getElementById("text").value = "CSS";
+		  }
+		</script>
 
-</form>
+		<!-- javascriptボタン -->
+		<input type="button" value="javascript" onclick="clickBtn3()" />
+		<script>
+		  function clickBtn3() {
+		    document.getElementById("text").value = "javascript";
+		  }
+		</script>
+
+		<!-- javaボタン -->
+		<input type="button" value="java" onclick="clickBtn4()" />
+		<script>
+		  function clickBtn4() {
+		    document.getElementById("text").value = "java";
+		  }
+		</script>
+
+		<!-- SQLボタン -->
+		<input type="button" value="SQL" onclick="clickBtn5()" />
+		<script>
+		  function clickBtn5() {
+		    document.getElementById("text").value = "SQL";
+		  }
+		</script>
+
+		<br>
+		<br>
+
+		<!-- eclipseボタン -->
+		<input type="button" value="eclipse" onclick="clickBtn6()" />
+		<script>
+		  function clickBtn6() {
+		    document.getElementById("text").value = "eclipse";
+		  }
+		</script>
+
+		<!-- データベースボタン -->
+		<input type="button" value="データベース" onclick="clickBtn7()" />
+		<script>
+		  function clickBtn7() {
+		    document.getElementById("text").value = "データベース";
+		  }
+		</script>
+
+		<!-- DAOボタン -->
+		<input type="button" value="DAO" onclick="clickBtn8()" />
+		<script>
+		  function clickBtn8() {
+		    document.getElementById("text").value = "DAO";
+		  }
+		 </script>
+
+		  <!-- JSPボタン -->
+			<input type="button" value="JSP" onclick="clickBtn9()" />
+			<script>
+			  function clickBtn9() {
+			    document.getElementById("text").value = "JSP";
+			  }
+			</script>
+
+			<!-- サーブレットボタン -->
+			<input type="button" value="サーブレット" onclick="clickBtn10()" />
+			<script>
+		  		function clickBtn10() {
+		    	document.getElementById("text").value = "サーブレット";
+		  		}
+			</script>
+
 
 	<!-- FAQ新規登録ボタン -->
 	<div class="faq_regist_btn" >
