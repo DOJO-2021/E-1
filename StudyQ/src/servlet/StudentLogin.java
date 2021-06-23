@@ -40,6 +40,8 @@ public class StudentLogin extends HttpServlet {
 		String id = request.getParameter("s_id");
 		String pw = request.getParameter("s_pw");
 
+		String sName="";
+
 		//IDとPWのハッシュ化
 		Hash idHash = new Hash();
 		Hash pwHash = new Hash();
@@ -53,10 +55,12 @@ public class StudentLogin extends HttpServlet {
 		CommonDao Dao = new CommonDao();
 		if (Dao.isLoginOK(UserType.Student, hashId, hashPw)) {	// ログイン成功
 
+			 sName = Dao.loginGetName(hashId, hashPw);
+			 System.out.println(sName);
 			// セッションスコープにIDを格納する
 			HttpSession session = request.getSession();
 			session.setAttribute("s_id", new LoginUser(hashId));
-
+			session.setAttribute("s_name",sName);
 			// 研修生用のTOPページサーブレットにリダイレクト
 			response.sendRedirect("/StudyQ/StudentTop");
 		}else {
