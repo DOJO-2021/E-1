@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+
+h2 {
+  text-align: center;
+  color     : #00be00;
+  font-size : 40px;
+}
+
+.hitcount {
+	float     : left;
+	margin-top: 68px;
+
+}
+
+.faq_search_bar {
+	margin    : 0 auto 0 auto;
+	text-align: center;
+	max-width : 500px;
+}
+
+.one_row {
+	padding-top: 9px;
+}
+
+.two_row {
+	padding-top: 9px;
+}
+
+
+.search_container_second input[type="text"] {
+    border       : 2px solid #999;
+    padding      : 3px 5px;
+    border-radius: 20px;
+    height       : 2.4em;
+    width        : 265px;
+    overflow     : hidden;
+}
+.container img {
+	padding: 10px 50px;
+}
+
+
+
+
+/*---------- アコーディオンパネル --------*/
+.accordion-area{
+    list-style: none;
+    width     : 96%;
+    max-width : 800px;
+    margin    :0 auto;
+}
+
+.accordion-area li{
+    margin: 10px 0;
+}
+
+.accordion-area section {
+  border: 1px solid #ccc;
+}
+
+/*アコーディオンタイトル*/
+.title {
+    position   : relative;/*+マークの位置基準とするためrelative指定*/
+    cursor     : pointer;
+    font-size  :1rem;
+    font-weight: normal;
+    padding    : 3% 3% 3% 50px;
+    transition : all .5s ease;
+}
+
+/*アイコンの＋と×*/
+.title::before,
+.title::after{
+    position        : absolute;
+    content         :'';
+    width           : 15px;
+    height          : 2px;
+    background-color: #333;
+
+}
+.title::before{
+    top      :48%;
+    left     : 15px;
+    transform: rotate(0deg);
+
+}
+.title::after{
+    top      :48%;
+    left     : 15px;
+    transform: rotate(90deg);
+
+}
+/*　closeというクラスがついたら形状変化　*/
+.title.close::before{
+  transform: rotate(45deg);
+}
+
+.title.close::after{
+  transform: rotate(-45deg);
+}
+
+/*アコーディオンで現れるエリア*/
+.box {
+    display   : none;/*はじめは非表示*/
+    background: #F0FFF0;
+  	margin    : 0 3% 3% 3%;
+    padding   : 3%;
+}
+
+

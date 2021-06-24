@@ -6,14 +6,14 @@ public class Faq implements Serializable {
 	private int faq_id;
 	private String faq_title;
 	private String faq_ans;
-	private int faq_m_category;
 
-	public Faq(int faq_id, String faq_title, String faq_ans, int faq_m_category) {
+
+	public Faq(int faq_id, String faq_title, String faq_ans) {
 		super();
 		this.faq_id = faq_id;
 		this.faq_title = faq_title;
 		this.faq_ans = faq_ans;
-		this.faq_m_category = faq_m_category;
+
 	}
 
 	public Faq() {
@@ -21,7 +21,7 @@ public class Faq implements Serializable {
 		this.faq_id = 0;
 		this.faq_title = "";
 		this.faq_ans = "";
-		this.faq_m_category = 0;
+
 	}
 
 	public int getFaq_id() {
@@ -48,11 +48,5 @@ public class Faq implements Serializable {
 		this.faq_ans = faq_ans;
 	}
 
-	public int getFaq_m_category() {
-		return faq_m_category;
-	}
 
-	public void setFaq_m_category(int faq_m_category) {
-		this.faq_m_category = faq_m_category;
-	}
 }

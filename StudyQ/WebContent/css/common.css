@@ -141,7 +141,9 @@ a.btn--radius {
 }
 
 /* --------------------ナビゲーションメニュー（未完成）-------------------- */
-.gnavi {
+@media screen and (max-width: 479px) { /*ウィンドウ幅が最大479pxの場合に適用*/
+#gnavi {
+  display:none; /*非表示*/
   height: 70px;
   background-color: #ffffff;
   /*box-shadow: 0 3px 6px -3px #000000 inset;*/
@@ -151,6 +153,18 @@ a.btn--radius {
   padding: 10px;
   border-top: 5px solid #76B900;
 }
+}
+/*.gnavi {
+  height: 70px;
+  background-color: #ffffff;
+  /*box-shadow: 0 3px 6px -3px #000000 inset;*/
+  /*font-size: 1.1rem;
+  font-weight: bold;
+  color: #646E66;
+  padding: 10px;
+  border-top: 5px solid #76B900;
+}
+*/
 .gnavi__inner {
   width: 980px;
   height: 100%;
@@ -272,6 +286,7 @@ ul {
     right: 1260px;
 }
 .menu-btn {
+	right: 25px;
 	top: 25px;
     display: block;
     float: right;
@@ -287,7 +302,7 @@ ul {
     left: 0;
     width: 48px;
     height: 5px;
-    background-color: #fff;
+    background-color: #76b900;
 }
 
 .menu-btn span:nth-of-type(1) {
@@ -304,7 +319,7 @@ ul {
     display: none;
     position: fixed;
     top: -2.4%;
-    left: -4.0%;
+    right: -4.0%;
     width: 260px;
 }
 .menu li {
@@ -329,6 +344,8 @@ ul {
 	background-color: #009900;
 	color: #fff;
 }
+
+
 
 /* 検索バー */
 .search_container{
@@ -419,3 +436,16 @@ ul {
 	height: 100px;
 	background-color: #ffffff;
 }*/
+
+.hamburger {
+	display:none; /*非表示*/
+}
+@media screen and (max-width: 720px) { /*ウィンドウ幅が最大479pxの場合に適用*/
+.hidden  {
+display:none; /*非表示*/
+}
+.hamburger {
+	display: block;
+}
+}
+

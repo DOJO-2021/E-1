@@ -8,6 +8,16 @@
 <!-- CSS -->
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/Top.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<style>
+div#counter{
+    left: 660px;
+    position: absolute;
+    top: 644px;
+    font-size: 44px;
+    font-family: ui-sans-serif
+}
+</style>
 </head>
 <body>
 	<jsp:include page="teacher_header.jsp"/>
@@ -15,7 +25,7 @@
 	<!-- ここからメイン -->
     <section class="main1">
 	<!-- セッション待ち全体人数表示 -->
-		<h3><span>スタディQAっしょんでできること</span></h3>
+		<h3>スタディQAっしょんでできること</h3>
 	    <div class="student_top">
 		<ul class="s_top_menu">
 			<!-- FAQページ遷移 -->
@@ -43,10 +53,42 @@
 	</section>
 
 	<section class="main2">
-	<h4>ただいまの待ち人数</h4>
-	<p>5人</p>
+	<h3>ただいまの待ち人数</h3>
+	<div id = "counter"> <!-- ここに待ち人数 --> </div>
 	</section>
 
 	<jsp:include page="footer.jsp"/>
+
+<script type="text/javascript">
+//待ち人数カウント
+$(function() {
+		$.ajax({ //jsonデータを取り出す
+			contentType : "Content-Type: application/json; charset=UTF-8",
+			url : "json/session_data.json",
+			type : "GET",
+			datatype : "json",
+			success: function(json){
+
+				const len = Object.keys(json.ary).length;
+				console.log(len);
+
+				//"未対応""対応中"のデータを詰める配列の宣言
+				let count = [];
+				//一つずつ値を取り出し、"対応完了"をもつものをcount[]に詰める
+				for( let i= 0; i < len; i++){
+					if (json.ary[i].str == "未対応" || json.ary[i].str == "対応中") {
+						count.push(json.ary[i].str);
+					}
+					console.log(json.ary[i].str);
+				}
+
+				document.getElementById("counter").innerHTML = count.length;
+				console.log(count.length);
+
+			}
+		});
+});
+</script>
+
 </body>
 </html>

@@ -11,6 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.css' />
 <script src='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.js'></script>
+
 <style>
 	.tab_area {
 		display: flex;
@@ -43,19 +44,13 @@
 
 	table.content_sessionlist {
 		margin-left: 95px;
+		border-spacing: 3px;
 	}
 	table.content_checklist {
 		float: left;
+		border-spacing: 5px;
 	}
-	table.content_checklist1 {
-		float: left;
-	}
-	table.content_checklist2 {
-		float: left;
-	}
-	table.content_checklist3 {
-		float: left;
-	}
+
 	td.column_header1 {
 		width: 93px;
 	}
@@ -71,21 +66,34 @@
 
 	td.column1 {
 		width: auto;
+		height: 20px
 	}
 	td.column2 {
 		width: 70px;
+		height: 20px
 	}
 	td.column3 {
 		width: 150px;
+		height: 20px
 	}
 	td.column4 {
 		width: 250px;
+		height: 20px
 	}
 	td.column5 {
 		width: 120px;
+		height: 20px
 	}
 	td.column6 {
 		width: auto;
+		height: 20px
+	}
+	td.chn {
+		font-size: 16px;
+		height: 20px
+	}
+	tr {
+		height: 22px;
 	}
 
 </style>
@@ -261,16 +269,16 @@
 		</div>
 
 	<form>
-		<input type="button" id="working_btn" value="対応中" onclick="return func1()">
+		<input type="button" id="working_btn" value="対応中" onclick="return func2()">
 		<input type="button" id="worked_btn" value="対応完了" onclick="return func1()">
 	</form>
 
-<a href="StudyQ/TeacherTop">TOPへ戻る</a>
+<a href="/StudyQ/TeacherTop">TOPへ戻る</a>
 <!-- フッター -->
 <jsp:include page="footer.jsp"/>
 
 <script type="text/javascript">
-
+document.cookie = "key=1";
 
 //タブ切り替え
 \$(function() {
@@ -309,26 +317,26 @@ $(function(e) {
 					document.getElementById("msg").innerHTML = data;
 
 					//タブ2
-					let data1 = "<table class='content_checklist1'>";
+					let data1 = "<table class='content_checklist'>";
 					const len1 = 3
 					for( let i= 0; i < len1; i++){
-					    data1 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + "未対応" + "</td></tr>";
+					    data1 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn1'> " + "未対応" + "</td></tr>";
 					}
 					data += "</table>";
 					document.getElementById("msg1").innerHTML = data1;
 					//タブ3
-					let data2 = "<table class='content_checklist2'>";
+					let data2 = "<table class='content_checklist'>";
 					const len2 = 4
 					for( let i= 0; i < len2; i++){
-					    data2 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + "未対応" + "</td></tr>";
+					    data2 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn2'> " + "未対応" + "</td></tr>";
 					}
 					data += "</table>";
 					document.getElementById("msg2").innerHTML = data2;
 					//タブ4
-					let data3 = "<table class='content_checklist3'>";
+					let data3 = "<table class='content_checklist'>";
 					const len3 = 3
 					for( let i= 0; i < len3; i++){
-					    data3 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + "未対応" + "</td></tr>";
+					    data3 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn3'> " + "未対応" + "</td></tr>";
 					}
 					data += "</table>";
 					document.getElementById("msg3").innerHTML = data3;
@@ -355,9 +363,10 @@ function func1() {
 	  var newJson = [];
       console.log("--- 以下書き換え後リスト ---");
 	  for (let j=0; j<chn.length;j++) {
-		  newJson.push({str:chn[j].innerHTML});
+		  newJson.push({str:chn[j].innerHTML.trim()});
 	  }
-	  console.dir(newJson);
+	console.log("newJson:" + newJson.length); //この時点で増殖が起きている
+	console.log("newJson2:" + newJson.length);
 
 	$.ajax({//更新jsonリスト送信
 		contentType : "Content-Type: application/json; charset=UTF-8",
@@ -369,7 +378,6 @@ function func1() {
 		datatype : "json",
 		success:
 			function() {
-
 			$.ajax({ //1: jsonデータを引っ張ってくる
 				contentType : "Content-Type: application/json; charset=UTF-8",
 				url : "json/session_data.json",
@@ -380,13 +388,10 @@ function func1() {
 					const len = Object.keys(json.ary).length;
 					console.log(len);
 
-					if (len > 10) {
-						exit;
-					}
-
 					for( let i= 0; i < len; i++){
 					    data += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
 					}
+
 					data += "</table>";
 					document.getElementById("msg").innerHTML = data;
 				}
@@ -414,7 +419,7 @@ function func2() {
 	  var newJson = [];
       console.log("--- 以下書き換え後リスト ---");
 	  for (let j=0; j<chn.length;j++) {
-		  newJson.push({str:chn[j].innerHTML});
+		  newJson.push({str:chn[j].innerHTML.trim()});
 	  }
 	  console.dir(newJson);
 
@@ -447,6 +452,28 @@ function func2() {
 		}
 	});
 }
+//リロード時にjsonを取得
+document.addEventListener("load", function() {
+	   // 実行したい処理
+	$.ajax({ //1: jsonデータを引っ張ってくる
+		contentType : "Content-Type: application/json; charset=UTF-8",
+		url : "json/session_data.json",
+		type : "GET",
+		datatype : "json",
+		success: function(json){
+			let data = "<table class='content_checklist'>";
+			const len = Object.keys(json.ary).length;
+
+			for( let i= 0; i < len; i++){
+			    data += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
+			}
+			data += "</table>";
+			document.getElementById("msg").innerHTML = data;
+		}
+	});
+	});
+
+
 </script>
 </body>
 </html>

@@ -18,7 +18,7 @@
 			 	<input name="s_id" type="text" class="s_registlist_item" placeholder="ID" required>
 				<input name="s_pw" type="password" class="s_registlist_item" placeholder="パスワード" required>
 				<input type="password" name="s_pwc"   class="s_registlist_item" placeholder="確認用" required><br>
-				<input type="submit" value="登録"><!-- <p id="output"></p><br><p id="regex"></p><br><p id="passc"></p> -->
+				<input type="submit" value="登録"><p id="output"></p><br><p id="regex"></p><br><p id="passc"></p>
 			</form>
 			<a href="/StudyQ/StudentLogin" class="s_transition_btn">アカウントをお持ちの方はこちら</a>
 		</div>

@@ -26,7 +26,7 @@
 			 	<p class="Form-Item-Label">
 			 		<span class="Form-Item-Label-Required">必須</span>件名
 			 	</p>
-			 	<input type="text" class="Form-Item-Input" placeholder="件名を入力してください">
+			 	<input type="text" class="Form-Item-Input" placeholder="件名を入力してください" name="subject">
 			</div>
 
 			<!-- カテゴリ -->
@@ -56,7 +56,7 @@
 			</div>
 			<div class="Form-Item">
 				<p class="Form-Item-Label isMsg"><span class="Form-Item-Label-Required">必須</span>質問内容</p>
-				<textarea class="Form-Item-Textarea"></textarea>
+				<textarea class="Form-Item-Textarea" name="question"></textarea>
 			</div>
 			<div class="Form-Item">
 				<p class="Form-Item-Label">　　　添付ファイル</p>

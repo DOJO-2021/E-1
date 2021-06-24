@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -72,15 +73,17 @@ public class StudentReserve extends HttpServlet {
 		HashMap<String,String> map = new HashMap<String,String>();
 
 		String uploadFileName = "";
+		String sendFileName = "";
 
 		String uploadFolder = "C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\WEB-INF\\appfile\\";
-		// リクエストパラメータを取得する
+		ServletContext ctx = request.getServletContext();
+		String downloadPath = "WebContent/WEB-INF/appfile/";
+				// リクエストパラメータを取得する
 
 		CommonDao sDao = new CommonDao();
 
 		for(Part part:parts){ //partsから１つずつ取り出す
 			String contentType = part.getContentType();
-			System.out.println(part.getName());
 			if ( contentType == null) {
 				//ここは通常のテキストやチェックボックス、セレクトなどのケース
 
@@ -100,7 +103,8 @@ public class StudentReserve extends HttpServlet {
 				if (part.getName().equals("file")) {
 					uploadFileName = sDao.GetFileName();
 					String sourceFileName = getFileName(part);
-					System.out.println(sourceFileName);
+					sendFileName = sourceFileName;
+					System.out.println(sendFileName);
 					String extName = sourceFileName.split("\\.")[1];
 					uploadFileName =uploadFileName + "." + extName;
 					//.のあとを取得
@@ -118,7 +122,7 @@ public class StudentReserve extends HttpServlet {
 		String s_name = (String) session.getAttribute("s_name");
 		String subject = map.get("subject");
 		String question = map.get("question");
-		String file = sDao.GetFileName();
+		String file = uploadFileName;
 		int session_m_category = Integer.parseInt(request.getParameter("session_m_category"));
 
 		SessionBeans s_rsv=new SessionBeans(0, s_name, subject, question,file,session_m_category);
@@ -126,7 +130,8 @@ public class StudentReserve extends HttpServlet {
 		sDao.SessionRegist(s_rsv);
 
 		request.setAttribute("rsv", s_rsv);
-		request.setAttribute("filePath", uploadFolder + uploadFileName);
+		request.setAttribute("filenames", sendFileName);
+		request.setAttribute("filePath", downloadPath + uploadFileName);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_rsvResult.jsp");
 		dispatcher.forward(request, response);

@@ -4,12 +4,16 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 	<title>研修生｜TOP</title>
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/Top.css">
 	<!-- 検索バーで必要 -->
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<!-- 待ち人数 -->
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<jsp:include page="student_header.jsp"/>
@@ -18,7 +22,7 @@
 		<section class="main1">
 			<!-- 検索バー -->
 			<div class="seach_ber">
-				<form method="get" action="" class="search_container" style="margin: 0 0 0 auto;">
+				<form method="POST" action="/StudyQ/StudentFaqSearch" class="search_container" style="margin: 0 0 0 auto;">
 					<input type="text" size="25" name="search_word" placeholder="　調べたいことをキーワード検索">
 					<input type="submit" value="&#xf002">
 				</form>
@@ -54,8 +58,34 @@
 
 		<section class="main2">
 			<h4>ただいまセッションの待ち人数</h4>
-			<p>5人</p>
+			<<div id = "counter"> <!-- ここに待ち人数 --> </div>
 		</section>
 	<jsp:include page="footer.jsp"/>
 </body>
+<script type="text/javascript">
+//待ち人数カウント
+$(function() {
+		$.ajax({ //jsonデータを取り出す
+			contentType : "Content-Type: application/json; charset=UTF-8",
+			url : "json/session_data.json",
+			type : "GET",
+			datatype : "json",
+			success: function(json){
+				const len = Object.keys(json.ary).length;
+				console.log(len);
+				//"未対応""対応中"のデータを詰める配列の宣言
+				let count = [];
+				//一つずつ値を取り出し、"対応完了"をもつものをcount[]に詰める
+				for( let i= 0; i < len; i++){
+					if (json.ary[i].str == "未対応" || json.ary[i].str == "対応中") {
+						count.push(json.ary[i].str);
+					}
+					console.log(json.ary[i].str);
+				}
+				document.getElementById("counter").innerHTML = count.length;
+				console.log(count.length);
+			}
+		});
+});
+</script>
 </html>

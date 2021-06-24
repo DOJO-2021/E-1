@@ -23,7 +23,7 @@
 					<c:when test="${ssnD.session_m_category == 0}"> プログラミング言語 </c:when>
 					<c:when test="${ssnD.session_m_category == 1}"> 段位認定 </c:when>
 					<c:when test="${ssnD.session_m_category == 2}"> ドリル </c:when>
-					<c:when test="${ssnD.session_m_category == 3}"><img src="image/icon4.png" width=50px height=auto> コードエラー </c:when>
+					<c:when test="${ssnD.session_m_category == 3}"> コードエラー </c:when>
 					<c:when test="${ssnD.session_m_category == 4}"> その他 </c:when>
 					<c:when test="${ssnD.session_m_category == 5}"> エディタ </c:when>
 					<c:when test="${ssnD.session_m_category == 6}"> PC </c:when>

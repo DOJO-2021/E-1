@@ -362,8 +362,8 @@ public class CommonDao {
 				Faq faq = new Faq(
 						rs.getInt("faq_id"),
 						rs.getString("faq_title"),
-						rs.getString("faq_ans"),
-						rs.getInt("faq_m_category"));
+						rs.getString("faq_ans"));
+
 				faqList.add(faq);
 			}
 		} catch (SQLException e) {
@@ -395,7 +395,7 @@ public class CommonDao {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// INSERT文を準備する
 
-			String sql = "INSERT INTO Faq VALUES(null,?,?,?)";
+			String sql = "INSERT INTO Faq VALUES(null,?,?)";
 			PreparedStatement pStmtIns = conn.prepareStatement(sql);
 
 			if (faq.getFaq_title() != null && !faq.getFaq_title().equals("")) {
@@ -407,11 +407,6 @@ public class CommonDao {
 				pStmtIns.setString(2, faq.getFaq_ans());
 			} else {
 				pStmtIns.setString(2, null);
-			}
-			if (faq.getFaq_m_category() <= 9) {
-				pStmtIns.setInt(3, faq.getFaq_m_category());
-			} else {
-				System.out.println("この数字は登録されていません");
 			}
 
 			// SQL文を実行する
@@ -555,8 +550,8 @@ public class CommonDao {
 						Faq faq = new Faq(
 								rs.getInt("faq_id"),
 								rs.getString("faq_title"),
-								rs.getString("faq_ans"),
-								rs.getInt("faq_m_category"));
+								rs.getString("faq_ans"));
+
 						faqList.add(faq);
 					}
 					return faqList;
@@ -612,8 +607,8 @@ public class CommonDao {
 					Faq faq = new Faq(
 							rs.getInt("faq_id"),
 							rs.getString("faq_title"),
-							rs.getString("faq_ans"),
-							rs.getInt("faq_m_category"));
+							rs.getString("faq_ans"));
+
 					faqList.add(faq);
 
 				}
@@ -790,8 +785,8 @@ public class CommonDao {
 					Faq faq = new Faq(
 							rsChange.getInt("faq_id"),
 							rsChange.getString("faq_title"),
-							rsChange.getString("faq_ans"),
-							rsChange.getInt("faq_m_category"));
+							rsChange.getString("faq_ans"));
+
 					faqPageList.add(faq);
 				}
 				faqPageAllList.add(faqPageList);

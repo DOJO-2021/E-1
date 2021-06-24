@@ -23,30 +23,6 @@
 				<td><textarea rows="5" cols="60" name="faq_title" ></textarea></td>
 			</tr>
 			<tr>
-				<th> FAQカテゴリ </th>
-				<td>
-					<select name="faq_m_category" class="faq_m_category">
-						<option value="" >カテゴリを選択</option>
-						<optgroup label="学習内容">
-							<option value="0">プログラミング言語</option>
-							<option value="1">段位認定</option>
-							<option value="2">ドリル</option>
-						</optgroup>
-						<optgroup label="トラブル">
-							<option value="3">コードエラー</option>
-							<option value="4">その他</option>
-							<option value="5">エディター</option>
-							<option value="6">PC</option>
-							<option value="7">Github</option>
-						</optgroup>
-						<optgroup label="その他・相談">
-							<option value="8">その他</option>
-							<option value="9">相談等</option>
-						</optgroup>
-					</select>
-				</td>
-			</tr>
-			<tr>
 				<th> FAQ回答 </th>
 				<td><textarea rows="5" cols="60" name="faq_ans" ></textarea></td>
 			</tr>

@@ -10,7 +10,7 @@
 			<a href="/StudyQ/TeacherTop"><img src="image/logo.jpg" width=300px height=auto></a>
 		</div>
 		<!-- ログアウトボタン --><!-- ドロワーメニュー -->
-		<a href="/StudyQ/Logout" class="btn btn--orange btn--radius">ログアウト</a>
+		<a href="" class="btn btn--orange btn--radius" value="ログアウト" onclick="MoveCheck();">ログアウト</a>
 			<div class="page_name">
 				<font><img src="image/people_icon.png" width=25px height=auto>講師用ページ</font>
 			</div>
@@ -32,5 +32,5 @@
 				</div>
 			</nav>
 		</section>
-
+<script type="text/javascript" src="js/header.js"></script>
 </header>

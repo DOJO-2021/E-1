@@ -26,29 +26,12 @@
 	<table class="list">
 		<tr>
 			<th> FAQタイトル </th>
-			<td><c:out value="${faqRegist.faq_title}"/> </td>
+			<td><c:out value="${faq_title}"/></td>
 		</tr>
-		<tr>
-			<th> FAQカテゴリ </th>
-			<td>
-			<!-- ここにselect結果の値を表示させたい -->
-				<c:choose>
-							<c:when test="${faqRegist.faq_m_category == 0}"> プログラミング言語 </c:when>
-							<c:when test="${faqRegist.faq_m_category == 1}"> 段位認定 </c:when>
-							<c:when test="${faqRegist.faq_m_category == 2}"> ドリル </c:when>
-							<c:when test="${faqRegist.faq_m_category == 3}"> コードエラー </c:when>
-							<c:when test="${faqRegist.faq_m_category == 4}"> その他 </c:when>
-							<c:when test="${faqRegist.faq_m_category == 5}"> エディタ </c:when>
-							<c:when test="${faqRegist.faq_m_category == 6}"> PC </c:when>
-							<c:when test="${faqRegist.faq_m_category == 7}"> GitHub </c:when>
-							<c:when test="${faqRegist.faq_m_category == 8}"> その他 </c:when>
-							<c:when test="${faqRegist.faq_m_category == 9}"> 相談等 </c:when>
-				</c:choose>
-			</td>
-		</tr>
+
 		<tr>
 			<th> FAQ詳細 </th>
-			<td><c:out value="${faqRegist.faq_ans}"/> </td>
+			<td><c:out value="${faq_ans}"/></td>
 		</tr>
 	</table>
 </div>
@@ -56,7 +39,7 @@
 
 <!-- FAQ検索ページへ戻る -->
 <div class="teacher_top">
-<a href="/StudyQ/TeacherTop"> FAQ検索ページへ戻る </a>
+<a href="/StudyQ/TeacherFaqEdit"> FAQ検索ページへ戻る </a>
 </div>
 <jsp:include page="footer.jsp" />
 </body>

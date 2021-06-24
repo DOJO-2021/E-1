@@ -7,9 +7,14 @@
 <meta charset="UTF-8">
 <title>研修生｜FAQ検索</title>
 	<!-- CSS -->
+	<link rel="stylesheet" href="css/s_faqSearchResult.css">
 	<link rel="stylesheet" href="css/common.css">
+
 	<!-- 検索バーで必要 -->
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- アコーディオンパネルで必要 -->
+	<link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
 
 	<!-- ページャのデザイン -->
 	<style>
@@ -160,26 +165,61 @@
 			</script>
 
 
-		<!-- FAQ一覧表示 -->
-		<br>
-		<h2 class="header_title">FAQ一覧</h2>
-<div class="a">
-		<c:forEach var="e" items="${faqList}" >
+<!-- FAQ一覧表示 -->
+<br>
+<h2 class="header_title">FAQ一覧</h2>
+	<c:forEach var="e" items="${faqList}" >
 		<form method="GET" action="/StudyQ/StudentFaqSearch">
-		<table >
-		  <tr>
-		    <td>質問 <c:out value="${e.faq_title}"/></td>
-		    <td>回答 <c:out value="${e.faq_ans}"/> </td>
-		  </tr>
-		</table>
-		</form>
+			<ul class="accordion-area">
+				<li>
+					<section>
+					    <p class="title">Q.  <c:out value="${e.faq_title}"/></p>
+					    <div class="box">
+						    <p>A.  <c:out value="${e.faq_ans}"/> </p>
+					    </div>
+					</section>
+				</li>
+			</ul>
+			</form>
 		</c:forEach>
-		 </div>
-	</section>
+</section>
+
+<!-- ここからフッター -->
+<jsp:include page="footer.jsp"/>
+<!--  <script type="text/javascript" src="js/s_faqSearch.js"></script>-->
+
+<!-- jQuery -->
+<script src="/StudyQ/jquery/jquery-3.6.0.min.js"></script>
+
+<!-- アコーディオンで必要 -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script>
+'use strict';
+//アコーディオンをクリックした時の動作
+$('.title').on('click', function() {//タイトル要素をクリックしたら
+	  var findElm = $(this).next(".box");//直後のアコーディオンを行うエリアを取得
+	  $(findElm).slideToggle();//アコーディオンの上下動作
+
+	  if($(this).hasClass('close')){//タイトル要素にクラス名closeがあれば
+	    $(this).removeClass('close');//クラス名を除去し
+	  }else{//それ以外は
+	    $(this).addClass('close');//クラス名closeを付与
+	  }
+	});
+
+	//ページが読み込まれた際にopenクラスをつけ、openがついていたら開く動作
+	$(window).on('load', function(){
+	  $('.accordion-area li:first-of-type section').addClass("open"); //accordion-areaのはじめのliにあるsectionにopenクラスを追加
+	  $(".open").each(function(index, element){ //openクラスを取得
+	    var Title =$(element).children('.title'); //openクラスの子要素のtitleクラスを取得
+	    $(Title).addClass('close');       //タイトルにクラス名closeを付与
+	    var Box =$(element).children('.box'); //openクラスの子要素boxクラスを取得
+	    $(Box).slideDown(500);          //アコーディオンを開く
+	  });
+	});
+</script>
 
 
-	<!-- ここからフッター -->
-	<jsp:include page="footer.jsp"/>
-	<!--  <script type="text/javascript" src="js/s_faqSearch.js"></script>-->
 </body>
 </html>

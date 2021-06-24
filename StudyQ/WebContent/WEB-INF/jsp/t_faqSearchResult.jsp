@@ -6,7 +6,50 @@
 <head>
 <meta charset="UTF-8">
 <title>講師 | FAQ検索結果</title>
-
+<!-- ページャのデザイン -->
+<style>
+		.pagination-container{
+			margin-top: 15px;
+			padding-top: 40px;
+			border-top: 1px dashed #ccc;
+		}
+		.pagination-container ul{
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+		.pagination-container li + li{ margin-left: -1px; }
+		.pagination-container a{
+			padding: 10px 20px;
+			display: block;
+			color: #0076BF;
+			border: 1px solid #ccc;
+			text-decoration: none;
+			background: #fff;
+		}
+		.pagination-container .navi-active a{
+			font-weight: bold;
+			background: #fafafa;
+		}
+		.pagination-container a:hover{
+			color: #fff;
+			background: #0076bf;
+		}
+	</style>
+	<!--  ページャーのためのjavascript -->
+	<script src="/StudyQ/jquery/jquery-3.6.0.min.js"></script>
+	<script src="/StudyQ/js/paginathing.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		jQuery(function($) {
+			$('.a').paginathing({
+				perPage: 5,
+				prevText:'前へ',
+				nextText:'次へ',
+				firstLast: false,
+				activeClass: 'navi-active',
+			})
+		});
+	</script>
 </head>
 <body>
 <jsp:include page="teacher_header.jsp" />
@@ -22,8 +65,9 @@
 
 <!-- 変数 e, 引数 cardList を仮の値として設定する -->
 <!-- FAQリスト -->
+<div class="a">
 <c:forEach var="e" items="${faqCategory}">
-<div class="t_faqlist_body>
+<div class="t_faqlist_body">
 	<!-- のちにFAQのQ-Aをドロワー対応させるよう構成を変更する -->
 	<dl class="t_faqlist_item">
 		<dt><span>Q</span><c:out value="${e.faq_title}"/></dt>
@@ -33,6 +77,7 @@
 	<input type="submit" name="SUBMIT" value="削除" class="faq_delete_btn">
 </div>
 </c:forEach>
+</div>
 
 <!-- 最上部に戻る -->
 <!-- 保留 : "上に戻る"テキストはのちにimageに差し替える -->
