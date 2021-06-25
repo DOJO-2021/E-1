@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +26,7 @@ import model.SessionBeans;
  * Servlet implementation class StudentReserve
  */
 @WebServlet("/StudentReserve")
-@MultipartConfig(maxFileSize=500000000,location = "C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\WEB-INF\\appfile")
+@MultipartConfig(maxFileSize=500000000,location = "C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\appfile")
 
 public class StudentReserve extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -75,9 +74,12 @@ public class StudentReserve extends HttpServlet {
 		String uploadFileName = "";
 		String sendFileName = "";
 
-		String uploadFolder = "C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\WEB-INF\\appfile\\";
-		ServletContext ctx = request.getServletContext();
-		String downloadPath = "WebContent/WEB-INF/appfile/";
+
+//		String uploadFolder = "C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\appfile\\";
+
+		String uploadFolder = this.getServletContext().getRealPath("/appfile/");
+
+		String downloadPath = "appfile/";
 				// リクエストパラメータを取得する
 
 		CommonDao sDao = new CommonDao();
@@ -104,7 +106,6 @@ public class StudentReserve extends HttpServlet {
 					uploadFileName = sDao.GetFileName();
 					String sourceFileName = getFileName(part);
 					sendFileName = sourceFileName;
-					System.out.println(sendFileName);
 					String extName = sourceFileName.split("\\.")[1];
 					uploadFileName =uploadFileName + "." + extName;
 					//.のあとを取得

@@ -23,7 +23,6 @@ public class CountChangeTest {
 				System.out.println(faq.getFaq_id());
 				System.out.println(faq.getFaq_title());
 				System.out.println(faq.getFaq_ans());
-				System.out.println(faq.getFaq_m_category());
 			}
 			System.out.println("---------");
 			}

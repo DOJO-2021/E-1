@@ -1,0 +1,10 @@
+・ログイン（研修生・講師） isLoginOK select
+・研修生登録(研修生)isStudentRegistOK　insert
+・セッション登録(ファイルも込み)（研修生）SessionRegist insert
+・セッションリスト表示 SessionListFindAll select*
+・FAQリスト表示 FaqListFindAll select*
+・FAQ登録・更新・削除（）FaqRegist insert update delete
+・FAQカテゴリ検索() FaqSearch select
+
+・ヒットカウント（FAQ）count
+・待ち人数（セッション）session

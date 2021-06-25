@@ -16,7 +16,7 @@ import model.Result;
 /**
  * Servlet implementation class TeacherFaqDelete
  */
-@WebServlet("/TeacherFaqEdit")
+@WebServlet("/TeacherFaqDeletet")
 public class TeacherFaqDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

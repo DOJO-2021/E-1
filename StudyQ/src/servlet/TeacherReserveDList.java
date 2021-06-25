@@ -44,6 +44,8 @@ public class TeacherReserveDList extends HttpServlet {
 ////		String session_m_category = request.getParameter("session_m_category");
 //		int session_m_category = 4;
 
+		String downloadPath = "appfile/";
+
 		CommonDao cDao = new CommonDao();
 //		SessionBeans型のリストsnを生成
 		List<SessionBeans> sn = new ArrayList<>();
@@ -54,8 +56,10 @@ public class TeacherReserveDList extends HttpServlet {
 
 		SessionBeans ssnD = sn.get(session_id);
 
+
 // 	    リクエストスコープに値をセット
 		request.setAttribute("ssnD", ssnD);
+		request.setAttribute(downloadPath, downloadPath);
 
 
 

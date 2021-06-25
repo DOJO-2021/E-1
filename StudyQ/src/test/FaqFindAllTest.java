@@ -18,7 +18,6 @@ public class FaqFindAllTest {
 			for(int i = 0;i<faqtest.size();i++) {
 				System.out.println(faqtest.get(i).getFaq_title());
 				System.out.println(faqtest.get(i).getFaq_ans());
-				System.out.println(faqtest.get(i).getFaq_m_category());
 			}
 		}
 		catch (Exception e) {

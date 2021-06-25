@@ -25,10 +25,10 @@
 					<c:when test="${ssnD.session_m_category == 2}"> ドリル </c:when>
 					<c:when test="${ssnD.session_m_category == 3}"> コードエラー </c:when>
 					<c:when test="${ssnD.session_m_category == 4}"> その他 </c:when>
-					<c:when test="${ssnD.session_m_category == 5}"> エディタ </c:when>
-					<c:when test="${ssnD.session_m_category == 6}"> PC </c:when>
-					<c:when test="${ssnD.session_m_category == 7}"> GitHub </c:when>
-					<c:when test="${ssnD.session_m_category == 8}"> その他 </c:when>
+					<c:when test="${ssnD.session_m_category == 5}">  エディタ </c:when>
+					<c:when test="${ssnD.session_m_category == 6}"><img src="image/icon4.png"width=50px height=auto >  PC </c:when>
+					<c:when test="${ssnD.session_m_category == 7}"><img src="image/icon4.png"width=50px height=auto >  GitHub </c:when>
+					<c:when test="${ssnD.session_m_category == 8}"><img src="image/icon4.png"width=50px height=auto >  その他 </c:when>
 					<c:when test="${ssnD.session_m_category == 9}"> 相談等 </c:when>
 			</c:choose>
 		</td>
@@ -39,7 +39,10 @@
 	</tr>
 	<tr>
 		<th>添付ファイル</th>
-		<td><c:out value="${ssnD.file}"/></td>
+		<td>
+		<c:set var= "files">${'appfile/'.concat(ssnD.file)}</c:set>
+		<a href="${files}" download>ダウンロード</a>
+		</td>
 	</tr>
 </table>
 

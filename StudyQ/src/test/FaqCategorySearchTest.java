@@ -22,7 +22,6 @@ public class FaqCategorySearchTest {
 		for(int i = 0;i<searchList.size();i++) {
 			System.out.println(searchList.get(i).getFaq_title());
 			System.out.println(searchList.get(i).getFaq_ans());
-			System.out.println(searchList.get(i).getFaq_m_category());
 		}
 		}
 		catch(Exception e) {

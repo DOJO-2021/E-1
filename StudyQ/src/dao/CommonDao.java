@@ -303,7 +303,7 @@ public class CommonDao {
 		Connection conn = null;
 		int fileNo= 0;
 		String fileName = "";
-		DecimalFormat df = new DecimalFormat("0,000");
+		DecimalFormat df = new DecimalFormat("0000");
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
