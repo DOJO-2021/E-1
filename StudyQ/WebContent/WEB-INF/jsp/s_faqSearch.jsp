@@ -71,15 +71,18 @@
 	<jsp:include page="student_menu.jsp"/>
 
 	<section class="main1">
-		<h2 class="header_title">FAQ検索</h2>
-			<!-- 検索バー -->
+	<h3><span>FAQ</span></h3>
+
+		<!-- 検索バー -->
+		<div class="search_bar_second">
 			<form method="POST" action="/StudyQ/StudentFaqSearch" class="search_container">
 				<input type="text" size="25" id="text" name="search_word" placeholder="　調べたいことをキーワード検索">
 				<input type="submit" value="&#xf002">
 			</form>
-
+		</div>
 		<br>
-
+<div class="keyword">
+<div class="one_row">
 		<!-- ボタンを押すと検索バーに値を設定 -->
 		<!-- HTMLボタン -->
 		<input type="button" value="HTML" onclick="clickBtn1()" />
@@ -120,10 +123,10 @@
 		    document.getElementById("text").value = "SQL";
 		  }
 		</script>
+</div>
 
-		<br>
-		<br>
 
+<div class="two_row">
 		<!-- eclipseボタン -->
 		<input type="button" value="eclipse" onclick="clickBtn6()" />
 		<script>
@@ -163,25 +166,30 @@
 		    	document.getElementById("text").value = "サーブレット";
 		  		}
 			</script>
-
+</div>
+</div>
 
 <!-- FAQ一覧表示 -->
 <br>
-<h2 class="header_title">FAQ一覧</h2>
+<p class="wordsize"><span>一覧表示</span></p>
+<div class="a">
 	<c:forEach var="e" items="${faqList}" >
 		<form method="GET" action="/StudyQ/StudentFaqSearch">
 			<ul class="accordion-area">
+			<div class="t_faqlist_body">
 				<li>
 					<section>
-					    <p class="title">Q.  <c:out value="${e.faq_title}"/></p>
+					    <p class="title"><span class="s_question">Q.  </span><c:out value="${e.faq_title}"/></p>
 					    <div class="box">
-						    <p>A.  <c:out value="${e.faq_ans}"/> </p>
+						    <p><span class="s_answer">A.  </span><c:out value="${e.faq_ans}"/> </p>
 					    </div>
 					</section>
 				</li>
+			</div>
 			</ul>
 			</form>
 		</c:forEach>
+</div>
 </section>
 
 <!-- ここからフッター -->

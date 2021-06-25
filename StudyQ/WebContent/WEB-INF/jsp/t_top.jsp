@@ -9,15 +9,7 @@
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/Top.css">
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-<style>
-div#counter{
-    left: 660px;
-    position: absolute;
-    top: 644px;
-    font-size: 44px;
-    font-family: ui-sans-serif
-}
-</style>
+
 </head>
 <body>
 	<jsp:include page="teacher_header.jsp"/>
@@ -25,7 +17,16 @@ div#counter{
 	<!-- ここからメイン -->
     <section class="main1">
 	<!-- セッション待ち全体人数表示 -->
-		<h3>スタディQAっしょんでできること</h3>
+		<h3><span>スタディQAっしょんでできること</span></h3>
+
+		<!-- セッションの待ち人数 -->
+		<div class="wait_people">
+			<div class="wp2">＼</div>
+			<div class="wp1">ただいまの待ち人数</div>
+			<div id = "counter"><!-- ここに待ち人数 --></div>
+			<div class="wp2">人 ／</div>
+		</div>
+
 	    <div class="student_top">
 		<ul class="s_top_menu">
 			<!-- FAQページ遷移 -->
@@ -51,12 +52,6 @@ div#counter{
 		</ul>
 		</div>
 	</section>
-
-	<section class="main2">
-	<h3>ただいまの待ち人数</h3>
-	<div id = "counter"> <!-- ここに待ち人数 --> </div>
-	</section>
-
 	<jsp:include page="footer.jsp"/>
 
 <script type="text/javascript">

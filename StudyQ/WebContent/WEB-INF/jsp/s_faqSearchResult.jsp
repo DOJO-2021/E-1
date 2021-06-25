@@ -171,8 +171,10 @@
 
 <!-- FAQ検索機能 -->
 <br>
+<div class="a">
 <ul class="accordion-area">
 	<c:forEach var="e" items="${faqCategory}" >
+	<div class="t_faqlist_body">
 		<li>
 			<section>
 		    	<p class="title">Q.  <c:out value="${e.faq_title}"/></p>
@@ -181,8 +183,10 @@
 		    	</div>
 			</section>
 		</li>
+	</div>
 	</c:forEach>
 </ul>
+</div>
 
 <a href="/StudyQ/StudentFaqSearch">検索ページへ戻る</a>
 

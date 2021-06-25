@@ -29,6 +29,13 @@
 			</div>
 			<h3><span>スタディQAっしょんでできること</span></h3>
 
+			<!-- セッションの待ち人数 -->
+			<div class="wait_people">
+				<div class="wp2">＼</div>
+				<div class="wp1">ただいまの待ち人数</div>
+				<div id = "counter"><!-- ここに待ち人数 --></div>
+				<div class="wp2">人 ／</div>
+			</div>
 
 			<div class="student_top">
 				<ul class="s_top_menu">
@@ -56,11 +63,8 @@
 			</div>
 		</section>
 
-		<section class="main2">
-			<h4>ただいまセッションの待ち人数</h4>
-			<<div id = "counter"> <!-- ここに待ち人数 --> </div>
-		</section>
-	<jsp:include page="footer.jsp"/>
+		<!-- footer -->
+		<jsp:include page="footer.jsp"/>
 </body>
 <script type="text/javascript">
 //待ち人数カウント

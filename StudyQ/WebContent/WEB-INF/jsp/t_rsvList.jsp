@@ -11,92 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.css' />
 <script src='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.js'></script>
-
-<style>
-	.tab_area {
-		display: flex;
-  		cursor: pointer;
-	}
-	.tab {
-		width: 300px;
-	    height: 30px;
-	    line-height: 30px;
-	    text-align: center;
-	    color: white;
-	    border-right: 1px solid #50637b;
-	    border-left: 1px solid #222e3e;
-	}
-	.tab.active {
-		background-color: #ccc;
-	    color: #222e3e;
-	    border: none;
-	}
-	content_body {
-		font-size: 30px;
-	  	text-align: center;
-	}
-	.content {
-		display: none;
-	}
-	.content.show {
-		display: block;
-	}
-
-	table.content_sessionlist {
-		margin-left: 95px;
-		border-spacing: 3px;
-	}
-	table.content_checklist {
-		float: left;
-		border-spacing: 5px;
-	}
-
-	td.column_header1 {
-		width: 93px;
-	}
-	td.column_header2 {
-		width: 150px;
-	}
-	td.column_header3 {
-		width: 250px;
-	}
-	td.column_header4 {
-		width: auto;
-	}
-
-	td.column1 {
-		width: auto;
-		height: 20px
-	}
-	td.column2 {
-		width: 70px;
-		height: 20px
-	}
-	td.column3 {
-		width: 150px;
-		height: 20px
-	}
-	td.column4 {
-		width: 250px;
-		height: 20px
-	}
-	td.column5 {
-		width: 120px;
-		height: 20px
-	}
-	td.column6 {
-		width: auto;
-		height: 20px
-	}
-	td.chn {
-		font-size: 16px;
-		height: 20px
-	}
-	tr {
-		height: 22px;
-	}
-
-</style>
+<link rel="stylesheet" href="css/t_rsvlist.css">
 
 <title>講師|セッション予約リスト</title>
 </head>
@@ -106,7 +21,8 @@
 
 <!-- メイン -->
 <jsp:include page="teacher_menu.jsp"/>
-<h2>セッション予約リスト</h2>
+<section class="main1">
+<h3><span>セッション予約リスト</span></h3>
 
 	<!-- タブのタイトル -->
 	<div class="tab_area">
@@ -124,7 +40,7 @@
 		</div>
 	</div>
 	<!-- テーブル項目 -->
-	<table>
+	<table class="content_header">
 		<tr>
 			<td class="column_header1"> 対応状況 </td>
 			<td class="column_header2"> カテゴリ </td>
@@ -139,9 +55,9 @@
 		<!-- 開くタブ -->
 		<div class="content show">
 		<div id="msg"> <!-- ここにjsonデータ --> </div>
-		<c:forEach var="e" items="${sessionList}" >
-			<form method="GET" action="/StudyQ/TeacherReserveDList">
-				<table class="content_sessionlist">
+		<form method="GET" action="/StudyQ/TeacherReserveDList">
+			<table class="content_sessionlist">
+			<c:forEach var="e" items="${sessionList}" >
 					<tr>
 						<td class="column3">
 						<c:choose>
@@ -161,19 +77,20 @@
 						<td class="column5"> <c:out value="${e.s_name}"/> </td>
 						<td class="column6"> <a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a> </td>
 					</tr>
-				</table>
-			</form>
+
 			<% count1 += 1; %>
-		</c:forEach>
+			</c:forEach>
+		</table>
+		</form>
 		</div>
 			<!-- 閉じるタブ -->
 			<!-- カテゴリ:学習内容 -->
 			<div class="content">
 			<div id="msg1"> <!-- ここにjsonデータ --> </div>
-			<c:forEach var="e" items="${sessionList}">
+			<form method="GET" action="/StudyQ/TeacherReserveDList">
+				<table class="content_sessionlist">
+				<c:forEach var="e" items="${sessionList}">
 				<c:if test="${e.session_m_category >= 0 && e.session_m_category <= 4}">
-					<form method="GET" action="/StudyQ/TeacherReserveDList">
-						<table>
 							<tr>
 								<td class="column3">
 								<c:choose>
@@ -194,20 +111,19 @@
 								<td class="column6"> <a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a></td>
 
 							</tr>
-						</table>
-					</form>
 				</c:if>
-			</c:forEach>
+				</c:forEach>
+				</table>
+			</form>
 			</div>
 			<!-- 閉じるタブ -->
 			<!-- カテゴリ:トラブル -->
 			<div class="content">
 			<div id="msg2"> <!-- ここにjsonデータ --> </div>
-			<c:forEach var="e" items="${sessionList}">
+			<form method="GET" action="/StudyQ/TeacherReserveDList">
+			<table class="content_sessionlist">
+				<c:forEach var="e" items="${sessionList}">
 				<c:if test="${e.session_m_category >= 5 && e.session_m_category <= 8}">
-
-					<form method="GET" action="/StudyQ/TeacherReserveDList">
-						<table>
 							<tr>
 								<td class="column3">
 								<c:choose>
@@ -227,20 +143,20 @@
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
 								<td class="column6"><a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a></td>
 							</tr>
-						</table>
-					</form>
-
 				</c:if>
-			</c:forEach>
+				</c:forEach>
+			</table>
+			</form>
 			</div>
 			<!-- 閉じるタブ -->
 			<!-- カテゴリ:その他-->
 			<div class="content">
 			<div id="msg3"> <!-- ここにjsonデータ --> </div>
-			<c:forEach var="e" items="${sessionList}">
+			<form method="GET" action="/StudyQ/TeacherReserveDList">
+				<table class="content_sessionlist">
+				<c:forEach var="e" items="${sessionList}">
 				<c:if test="${e.session_m_category == 9}">
-					<form method="GET" action="/StudyQ/TeacherReserveDList">
-						<table>
+
 							<tr>
 								<td class="column3">
 								<c:choose>
@@ -260,11 +176,11 @@
 								<td class="column5"> <c:out value="${e.s_name}"/> </td>
 								<td class="column6"> <a href="http://localhost:8080/StudyQ/TeacherReserveDList?session_id=${e.session_id}" name="session_id" data-lity="data-lity">詳細</a></td>
 							</tr>
-						</table>
-					</form>
 
 				</c:if>
-			</c:forEach>
+				</c:forEach>
+				</table>
+			</form>
 			</div>
 		</div>
 
@@ -273,12 +189,12 @@
 		<input type="button" id="worked_btn" value="対応完了" onclick="return func1()">
 	</form>
 
-<a href="/StudyQ/TeacherTop">TOPへ戻る</a>
+<a href="/StudyQ/TeacherTop" class="returntop">TOPへ戻る</a>
+</section>
 <!-- フッター -->
 <jsp:include page="footer.jsp"/>
 
 <script type="text/javascript">
-document.cookie = "key=1";
 
 //タブ切り替え
 \$(function() {
@@ -299,6 +215,7 @@ $(function(e) {
 				url : "json/session_data.json",
 				type : "GET",
 				datatype : "json",
+				cache: false,
 				success: function(json){
 					let data = "<table class='content_checklist'>";
 					const len = Object.keys(json.ary).length;
@@ -318,7 +235,7 @@ $(function(e) {
 
 					//タブ2
 					let data1 = "<table class='content_checklist'>";
-					const len1 = 3
+					const len1 = 13;
 					for( let i= 0; i < len1; i++){
 					    data1 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn1'> " + "未対応" + "</td></tr>";
 					}
@@ -326,7 +243,7 @@ $(function(e) {
 					document.getElementById("msg1").innerHTML = data1;
 					//タブ3
 					let data2 = "<table class='content_checklist'>";
-					const len2 = 4
+					const len2 = 4;
 					for( let i= 0; i < len2; i++){
 					    data2 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn2'> " + "未対応" + "</td></tr>";
 					}
@@ -334,7 +251,7 @@ $(function(e) {
 					document.getElementById("msg2").innerHTML = data2;
 					//タブ4
 					let data3 = "<table class='content_checklist'>";
-					const len3 = 3
+					const len3 = 3;
 					for( let i= 0; i < len3; i++){
 					    data3 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn3'> " + "未対応" + "</td></tr>";
 					}
@@ -366,7 +283,7 @@ function func1() {
 		  newJson.push({str:chn[j].innerHTML.trim()});
 	  }
 	console.log("newJson:" + newJson.length); //この時点で増殖が起きている
-	console.log("newJson2:" + newJson.length);
+	console.dir(newJson);
 
 	$.ajax({//更新jsonリスト送信
 		contentType : "Content-Type: application/json; charset=UTF-8",
@@ -376,6 +293,8 @@ function func1() {
 			newJson : JSON.stringify(newJson)
 		},
 		datatype : "json",
+		timeout: 10000,
+		cache: false,
 		success:
 			function() {
 			$.ajax({ //1: jsonデータを引っ張ってくる
@@ -383,6 +302,7 @@ function func1() {
 				url : "json/session_data.json",
 				type : "GET",
 				datatype : "json",
+				cache: false,
 				success: function(json){
 					let data = "<table class='content_checklist'>";
 					const len = Object.keys(json.ary).length;
@@ -396,6 +316,12 @@ function func1() {
 					document.getElementById("msg").innerHTML = data;
 				}
 			});
+		},
+		error:
+			function(xhr, textStatus, errorThrown) {
+				if (textStatus == "timeout") {
+					window.alert("通信はタイムアウトになりました。");
+				}
 		}
 	});
 }
@@ -431,6 +357,7 @@ function func2() {
 			newJson : JSON.stringify(newJson)
 		},
 		datatype : "json",
+		cache: false,
 		success:
 			function() {
 			$.ajax({ //1: jsonデータを引っ張ってくる
@@ -438,6 +365,7 @@ function func2() {
 				url : "json/session_data.json",
 				type : "GET",
 				datatype : "json",
+				cache: false,
 				success: function(json){
 					let data = "<table class='content_checklist'>";
 					const len = Object.keys(json.ary).length;
@@ -460,6 +388,7 @@ document.addEventListener("load", function() {
 		url : "json/session_data.json",
 		type : "GET",
 		datatype : "json",
+		timeout: 10000,
 		success: function(json){
 			let data = "<table class='content_checklist'>";
 			const len = Object.keys(json.ary).length;
@@ -469,9 +398,18 @@ document.addEventListener("load", function() {
 			}
 			data += "</table>";
 			document.getElementById("msg").innerHTML = data;
+		},
+		error:
+			function(xhr, textStatus, errorThrown) {
+				if (textStatus == "timeout") {
+					window.alert("通信はタイムアウトになりました。");
+					console.log(textStatus);
+				}
 		}
 	});
-	});
+});
+
+//全ajax終了時の処理
 
 
 </script>

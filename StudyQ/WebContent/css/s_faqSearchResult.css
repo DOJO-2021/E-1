@@ -8,9 +8,8 @@ h2 {
 }
 
 .hitcount {
-	float     : left;
-	margin-top: 68px;
-
+	float : left;
+	margin:
 }
 
 .faq_search_bar {
@@ -21,10 +20,13 @@ h2 {
 
 .one_row {
 	padding-top: 9px;
+	text-align : center;
 }
 
 .two_row {
-	padding-top: 9px;
+	padding-top   : 9px;
+	padding-bottom: 9px;
+	text-align    : center;
 }
 
 
@@ -40,6 +42,22 @@ h2 {
 	padding: 10px 50px;
 }
 
+.search_bar_second {
+	text-align:center;
+}
+
+
+
+/*---------- FAQの質問回答 --------*/
+.s_question {
+	font-size:30px;
+	color    :red;
+}
+
+.s_answer {
+	font-size:30px;
+	color    :#00be00;
+}
 
 
 
@@ -108,4 +126,9 @@ h2 {
     padding   : 3%;
 }
 
+/*一覧表示のCSS*/
+.wordsize{
+	text-align: center;
+	font-size: 20px;
+}
 
