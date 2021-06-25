@@ -297,7 +297,7 @@ public class CommonDao {
 
 	}
 
-	//	ファイル名取得用メソッド（研修生セッション）
+//	ファイル名取得用メソッド（研修生セッション）
 
 	public String GetFileName() {
 		Connection conn = null;
@@ -444,7 +444,7 @@ public class CommonDao {
 			// UPDATE文を準備する
 
 			// SQL文を準備する
-			String sql = "UPDATE FAQ SET FAQ_TITLE = ?,FAQ_ANS=? where id = ?";
+			String sql = "UPDATE FAQ SET FAQ_TITLE = ?,FAQ_ANS=? where faq_id = ?";
 			PreparedStatement pStmtUp = conn.prepareStatement(sql);
 
 			if (faq.getFaq_title() != null) {
@@ -495,7 +495,7 @@ public class CommonDao {
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 			// SELECT文を準備する
 
-			String sql = "DELETE FROM FAQ WHERE ID=?";
+			String sql = "DELETE FROM FAQ WHERE FAQ_ID=?";
 			PreparedStatement pStmtDelete = conn.prepareStatement(sql);
 			pStmtDelete.setInt(1, id);
 
@@ -809,3 +809,4 @@ public class CommonDao {
 		return faqPageAllList;
 	}
 }
+

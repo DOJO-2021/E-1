@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,17 +20,16 @@
 		<h4><c:out value="${result.message}" /></h4>
 
 		<ul class="accordion-area">
-			<c:forEach var="e" items="${faqCategory}" >
 				<li>
 					<section>
-				    	<p class="title">Q.  <c:out value="${e.faq_title}"/></p>
+				    	<p class="title">Q.<c:out value="${faq_title}"/></p>
 				    	<div class="box">
-					    	<p>A.  <c:out value="${e.faq_ans}"/> </p>
+					    	<p>A.<c:out value="${faq_ans}"/></p>
 				    	</div>
 					</section>
 				</li>
-			</c:forEach>
 		</ul>
 	</section>
+	<a href="${result.backTo}"> FAQ検索ページへ戻る</a>
 </body>
 </html>

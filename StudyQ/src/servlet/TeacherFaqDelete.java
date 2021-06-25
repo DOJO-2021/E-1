@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CommonDao;
 import model.Faq;
@@ -16,7 +17,7 @@ import model.Result;
 /**
  * Servlet implementation class TeacherFaqDelete
  */
-@WebServlet("/TeacherFaqDeletet")
+@WebServlet("/TeacherFaqDelete")
 public class TeacherFaqDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,11 +28,11 @@ public class TeacherFaqDelete extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-/*		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		if (session.getAttribute("t_id") == null) {
 		response.sendRedirect("/StugyQ/StudentLogin");
 		return;
-		} */
+		}
 		// リクエストパラメータを取得
 		request.setCharacterEncoding("UTF-8");
 		int faq_id = Integer.parseInt(request.getParameter("faq_id"));
@@ -43,27 +44,30 @@ public class TeacherFaqDelete extends HttpServlet {
 		if (request.getParameter("SUBMIT").equals("更新")) {
 			if (cDao.FaqUpdate(new Faq(faq_id, faq_title, faq_ans))) {	// 更新成功
 				request.setAttribute("result",
-				new Result("FAQ項目編集", "以下の内容を更新しました。", "/StudyQ/"));
+				new Result("FAQ項目編集", "以下の内容を更新しました。", "/StudyQ/TeacherFaqEdit"));
 			}
 			else {												// 更新失敗
 				request.setAttribute("result",
-				new Result("FAQ項目編集", "レコードを更新できませんでした。", "/simpleBC/MenuServlet"));
+				new Result("FAQ項目編集", "以下の内容を更新できませんでした。", "/StudyQ/TeacherFaqEdit"));
 			}
 		}
 		else {
 			if (cDao.FaqDelete(faq_id)) {	// 削除成功
 				request.setAttribute("result",
-				new Result("FAQ項目編集", "以下の内容を削除しました。", "/StudyQ/"));
+				new Result("FAQ項目編集", "以下の内容を削除しました。", "/StudyQ/TeacherFaqEdit"));
 			}
 			else {						// 削除失敗
 				request.setAttribute("result",
-				new Result("FAQ項目編集", "レコードを削除できませんでした。", "/simpleBC/MenuServlet"));
+				new Result("FAQ項目編集", "以下の内容を削除できませんでした。", "/StudyQ/TeacherFaqEdit"));
 			}
 		}
 
+		//リクエストスコープに保存
+		request.setAttribute("faq_title", faq_title);
+		request.setAttribute("faq_ans", faq_ans);
 
 		//結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/t_faq.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/t_faqDelete.jsp");
 		dispatcher.forward(request, response);
 	}
 }

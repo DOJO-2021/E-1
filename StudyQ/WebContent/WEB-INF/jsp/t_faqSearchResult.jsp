@@ -67,15 +67,18 @@
 <!-- FAQリスト -->
 <div class="a">
 <c:forEach var="e" items="${faqCategory}">
+<form method="POST" action="/StudyQ/TeacherFaqDelete">
 <div class="t_faqlist_body">
 	<!-- のちにFAQのQ-Aをドロワー対応させるよう構成を変更する -->
 	<dl class="t_faqlist_item">
-		<dt><span>Q</span><c:out value="${e.faq_title}"/></dt>
-		<dd><span>A</span><dd><c:out value="${e.faq_ans}"/></dd>
+		<dt><span></span><input type="hidden" name="faq_id" value="${e.faq_id}"></dt>
+		<dt><span>Q</span><input type="text" name="faq_title" value="${e.faq_title}"></dt>
+		<dd><span>A</span><input type="text" name="faq_ans" value="${e.faq_ans}"></dd>
 	</dl>
 	<input type="submit" name="SUBMIT" value="更新" class="faq_edit_btn">
 	<input type="submit" name="SUBMIT" value="削除" class="faq_delete_btn">
 </div>
+</form>
 </c:forEach>
 </div>
 
