@@ -26,12 +26,12 @@
 	<table class="list">
 		<tr>
 			<th> FAQタイトル </th>
-			<td><c:out value="${faq_title}"/></td>
+			<td><c:out value="${faq_r.faq_title}"/></td>
 		</tr>
 
 		<tr>
 			<th> FAQ詳細 </th>
-			<td><c:out value="${faq_ans}"/></td>
+			<td><c:out value="${faq_r.faq_ans}"/></td>
 		</tr>
 	</table>
 </div>

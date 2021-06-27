@@ -189,6 +189,7 @@ public class CommonDao {
 	public boolean SessionRegist(SessionBeans session) {
 		Connection conn = null;
 		boolean result = false;
+		int maxId = 0;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -196,33 +197,51 @@ public class CommonDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection(jdbcPass, "sa", "");
 
-			String sql = "INSERT INTO Session VALUES(null,?,?,?,?,?)";
+
+			// SELECT文を準備する
+
+						String selectAllSql = "SELECT MAX(SESSION_ID) AS MAXID  FROM SESSION";
+						PreparedStatement pStmtSelect = conn.prepareStatement(selectAllSql);
+
+						// SQL文を実行し、結果表を取得する
+						ResultSet rs = pStmtSelect.executeQuery();
+						while (rs.next()) {
+
+								maxId=	rs.getInt("MAXID")+1;
+
+						}
+
+
+
+			String sql = "INSERT INTO Session VALUES(?,?,?,?,?,?)";
 			PreparedStatement pStmtIns = conn.prepareStatement(sql);
 
+			  pStmtIns.setInt(1, maxId);
+
 			if (session.getS_name() != null && !session.getS_name().equals("")) {
-				pStmtIns.setString(1, session.getS_name());
-			} else {
-				pStmtIns.setString(1, null);
-			}
-			if (session.getSubject() != null && !session.getSubject().equals("")) {
-				pStmtIns.setString(2, session.getSubject());
+				pStmtIns.setString(2, session.getS_name());
 			} else {
 				pStmtIns.setString(2, null);
 			}
-			if (session.getQuestion() != null && !session.getQuestion().equals("")) {
-				pStmtIns.setString(3, session.getQuestion());
+			if (session.getSubject() != null && !session.getSubject().equals("")) {
+				pStmtIns.setString(3, session.getSubject());
 			} else {
 				pStmtIns.setString(3, null);
 			}
-
-			if (session.getFile() != null && !session.getFile().equals("")) {
-				pStmtIns.setString(4, session.getFile());
+			if (session.getQuestion() != null && !session.getQuestion().equals("")) {
+				pStmtIns.setString(4, session.getQuestion());
 			} else {
 				pStmtIns.setString(4, null);
 			}
 
+			if (session.getFile() != null && !session.getFile().equals("")) {
+				pStmtIns.setString(5, session.getFile());
+			} else {
+				pStmtIns.setString(5, null);
+			}
+
 			if (session.getSession_m_category() <= 9) {
-				pStmtIns.setInt(5, session.getSession_m_category());
+				pStmtIns.setInt(6, session.getSession_m_category());
 			} else {
 				System.out.println("想定外の値が入力されました！");
 			}
@@ -579,7 +598,7 @@ public class CommonDao {
 				column.add(" FAQ_ANS ");
 
 				String select = "SELECT * FROM FAQ WHERE";
-				String like = column.get(0) + "LIKE ? OR " + column.get(1) + " LIKE ? ";
+				String like = "(" + column.get(0) + "LIKE ? OR " + column.get(1) + " LIKE ? )";
 
 				for (int i = 0; i < words.length; i++) {
 					select += like;
@@ -687,7 +706,7 @@ public class CommonDao {
 				column.add(" FAQ_ANS ");
 
 				String select = "SELECT COUNT(*) AS CNT FROM FAQ WHERE";
-				String like = column.get(0) + "LIKE ? OR " + column.get(1) + " LIKE ? ";
+				String like ="(" + column.get(0) + "LIKE ? OR " + column.get(1) + " LIKE ? )";
 
 				for (int i = 0; i < words.length; i++) {
 					select += like;

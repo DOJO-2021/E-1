@@ -41,8 +41,8 @@
 	<script src="/StudyQ/js/paginathing.min.js" charset="utf-8"></script>
 	<script type="text/javascript">
 		jQuery(function($) {
-			$('.a').paginathing({
-				perPage: 5,
+			$('.accordion-area').paginathing({
+				perPage: 3,
 				prevText:'前へ',
 				nextText:'次へ',
 				firstLast: false,
@@ -50,6 +50,9 @@
 			})
 		});
 	</script>
+	<!-- アコーディオンパネルで必要 -->
+	<link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
+	<link rel="stylesheet" href="css/t_faqSearchResult.css">
 </head>
 <body>
 <jsp:include page="teacher_header.jsp" />
@@ -65,26 +68,32 @@
 
 <!-- 変数 e, 引数 cardList を仮の値として設定する -->
 <!-- FAQリスト -->
-<div class="a">
-<c:forEach var="e" items="${faqCategory}">
-<form method="POST" action="/StudyQ/TeacherFaqDelete">
-<div class="t_faqlist_body">
-	<!-- のちにFAQのQ-Aをドロワー対応させるよう構成を変更する -->
-	<dl class="t_faqlist_item">
-		<dt><span></span><input type="hidden" name="faq_id" value="${e.faq_id}"></dt>
-		<dt><span>Q</span><input type="text" name="faq_title" value="${e.faq_title}"></dt>
-		<dd><span>A</span><input type="text" name="faq_ans" value="${e.faq_ans}"></dd>
-	</dl>
-	<input type="submit" name="SUBMIT" value="更新" class="faq_edit_btn">
-	<input type="submit" name="SUBMIT" value="削除" class="faq_delete_btn">
-</div>
-</form>
-</c:forEach>
-</div>
+
+<ul class="accordion-area">
+	<c:forEach var="e" items="${faqCategory}" >
+	<form method="POST" action="/StudyQ/TeacherFaqDelete">
+
+
+			<section>
+				<input type="hidden" name="faq_id" value="${e.faq_id}">
+		    	<p class="title">Q.  <input type="text" name="faq_title" value="${e.faq_title}"></p>
+		    	<div class="box">
+			    	<p>A.  <input type="text" name="faq_ans" value="${e.faq_ans}"> </p>
+		    	</div>
+			</section>
+
+
+		<input type="submit" name="SUBMIT" value="更新" class="faq_edit_btn">
+		<input type="submit" name="SUBMIT" value="削除" class="faq_delete_btn">
+	</form>
+	</c:forEach>
+</ul>
 
 <!-- 最上部に戻る -->
 <!-- 保留 : "上に戻る"テキストはのちにimageに差し替える -->
 <a href="#"> 上に戻る </a>
+<!-- アコーディオンで必要 -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 </body>
 </html>

@@ -17,7 +17,7 @@ public class FaqCategorySearchTest {
 		List<Faq> searchList = new ArrayList<>();
 		CommonDao commonLog = new CommonDao();
 		try {
-			String search = "E";
+			String search = "java メソッド";
 		searchList = commonLog.FaqSearch(search);
 		for(int i = 0;i<searchList.size();i++) {
 			System.out.println(searchList.get(i).getFaq_title());

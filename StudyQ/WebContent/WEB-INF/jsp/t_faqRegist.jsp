@@ -22,13 +22,13 @@
 			<!-- 質問 -->
 			 <div class="Form-Item">
 					<p class="Form-Item-Label">質問内容</p>
-					<input type="text" class="Form-Item-Input" placeholder="質問を入力してください" name="subject">
+					<input type="text" class="Form-Item-Input" placeholder="質問を入力してください" name="faq_title">
 			</div>
 
 			<!-- 回答 -->
 			 <div class="Form-Item">
 					<p class="Form-Item-Label">回答</p>
-					<input type="text" class="Form-Item-Input" placeholder="回答を入力してください" name="subject">
+					<input type="text" class="Form-Item-Input" placeholder="回答を入力してください" name="faq_ans">
 			</div>
 		</div>
 

@@ -68,10 +68,12 @@ public class TeacherFaqRegist extends HttpServlet {
 
 			//登録処理
 			CommonDao cmn = new CommonDao();
-			if (cmn.FaqRegist(new Faq(0, faq_title, faq_ans))) {
+
+			Faq faq = new Faq(0,faq_title,faq_ans);
+
+			if (cmn.FaqRegist(faq)) {
 				//リクエストスコープに値をセット
-				request.setAttribute("faq_title", faq_title);
-				request.setAttribute("faq_ans", faq_ans);
+				request.setAttribute("faq_r", faq);
 			}
 
 
