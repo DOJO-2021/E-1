@@ -606,7 +606,6 @@ public class CommonDao {
 						select += " AND ";
 					}
 				}
-				System.out.println(select);
 				PreparedStatement pStmt = conn.prepareStatement(select);
 
 					int i = 1;
@@ -714,7 +713,6 @@ public class CommonDao {
 						select += " AND ";
 					}
 				}
-				System.out.println(select);
 				PreparedStatement pStmt = conn.prepareStatement(select);
 
 					int i = 1;

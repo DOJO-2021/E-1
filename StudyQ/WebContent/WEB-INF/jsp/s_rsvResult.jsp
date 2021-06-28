@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/t_faqRegistResult.css">
 <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>研修生|セッション予約完了</title>
 </head>
 
@@ -59,5 +60,40 @@
 	</div>
 <!-- フッター -->
 <jsp:include page="footer.jsp"/>
+
+<script type="text/javascript">
+$.ajax({ //jsonデータを取り出す
+	contentType : "Content-Type: application/json; charset=UTF-8",
+	url : "json/session_data.json" + '?date=' + new Date().getTime(),
+	type : "GET",
+	datatype : "json",
+	success: function(json){
+		const len = Object.keys(json.ary).length;
+		console.log(len);
+		let newJson = [];
+		for( let i= 0; i < len; i++){
+		    newJson[i] = {str:json.ary[i].str};
+		}
+		console.log(newJson);
+		newJson.push({str:"未対応"});
+		console.log(newJson);
+
+		$.ajax({//更新jsonリスト送信
+			contentType : "Content-Type: application/json; charset=UTF-8",
+			url : "/StudyQ/SessionAjaxServlet",
+			type : "GET",
+			data : {
+				newJson : JSON.stringify(newJson)
+			},
+			datatype : "json",
+			cache: false,
+			success:
+				function() {
+				console.log("success");
+			}
+		});
+	}
+});
+</script>
 </body>
 </html>

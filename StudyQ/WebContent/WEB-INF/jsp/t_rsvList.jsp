@@ -235,7 +235,7 @@ $(function(e) {
 
 					//タブ2
 					let data1 = "<table class='content_checklist'>";
-					const len1 = 13;
+					const len1 = 4;
 					for( let i= 0; i < len1; i++){
 					    data1 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn1'> " + "未対応" + "</td></tr>";
 					}
@@ -243,7 +243,7 @@ $(function(e) {
 					document.getElementById("msg1").innerHTML = data1;
 					//タブ3
 					let data2 = "<table class='content_checklist'>";
-					const len2 = 4;
+					const len2 = 2;
 					for( let i= 0; i < len2; i++){
 					    data2 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn2'> " + "未対応" + "</td></tr>";
 					}
@@ -251,7 +251,7 @@ $(function(e) {
 					document.getElementById("msg2").innerHTML = data2;
 					//タブ4
 					let data3 = "<table class='content_checklist'>";
-					const len3 = 3;
+					const len3 = 1;
 					for( let i= 0; i < len3; i++){
 					    data3 += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn3'> " + "未対応" + "</td></tr>";
 					}
@@ -296,26 +296,10 @@ function func1() {
 		timeout: 10000,
 		cache: false,
 		success:
-			function() {
-			$.ajax({ //1: jsonデータを引っ張ってくる
-				contentType : "Content-Type: application/json; charset=UTF-8",
-				url : "json/session_data.json",
-				type : "GET",
-				datatype : "json",
-				cache: false,
-				success: function(json){
-					let data = "<table class='content_checklist'>";
-					const len = Object.keys(json.ary).length;
-					console.log(len);
+			function(resJson) {
+				console.log(resJson);
 
-					for( let i= 0; i < len; i++){
-					    data += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
-					}
 
-					data += "</table>";
-					document.getElementById("msg").innerHTML = data;
-				}
-			});
 		},
 		error:
 			function(xhr, textStatus, errorThrown) {
@@ -326,6 +310,28 @@ function func1() {
 	});
 }
 
+function func0() {
+	$.ajax({ //1: jsonデータを引っ張ってくる
+		contentType : "Content-Type: application/json; charset=UTF-8",
+		url : "json/session_data.json" + '?date=' + new Date().getTime(),
+		type : "GET",
+		datatype : "json",
+		cache: false,
+		success: function(json){
+			console.log("json go");
+			let data = "<table class='content_checklist'>";
+			const len = Object.keys(json.ary).length;
+			console.log(len);
+
+			for( let i= 0; i < len; i++){
+			    data += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
+			}
+
+			data += "</table>";
+			document.getElementById("msg").innerHTML = data;
+		}
+	});
+}
 //2-B. func2 : チェックしてボタン押下⇒対応状況が"対応中"になる
 function func2() {
       const elements = document.getElementsByName("options");
@@ -359,24 +365,9 @@ function func2() {
 		datatype : "json",
 		cache: false,
 		success:
-			function() {
-			$.ajax({ //1: jsonデータを引っ張ってくる
-				contentType : "Content-Type: application/json; charset=UTF-8",
-				url : "json/session_data.json",
-				type : "GET",
-				datatype : "json",
-				cache: false,
-				success: function(json){
-					let data = "<table class='content_checklist'>";
-					const len = Object.keys(json.ary).length;
+			function(resJson) {
+			console.log(resJson);
 
-					for( let i= 0; i < len; i++){
-					    data += "<tr><td class='column1'><input type='checkbox' name='options'> </td> <td class='chn'> " + json.ary[i].str + "</td></tr>";
-					}
-					data += "</table>";
-					document.getElementById("msg").innerHTML = data;
-				}
-			});
 		}
 	});
 }
@@ -385,7 +376,7 @@ document.addEventListener("load", function() {
 	   // 実行したい処理
 	$.ajax({ //1: jsonデータを引っ張ってくる
 		contentType : "Content-Type: application/json; charset=UTF-8",
-		url : "json/session_data.json",
+		url : "json/session_data.json" + '?date=' + new Date().getTime(),
 		type : "GET",
 		datatype : "json",
 		timeout: 10000,
@@ -409,7 +400,7 @@ document.addEventListener("load", function() {
 	});
 });
 
-//全ajax終了時の処理
+
 
 
 </script>

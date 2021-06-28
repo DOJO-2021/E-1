@@ -43,11 +43,11 @@ public class StudentReserve extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//もしもログインしていなかったらログインサーブレットにリダイレクトする
-/*		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		if (session.getAttribute("s_id") == null) {
 			response.sendRedirect("/StudyQ/StudentLogin");
 			return;
-		}*/
+		}
 
 		// 研修生　セッション予約(jsp)にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_rsv.jsp");
@@ -59,13 +59,13 @@ public class StudentReserve extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-/*		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		if (session.getAttribute("s_id") == null) {
 			response.sendRedirect("/StudyQ/StudentLogin");
 			return;
 		}
 
-*/
+
 		request.setCharacterEncoding("UTF-8");
 		Collection<Part> parts = request.getParts();
 
@@ -118,7 +118,6 @@ public class StudentReserve extends HttpServlet {
 			}
 		}
 
-		HttpSession session = request.getSession();
 
 		String s_name = (String) session.getAttribute("s_name");
 		String subject = map.get("subject");
