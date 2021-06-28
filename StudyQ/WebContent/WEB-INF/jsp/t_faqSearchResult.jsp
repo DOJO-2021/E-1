@@ -113,7 +113,7 @@
    			});
 		});
 	</script>
-
+	<script type="text/javascript" src="js/faqCheck.js"></script>
 </head>
 <body>
 	<!-- ここからヘッダー -->
@@ -130,8 +130,9 @@
 
 		<!-- 変数 e, 引数 cardList を仮の値として設定する -->
 		<!-- FAQリスト -->
-		<div class="a">
+
 			<ul class="accordion-area">
+			<div class="a">
 				<c:forEach var="e" items="${faqCategory}">
 					<div class="t_faqlist_body">
 						<form method="POST" action="/StudyQ/TeacherFaqDelete">
@@ -151,19 +152,20 @@
 									<p class="title"><span class="s_question">Q. </span><textarea name="faq_title" style="min-width: 650px; min-height: 30px;">${e.faq_title}</textarea></p>
 							    	<div class="box">
 								    	<p><span class="s_answer">A.  </span><textarea name="faq_ans" style="min-width: 650px; min-height: 100px;"><c:out value="${e.faq_ans}"/></textarea></p>
-							    		<div class="btn_edit"><input type="submit" name="SUBMIT" value="更新" class="faq_edit_btn"></div>
-										<div class="btn_delete"><input type="submit" name="SUBMIT" value="削除" class="faq_delete_btn"></div>
+							    		<div class="btn_edit"><input type="submit" name="SUBMIT" value="更新" class="faq_edit_btn" onClick="return check2()"></div>
+										<div class="btn_delete"><input type="submit" name="SUBMIT" value="削除" class="faq_delete_btn" onClick="return check3()"></div>
 									</div>
 								</section>
 							</li>
 						</form>
 					</div>
 				</c:forEach>
+				</div>
 			</ul>
 			<div class="pagetop">
 				<a href="#"> うえへ戻る↑ </a>
 			</div>
-		</div>
+
 	</section>
 <footer>
 	<div id="foot">

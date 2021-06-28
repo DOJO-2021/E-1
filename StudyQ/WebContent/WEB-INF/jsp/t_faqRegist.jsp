@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/t_faqRegist.css">
 <link rel="stylesheet" href="css/s_rsv.css">
+<script type="text/javascript" src="js/faqCheck.js"></script>
 </head>
 <body>
 <jsp:include page="teacher_header.jsp" />
@@ -17,7 +18,7 @@
 <h3><span>FAQ登録</span></h3>
 <!-- FAQ登録テーブル -->
 <section class="main1">
-	<form method="POST" action="/StudyQ/TeacherFaqRegist">
+	<form method="POST" action="/StudyQ/TeacherFaqRegist" onSubmit="return check()">
 		<div class="Form">
 			<!-- 質問 -->
 			 <div class="Form-Item">

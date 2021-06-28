@@ -19,7 +19,7 @@ import model.StuIdpw;
 public class CommonDao {
 	private final String jdbcPass = "jdbc:h2:file:C:/pleiades/workspace/database/StudyQ";
 
-	//	 研修生、講師用ログインメソッド（完）
+	//	 研修生、講師用ログインメソッド
 	public boolean isLoginOK(UserType user, String id, String pw) {
 		Connection conn = null;
 		boolean loginResult = false;
@@ -72,7 +72,7 @@ public class CommonDao {
 		return loginResult;
 	}
 
-	//	ログイン時名前を取得するメソッド(完)
+	//	ログイン時名前を取得するメソッド
 	public String loginGetName( String id, String pw) {
 		Connection conn = null;
 		String l_name = null;
@@ -128,7 +128,7 @@ public class CommonDao {
 		return s_name;
 	}
 
-	//	 研修生登録メソッド(完)
+	//	 研修生登録メソッド
 	public boolean isStudentRegistOK(StuIdpw student) {
 		Connection conn = null;
 		boolean registResult = false;
@@ -185,7 +185,7 @@ public class CommonDao {
 		return registResult;
 	}
 
-	//	研修生セッション登録用メソッド(完)
+	//	研修生セッション登録用メソッド
 	public boolean SessionRegist(SessionBeans session) {
 		Connection conn = null;
 		boolean result = false;
@@ -267,7 +267,7 @@ public class CommonDao {
 		return result;
 	}
 
-	//	セッションリスト全表示（完）
+	//	セッションリスト全表示
 	public List<SessionBeans> SessionListFindAll() {
 		Connection conn = null;
 		List<SessionBeans> sessionList = new ArrayList<SessionBeans>();
@@ -361,7 +361,7 @@ public class CommonDao {
 
 	}
 
-	//	FAQリスト全表示 （完）
+	//	FAQリスト全表示
 	public List<Faq> FaqListFindAll() {
 		Connection conn = null;
 		List<Faq> faqList = new ArrayList<Faq>();
@@ -402,7 +402,7 @@ public class CommonDao {
 		return faqList;
 	}
 
-	//	FAQ登録(完)
+	//	FAQ登録
 	public boolean FaqRegist(Faq faq) {
 		Connection conn = null;
 		boolean result = false;
@@ -450,7 +450,7 @@ public class CommonDao {
 
 	}
 
-	//	FAQ更新(未確認)
+	//	FAQ更新
 	public boolean FaqUpdate(Faq faq) {
 		Connection conn = null;
 		boolean result = false;
@@ -502,7 +502,7 @@ public class CommonDao {
 
 	}
 
-	//	FAQ削除（未確認）
+	//	FAQ削除
 	public boolean FaqDelete(int id) {
 		Connection conn = null;
 		boolean result = false;
@@ -540,7 +540,7 @@ public class CommonDao {
 
 	}
 
-	//	FAQカテゴリ検索（完）
+	//	FAQカテゴリ検索
 	public List<Faq> FaqSearch(String searchWord) {
 		Connection conn = null;
 		List<Faq> faqList = new ArrayList<>();
@@ -652,7 +652,7 @@ public class CommonDao {
 		return faqList;
 	}
 
-	//	FAQヒットカウント（完）
+	//	FAQヒットカウント
 	public int FaqCount(String searchWord) {
 
 		Connection conn = null;

@@ -176,8 +176,9 @@
 	 	</div>
 
 		<br>
-		<div class="a">
+
 			<ul class="accordion-area">
+				<div class="a">
 				<c:forEach var="e" items="${faqCategory}" >
 				<div class="t_faqlist_body">
 					<li>
@@ -190,8 +191,9 @@
 					</li>
 				</div>
 				</c:forEach>
+				/div>
 			</ul>
-		</div>
+		<
 		<div class="back">
 			<a href="/StudyQ/StudentFaqSearch">検索ページへ戻る</a>
 		</div>
