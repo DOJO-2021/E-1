@@ -16,31 +16,32 @@
 <jsp:include page="teacher_menu.jsp" />
 <!-- サブタイトル -->
 
+<section class="main1">
+	<h3><span>登録完了</span></h3>
+	<h4>以下の内容で登録しました。</h4>
 
-<h3><span>登録完了</span></h3>
-<h4>以下の内容で登録しました。</h4>
+	<!-- FAQ登録結果テーブル -->
+	<!-- <form method="GET" action="/StudyQ/TeacherFaqRegistResult"> -->
+	<div class="faqlist_registresult_body">
+		<table class="list">
+			<tr>
+				<th> FAQタイトル </th>
+				<td><c:out value="${faq_r.faq_title}"/></td>
+			</tr>
 
-<!-- FAQ登録結果テーブル -->
-<!-- <form method="GET" action="/StudyQ/TeacherFaqRegistResult"> -->
-<div class="faqlist_registresult_body">
-	<table class="list">
-		<tr>
-			<th> FAQタイトル </th>
-			<td><c:out value="${faq_r.faq_title}"/></td>
-		</tr>
+			<tr>
+				<th> FAQ詳細 </th>
+				<td><c:out value="${faq_r.faq_ans}"/></td>
+			</tr>
+		</table>
+	</div>
+	<!--</form> -->
 
-		<tr>
-			<th> FAQ詳細 </th>
-			<td><c:out value="${faq_r.faq_ans}"/></td>
-		</tr>
-	</table>
-</div>
-<!--</form> -->
-
-<!-- FAQ検索ページへ戻る -->
-<div class="teacher_top">
-<a href="/StudyQ/TeacherFaqEdit"> FAQ検索ページへ戻る </a>
-</div>
+	<!-- FAQ検索ページへ戻る -->
+	<div class="teacher_top">
+	<a href="/StudyQ/TeacherFaqEdit"> FAQ検索ページへ戻る </a>
+	</div>
+</section>
 <jsp:include page="footer.jsp" />
 </body>
 </html>

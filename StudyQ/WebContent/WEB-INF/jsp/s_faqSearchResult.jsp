@@ -16,7 +16,6 @@
 	<!-- アコーディオンパネルで必要 -->
 	<link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
 </head>
-
 <!-- ページャのデザイン -->
 	<style>
 		.pagination-container{
@@ -64,132 +63,139 @@
 	</script>
 </head>
 <body>
-<!-- ここからヘッダー -->
-<jsp:include page="student_header.jsp"/>
-<!-- ここからメイン -->
-<jsp:include page="student_menu.jsp"/>
+	<!-- ここからヘッダー -->
+	<jsp:include page="student_header.jsp"/>
 
-<!-- ヒット数 -->
- <p class="hitcount">　”${search_word}” の検索結果 :　${hitcount} 件</p>
+	<!-- ここからメイン -->
+	<jsp:include page="student_menu.jsp"/>
+	<section class="main1">
+		<h3><span>FAQ検索結果</span></h3>
 
-<!-- 検索バー -->
-<div class="faq_search_bar">
-	<form method="POST" action="/StudyQ/StudentFaqSearch" class="search_container_second">
-		<input type="text" size="10" id="text" name="search_word" placeholder="　調べたいことをキーワード検索" class="faq_search">
-		<input type="submit" value="&#xf002">
-	</form>
-</div><!-- class="faq_search_bar" -->
+		<!-- 検索バー -->
+		<div class="search_bar_second">
+			<form method="POST" action="/StudyQ/StudentFaqSearch" class="search_container">
+				<input type="text" size="25" id="text" name="search_word" placeholder="　調べたいことをキーワード検索" class="faq_search">
+				<input type="submit" value="&#xf002">
+			</form>
+		</div><!-- class="faq_search_bar" -->
+		<br>
+		<div class="keyword">
+			<!-- ボタンを押すと検索バーに値を設定 -->
+			<!-- HTMLボタン -->
+			<div class="one_row">
+				<input type="button" value="HTML" onclick="clickBtn1()" />
+				<script>
+				function clickBtn1() {
+				document.getElementById("text").value = "HTML";
+				}
+				</script>
 
-<div class="faq_search_bar">
+				<!-- CSSボタン -->
+				<input type="button" value="CSS" onclick="clickBtn2()" />
+				<script>
+				function clickBtn2() {
+				document.getElementById("text").value = "CSS";
+				}
+				</script>
 
-	<!-- ボタンを押すと検索バーに値を設定 -->
-	<!-- HTMLボタン -->
-	<div class="one_row">
-		<input type="button" value="HTML" onclick="clickBtn1()" />
-		<script>
-		function clickBtn1() {
-		document.getElementById("text").value = "HTML";
-		}
-		</script>
+				<!-- javascriptボタン -->
+				<input type="button" value="javascript" onclick="clickBtn3()" />
+				<script>
+				function clickBtn3() {
+				document.getElementById("text").value = "javascript";
+				}
+				</script>
 
-		<!-- CSSボタン -->
-		<input type="button" value="CSS" onclick="clickBtn2()" />
-		<script>
-		function clickBtn2() {
-		document.getElementById("text").value = "CSS";
-		}
-		</script>
+				<!-- javaボタン -->
+				<input type="button" value="java" onclick="clickBtn4()" />
+				<script>
+				function clickBtn4() {
+				document.getElementById("text").value = "java";
+				}
+				</script>
 
-		<!-- javascriptボタン -->
-		<input type="button" value="javascript" onclick="clickBtn3()" />
-		<script>
-		function clickBtn3() {
-		document.getElementById("text").value = "javascript";
-		}
-		</script>
+				<!-- SQLボタン -->
+				<input type="button" value="SQL" onclick="clickBtn5()" />
+				<script>
+				function clickBtn5() {
+				document.getElementById("text").value = "SQL";
+				}
+				</script>
+			</div><!-- one_row -->
 
-		<!-- javaボタン -->
-		<input type="button" value="java" onclick="clickBtn4()" />
-		<script>
-		function clickBtn4() {
-		document.getElementById("text").value = "java";
-		}
-		</script>
+			<div class="two_row">
+				<!-- eclipseボタン -->
+				<input type="button" value="eclipse" onclick="clickBtn6()" />
+				<script>
+				function clickBtn6() {
+				document.getElementById("text").value = "eclipse";
+				}
+				</script>
 
-		<!-- SQLボタン -->
-		<input type="button" value="SQL" onclick="clickBtn5()" />
-		<script>
-		function clickBtn5() {
-		document.getElementById("text").value = "SQL";
-		}
-		</script>
-	</div><!-- one_row -->
+				<!-- データベースボタン -->
+				<input type="button" value="データベース" onclick="clickBtn7()" />
+				<script>
+				function clickBtn7() {
+				document.getElementById("text").value = "データベース";
+				}
+				</script>
 
-	<div class="two_row">
-		<!-- eclipseボタン -->
-		<input type="button" value="eclipse" onclick="clickBtn6()" />
-		<script>
-		function clickBtn6() {
-		document.getElementById("text").value = "eclipse";
-		}
-		</script>
+				<!-- DAOボタン -->
+				<input type="button" value="DAO" onclick="clickBtn8()" />
+				<script>
+				function clickBtn8() {
+				document.getElementById("text").value = "DAO";
+				}
+				</script>
 
-		<!-- データベースボタン -->
-		<input type="button" value="データベース" onclick="clickBtn7()" />
-		<script>
-		function clickBtn7() {
-		document.getElementById("text").value = "データベース";
-		}
-		</script>
+				<!-- JSPボタン -->
+				<input type="button" value="JSP" onclick="clickBtn9()" />
+				<script>
+				function clickBtn9() {
+				document.getElementById("text").value = "JSP";
+				}
+				</script>
 
-		<!-- DAOボタン -->
-		<input type="button" value="DAO" onclick="clickBtn8()" />
-		<script>
-		function clickBtn8() {
-		document.getElementById("text").value = "DAO";
-		}
-		</script>
+				<!-- サーブレットボタン -->
+				<input type="button" value="サーブレット" onclick="clickBtn10()" />
+				<script>
+				function clickBtn10() {
+				document.getElementById("text").value = "サーブレット";
+				}
+				</script>
+			</div><!-- two_row -->
+		</div>
+	</section>
 
-		<!-- JSPボタン -->
-		<input type="button" value="JSP" onclick="clickBtn9()" />
-		<script>
-		function clickBtn9() {
-		document.getElementById("text").value = "JSP";
-		}
-		</script>
+	<!-- FAQ検索機能 -->
+	<section class="main2">
+		<br>
+		<!-- ヒット数 -->
+		<div class="hitcount">
+		 	<p class="hitcount">◆ ”${search_word}” の検索結果 :　${hitcount} 件 ◆</p>
+	 	</div>
 
-		<!-- サーブレットボタン -->
-		<input type="button" value="サーブレット" onclick="clickBtn10()" />
-		<script>
-		function clickBtn10() {
-		document.getElementById("text").value = "サーブレット";
-		}
-		</script>
-	</div><!-- two_row -->
-</div><!-- faq_search_bar -->
-	<br><hr>
-
-<!-- FAQ検索機能 -->
-<br>
-<div class="a">
-<ul class="accordion-area">
-	<c:forEach var="e" items="${faqCategory}" >
-	<div class="t_faqlist_body">
-		<li>
-			<section>
-		    	<p class="title">Q.  <c:out value="${e.faq_title}"/></p>
-		    	<div class="box">
-			    	<p>A.  <c:out value="${e.faq_ans}"/> </p>
-		    	</div>
-			</section>
-		</li>
-	</div>
-	</c:forEach>
-</ul>
-</div>
-
-<a href="/StudyQ/StudentFaqSearch">検索ページへ戻る</a>
-
+		<br>
+		<div class="a">
+			<ul class="accordion-area">
+				<c:forEach var="e" items="${faqCategory}" >
+				<div class="t_faqlist_body">
+					<li>
+						<section>
+					    	<p class="title"><span class="s_question">Q. </span><c:out value="${e.faq_title}"/></p>
+					    	<div class="box">
+						    	<p><span class="s_answer">A.  </span><c:out value="${e.faq_ans}"/> </p>
+					    	</div>
+						</section>
+					</li>
+				</div>
+				</c:forEach>
+			</ul>
+		</div>
+		<div class="back">
+			<a href="/StudyQ/StudentFaqSearch">検索ページへ戻る</a>
+		</div>
+	</section>
 
 <!-- 最上部に戻る -->
 <div id="page_top"><a href="#"></a></div>

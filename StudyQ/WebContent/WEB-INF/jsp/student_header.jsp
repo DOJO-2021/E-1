@@ -23,8 +23,9 @@
 
 		<!-- 研修生名の表示 -->
 		<div class="name">
-			<p>ようこそ<c:out value="${s_name}"/>さん！</p>
+			<p>-ようこそ<span><c:out value="${s_name}"/></span>さん！-</p>
 		</div>
+
 		<!-- ナビゲーションバー -->
 		<div class="hidden">
 			<nav class="gnavi">

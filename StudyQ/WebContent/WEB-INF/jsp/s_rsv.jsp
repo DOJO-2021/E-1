@@ -62,7 +62,25 @@
 				<p class="Form-Item-Label">　　　添付ファイル</p>
 				<input type="file" class="file" name="file">
 			</div>
-			<input type="submit" value="登録">
+			<input type="submit" value="登録" class="btn_orange"
+
+	  style="
+	  margin        : 0px 30px 30px 30px;
+	  margin-left   : 370px;
+	  display       : inline-block;
+	  border-radius : 20%;          /* 角丸       */
+	  font-size     : 20pt;        /* 文字サイズ */
+	  text-align    : center;      /* 文字位置   */
+	  cursor        : pointer;     /* カーソル   */
+	  padding       : 12px 24px;   /* 余白       */
+	  background    : #FFAA00;     /* 背景色     */
+	  color         : #ffffff;     /* 文字色     */
+	  line-height   : 1em;         /* 1行の高さ  */
+	  transition    : .3s;         /* なめらか変化 */
+	  box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
+	  border        : 2px solid #FFAA00;"    /* 枠の指定 */
+	  onMouseOut="this.style.background='#FFAA00'" onMouseOver="this.style.background='#f56500';this.style.border='#f56500';
+	  ">
 		</div>
 	</form>
 </section>

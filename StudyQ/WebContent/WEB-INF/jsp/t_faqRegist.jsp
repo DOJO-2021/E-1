@@ -37,7 +37,6 @@
 			<div class="t_faq_regist_btn">
 				<input type="submit" name="" value="登録" class="btn_orange"
 
-
 	  style="
 	  margin        : 30px;
 	  margin-left   : 830px;

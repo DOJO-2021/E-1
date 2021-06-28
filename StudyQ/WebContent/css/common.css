@@ -27,6 +27,7 @@ body {
 .main1 {
 	display: block;
 	margin: auto;
+	padding-bottom: 50px;
 	height: auto;
 	width: 1120px;
 	background-color: #ffffff;
@@ -35,10 +36,11 @@ body {
 .main2 {
 	display: block;
 	margin: auto;
-	height: 100px;
-	background-color: #009900;
+	padding-bottom: 50px;
+	/*height: 100px;*/
+	/*background-color: #009900;*/
 }
-
+/* ヘッダー */
 .head {
 	overflow:hidden
 }
@@ -51,6 +53,20 @@ body {
 .head form {
 	display: block;
 	margin: 30px 30px 10px 300px;
+}
+.name {
+	text-align: right;
+	margin-left: auto;
+}
+.name p{
+	margin-top: -55px;
+	font-size: 15px;
+}
+
+.name span {
+	font-size: 20px;
+	color: #f56500;
+	font-weight: bold;
 }
 .main {
 	clear: both;
@@ -77,13 +93,9 @@ body {
 h3 {
 	margin-top: 50px;
 	margin-bottom: 20px;
-	/*margin-right: auto;
-	margin-left: auto;
-	display: inline-block;*/
 	text-align: center;
 	font-size: 25px;
 	color: #76B900;
-	/*border-bottom: 4px solid ;*/
 }
 h3 span {
 	display: inline-block;
@@ -155,20 +167,9 @@ a.btn--radius {
   font-weight: bold;
   color: #646E66;
   padding: 10px;
-  border-top: 5px solid #76B900;
+
 }
 
-/*.gnavi {
-  height: 70px;
-  background-color: #ffffff;
-  /*box-shadow: 0 3px 6px -3px #000000 inset;*/
-  /*font-size: 1.1rem;
-  font-weight: bold;
-  color: #646E66;
-  padding: 10px;
-  border-top: 5px solid #76B900;
-}
-*/
 .gnavi__inner {
   width: 980px;
   height: 100%;
@@ -425,11 +426,6 @@ ul {
   color: #FFF;
 }
 
-.tt2:hover {
-  background-color: #009900;
-  border-color: #009900;
-  color: #FFF;
-}
 .container img {
 	padding: 10px 50px;
 }
@@ -461,6 +457,24 @@ ul {
 	color: #009900;
 	font-size: 40px;
 	font-weight:bolder
+}
+
+/* --------------------FAQ画面-------------------- */
+.keyword {
+	width: 70%;
+	margin-right: auto;
+	margin-left: auto;
+	padding :20px;
+	background-color: #f1f1f1;
+	text-align: center;
+}
+.search {
+	margin-top: 20px;
+	text-align: center;
+}
+.back {
+	margin: 15px auto;
+	text-align: center;
 }
 /* --------------------footer画面-------------------- */
 .footer {

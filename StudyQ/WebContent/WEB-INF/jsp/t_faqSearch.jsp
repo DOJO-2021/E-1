@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<!-- CSS適用 -->
 	<link rel="stylesheet"  href="/StudyQ/css/common.css">
-	<link rel="stylesheet"  href="/StudyQ/css/t_faqSearch.css">
+	<!-- <link rel="stylesheet"  href="/StudyQ/css/t_faqSearch.css"> -->
 	<!-- 検索バーで必要 -->
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<title>講師 | FAQ検索</title>
@@ -21,11 +21,13 @@
 
 		<h3><span>FAQ検索</span></h3>
 		<!-- 検索バー -->
-		<div class="search_ber">
-			<form method="POST" action="/StudyQ/TeacherFaqEdit" class="search_container">
-				<input type="text" size="25" id="text" name="search_word" placeholder="　調べたいことをキーワード検索">
-				<input type="submit" value="&#xf002">
-			</form>
+		<div class="search">
+			<div class="search_ber">
+				<form method="POST" action="/StudyQ/TeacherFaqEdit" class="search_container">
+					<input type="text" size="25" id="text" name="search_word" placeholder="　調べたいことをキーワード検索">
+					<input type="submit" value="&#xf002">
+				</form>
+			</div>
 		</div>
 		<br>
 
@@ -115,8 +117,8 @@
 		</div>
 
 		<!-- FAQ新規登録ボタン -->
-		<div class="faq_regist_btn" >
-			<a href="/StudyQ/TeacherFaqRegist">FAQの新規登録はこちらから</a>
+		<div class="faq_regist_btn" style="margin:30px; margin-left:455px;">
+			<a href="/StudyQ/TeacherFaqRegist">⇒FAQの新規登録はこちらから</a>
 		</div>
 
 		<!-- 先頭ページへ戻る -->

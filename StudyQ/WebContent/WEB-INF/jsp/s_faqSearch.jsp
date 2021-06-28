@@ -69,128 +69,128 @@
 
 	<!-- メイン -->
 	<jsp:include page="student_menu.jsp"/>
-
 	<section class="main1">
-	<h3><span>FAQ</span></h3>
+		<h3><span>FAQ検索</span></h3>
 
 		<!-- 検索バー -->
 		<div class="search_bar_second">
 			<form method="POST" action="/StudyQ/StudentFaqSearch" class="search_container">
-				<input type="text" size="25" id="text" name="search_word" placeholder="　調べたいことをキーワード検索">
+				<input type="text" size="25" id="text" name="search_word" placeholder="　調べたいことをキーワード検索" class="faq_search">
 				<input type="submit" value="&#xf002">
 			</form>
 		</div>
 		<br>
-<div class="keyword">
-<div class="one_row">
-		<!-- ボタンを押すと検索バーに値を設定 -->
-		<!-- HTMLボタン -->
-		<input type="button" value="HTML" onclick="clickBtn1()" />
-		<script>
-		  function clickBtn1() {
-		    document.getElementById("text").value = "HTML";
-		  }
-		</script>
+		<div class="keyword">
+			<div class="one_row">
+				<!-- ボタンを押すと検索バーに値を設定 -->
+				<!-- HTMLボタン -->
+				<input type="button" value="HTML" onclick="clickBtn1()" />
+				<script>
+				  function clickBtn1() {
+				    document.getElementById("text").value = "HTML";
+				  }
+				</script>
 
-		<!-- CSSボタン -->
-		<input type="button" value="CSS" onclick="clickBtn2()" />
-		<script>
-		  function clickBtn2() {
-		    document.getElementById("text").value = "CSS";
-		  }
-		</script>
+				<!-- CSSボタン -->
+				<input type="button" value="CSS" onclick="clickBtn2()" />
+				<script>
+				  function clickBtn2() {
+				    document.getElementById("text").value = "CSS";
+				  }
+				</script>
 
-		<!-- javascriptボタン -->
-		<input type="button" value="javascript" onclick="clickBtn3()" />
-		<script>
-		  function clickBtn3() {
-		    document.getElementById("text").value = "javascript";
-		  }
-		</script>
+				<!-- javascriptボタン -->
+				<input type="button" value="javascript" onclick="clickBtn3()" />
+				<script>
+				  function clickBtn3() {
+				    document.getElementById("text").value = "javascript";
+				  }
+				</script>
 
-		<!-- javaボタン -->
-		<input type="button" value="java" onclick="clickBtn4()" />
-		<script>
-		  function clickBtn4() {
-		    document.getElementById("text").value = "java";
-		  }
-		</script>
+				<!-- javaボタン -->
+				<input type="button" value="java" onclick="clickBtn4()" />
+				<script>
+				  function clickBtn4() {
+				    document.getElementById("text").value = "java";
+				  }
+				</script>
 
-		<!-- SQLボタン -->
-		<input type="button" value="SQL" onclick="clickBtn5()" />
-		<script>
-		  function clickBtn5() {
-		    document.getElementById("text").value = "SQL";
-		  }
-		</script>
-</div>
-
-
-<div class="two_row">
-		<!-- eclipseボタン -->
-		<input type="button" value="eclipse" onclick="clickBtn6()" />
-		<script>
-		  function clickBtn6() {
-		    document.getElementById("text").value = "eclipse";
-		  }
-		</script>
-
-		<!-- データベースボタン -->
-		<input type="button" value="データベース" onclick="clickBtn7()" />
-		<script>
-		  function clickBtn7() {
-		    document.getElementById("text").value = "データベース";
-		  }
-		</script>
-
-		<!-- DAOボタン -->
-		<input type="button" value="DAO" onclick="clickBtn8()" />
-		<script>
-		  function clickBtn8() {
-		    document.getElementById("text").value = "DAO";
-		  }
-		 </script>
-
-		  <!-- JSPボタン -->
-			<input type="button" value="JSP" onclick="clickBtn9()" />
-			<script>
-			  function clickBtn9() {
-			    document.getElementById("text").value = "JSP";
-			  }
-			</script>
-
-			<!-- サーブレットボタン -->
-			<input type="button" value="サーブレット" onclick="clickBtn10()" />
-			<script>
-		  		function clickBtn10() {
-		    	document.getElementById("text").value = "サーブレット";
-		  		}
-			</script>
-</div>
-</div>
-
-<!-- FAQ一覧表示 -->
-<br>
-<p class="wordsize"><span>一覧表示</span></p>
-<div class="a">
-	<c:forEach var="e" items="${faqList}" >
-		<form method="GET" action="/StudyQ/StudentFaqSearch">
-			<ul class="accordion-area">
-			<div class="t_faqlist_body">
-				<li>
-					<section>
-					    <p class="title"><span class="s_question">Q.  </span><c:out value="${e.faq_title}"/></p>
-					    <div class="box">
-						    <p><span class="s_answer">A.  </span><c:out value="${e.faq_ans}"/> </p>
-					    </div>
-					</section>
-				</li>
+				<!-- SQLボタン -->
+				<input type="button" value="SQL" onclick="clickBtn5()" />
+				<script>
+				  function clickBtn5() {
+				    document.getElementById("text").value = "SQL";
+				  }
+				</script>
 			</div>
-			</ul>
-			</form>
-		</c:forEach>
-</div>
-</section>
+
+			<div class="two_row">
+					<!-- eclipseボタン -->
+					<input type="button" value="eclipse" onclick="clickBtn6()" />
+					<script>
+					  function clickBtn6() {
+					    document.getElementById("text").value = "eclipse";
+					  }
+					</script>
+
+					<!-- データベースボタン -->
+					<input type="button" value="データベース" onclick="clickBtn7()" />
+					<script>
+					  function clickBtn7() {
+					    document.getElementById("text").value = "データベース";
+					  }
+					</script>
+
+					<!-- DAOボタン -->
+					<input type="button" value="DAO" onclick="clickBtn8()" />
+					<script>
+					  function clickBtn8() {
+					    document.getElementById("text").value = "DAO";
+					  }
+					 </script>
+
+					  <!-- JSPボタン -->
+						<input type="button" value="JSP" onclick="clickBtn9()" />
+						<script>
+						  function clickBtn9() {
+						    document.getElementById("text").value = "JSP";
+						  }
+						</script>
+
+						<!-- サーブレットボタン -->
+						<input type="button" value="サーブレット" onclick="clickBtn10()" />
+						<script>
+					  		function clickBtn10() {
+					    	document.getElementById("text").value = "サーブレット";
+					  		}
+						</script>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ一覧表示 -->
+	<section class="main2">
+		<br>
+		<p class="wordsize"><span>◆FAQ一覧表示◆</span></p>
+		<div class="a">
+			<c:forEach var="e" items="${faqList}" >
+				<form method="GET" action="/StudyQ/StudentFaqSearch">
+					<ul class="accordion-area">
+					<div class="t_faqlist_body">
+						<li>
+							<section>
+							    <p class="title"><span class="s_question">Q.  </span><c:out value="${e.faq_title}"/></p>
+							    <div class="box">
+								    <p><span class="s_answer">A.  </span><c:out value="${e.faq_ans}"/> </p>
+							    </div>
+							</section>
+						</li>
+					</div>
+					</ul>
+					</form>
+				</c:forEach>
+		</div>
+	</section>
 
 <!-- ここからフッター -->
 <jsp:include page="footer.jsp"/>
