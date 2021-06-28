@@ -71,7 +71,7 @@
 $(function() {
 		$.ajax({ //jsonデータを取り出す
 			contentType : "Content-Type: application/json; charset=UTF-8",
-			url : "json/session_data.json",
+			url : "json/session_data.json" + '?date=' + new Date().getTime(),
 			type : "GET",
 			datatype : "json",
 			success: function(json){
