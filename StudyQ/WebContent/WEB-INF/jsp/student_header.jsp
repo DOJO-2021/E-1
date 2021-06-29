@@ -9,7 +9,7 @@
 	<section class="head">
 		<!-- ロゴ -->
 		<div class="logo">
-			<a href="/StudyQ/StudentTop"><img src="image/logo.jpg" width=300px height=auto></a>
+			<a href="/StudyQ/StudentTop"><img src="image/studyQlogo1.png" width=300px height=auto></a>
 		</div>
 
 		<!-- ログアウトボタン --><!-- ドロワーメニュー -->

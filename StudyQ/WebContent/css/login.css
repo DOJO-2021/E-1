@@ -109,7 +109,7 @@ input[type="submit"]:hover {
 /* ---------------タイトル--------------- */
 h1 {
   color        : #00be00;
-  margin-bottom: 1em;
+  /*margin-bottom: 1em;*/
   padding-top  : 39px;
 }
 

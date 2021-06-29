@@ -11,7 +11,7 @@
 	<!-- ここからメイン -->
 	<main>
 	<div class="login_main">
-		<h1>StudyQAっしょん</h1>
+		<h1><img src="image/studyQlogo1.png" width=200px height=auto></h1>
 
 		<form method="POST" action="/StudyQ/TeacherLogin">
 

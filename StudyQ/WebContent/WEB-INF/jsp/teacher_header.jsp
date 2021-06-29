@@ -7,7 +7,7 @@
 	<section class="head">
 		<!-- ロゴ -->
 		<div class="logo">
-			<a href="/StudyQ/TeacherTop"><img src="image/logo.jpg" width=300px height=auto></a>
+			<a href="/StudyQ/TeacherTop"><img src="image/studyQlogo1.png" width=300px height=auto></a>
 		</div>
 		<!-- ログアウトボタン --><!-- ドロワーメニュー -->
 		<a href="" class="btn btn--orange btn--radius" value="ログアウト" onclick="MoveCheck();">ログアウト</a>
