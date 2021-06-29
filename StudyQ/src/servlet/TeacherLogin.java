@@ -39,13 +39,6 @@ public class TeacherLogin extends HttpServlet {
 		String id = request.getParameter("t_id");
 		String pw = request.getParameter("t_pw");
 
-		//IDとPWのハッシュ化
-//		/Hash idHash = new Hash();
-//		Hash pwHash = new Hash();
-//
-//		String hashId = idHash.getHash(id);
-//		String hashPw = pwHash.getHash(pw);
-
 
 
 		// ログイン処理を行う
@@ -59,15 +52,6 @@ public class TeacherLogin extends HttpServlet {
 			// メニューサーブレットにリダイレクトする
 			response.sendRedirect("/StudyQ/TeacherTop");
 		}
-		/*
-		else {									// ログイン失敗
-			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-			request.setAttribute("result",
-			new Result("ログイン失敗！", "IDまたはPWに間違いがあります。", "/StudyQ/TeacherLogin.java"));
 
-			// 結果ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-			dispatcher.forward(request, response);
-		}*/
 	}
 }

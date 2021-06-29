@@ -32,15 +32,6 @@ public class TeacherReserveList extends HttpServlet {
 			return;
 		}
 
-		// リクエストパラメータを取得する（beansが完成したら）
-//		request.setCharacterEncoding("UTF-8");
-//		String session_id = request.getParameter("session_id");
-//		String s_name = request.getParameter("s_name");
-//		String subject = request.getParameter("subject");
-//		String question = request.getParameter("question");
-//		String file = request.getParameter("file");
-//		String state = request.getParameter("state");
-//		String session_m_category = request.getParameter("session_m_category");
 
 		//一覧を表示処理
 		CommonDao cDao = new CommonDao();

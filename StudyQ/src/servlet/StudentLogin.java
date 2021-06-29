@@ -63,17 +63,8 @@ public class StudentLogin extends HttpServlet {
 			// 研修生用のTOPページサーブレットにリダイレクト
 			response.sendRedirect("/StudyQ/StudentTop");
 		}else {
-			System.out.println("失敗！");
+			System.out.println("ログイン失敗！");
 		}
-		/*
-		else {									// ログイン失敗
-			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-			request.setAttribute("result",
-			new Result("ログイン失敗！", "IDまたはPWに間違いがあります。", "/StudyQ/StudentLogin.java"));
 
-			// 結果ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-			dispatcher.forward(request, response);
-		}*/
 	}
 }

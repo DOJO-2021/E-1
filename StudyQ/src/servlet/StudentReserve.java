@@ -75,7 +75,6 @@ public class StudentReserve extends HttpServlet {
 		String sendFileName = "";
 
 
-//		String uploadFolder = "C:\\pleiades\\workspace\\E-1\\StudyQ\\WebContent\\appfile\\";
 
 		String uploadFolder = this.getServletContext().getRealPath("/appfile/");
 
@@ -108,10 +107,7 @@ public class StudentReserve extends HttpServlet {
 					sendFileName = sourceFileName;
 					String extName = sourceFileName.split("\\.")[1];
 					uploadFileName =uploadFileName + "." + extName;
-					//.のあとを取得
 
-					//実際には、ファイル名を商品IDなどに置き換えることになる（同一ファイル名対策）
-					//ここだけコピペじゃなく、自分で実装すること
 					part.write(uploadFolder + uploadFileName);
 				}
 

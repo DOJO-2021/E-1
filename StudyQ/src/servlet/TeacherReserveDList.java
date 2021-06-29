@@ -36,14 +36,6 @@ public class TeacherReserveDList extends HttpServlet {
 		//リクエストパラメータを取得する（beansが完成したら）
 		request.setCharacterEncoding("UTF-8");
 		int session_id = Integer.parseInt(request.getParameter("session_id"))-1;
-//		//String s_name = request.getParameter("s_name");
-//		String subject = request.getParameter("subject");
-//		String question = request.getParameter("question");
-//		String file = "005";
-////		String file = request.getParameter("file");
-////		String session_m_category = request.getParameter("session_m_category");
-//		int session_m_category = 4;
-
 		String downloadPath = "appfile/";
 
 		CommonDao cDao = new CommonDao();
